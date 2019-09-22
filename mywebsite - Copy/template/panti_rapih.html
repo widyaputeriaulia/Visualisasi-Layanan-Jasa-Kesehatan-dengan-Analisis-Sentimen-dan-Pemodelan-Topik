@@ -1,0 +1,844 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<style>
+ 
+  </style>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50" style="background-image: url('/static/img/bg4.png'); background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: cover;">>
+	<div class="container">
+
+		<div class="row">
+			<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">  
+			   <ul class="navbar-nav">
+			  		<li class="nav-item dropdown">
+			      		<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+			        	Home
+			      		</a>
+			      		<div class="dropdown-menu">
+			      			<a class="dropdown-item" href="/">Home</a>
+					        <a class="dropdown-item" href="/bethesda">RS Bethesda</a>
+					        <a class="dropdown-item" href="/sleman">RSUD Sleman</a>
+					        <a class="dropdown-item" href="/wates">RSUD Wates</a>
+					        <a class="dropdown-item" href="/jih">RS JIH</a>
+					        <a class="dropdown-item" href="/panti_rapih">RS Panti Rapih</a>
+					        <a class="dropdown-item" href="/pku_muhammadiyah">RS PKU Muhammadiyah</a>
+					        <a class="dropdown-item" href="/panembahan">RSUD Panembahan Senopati</a>
+					        <a class="dropdown-item" href="/pau_hardjolukito">RS PAU Dr. S. Hardjolukito</a>
+					        <a class="dropdown-item" href="/ugm">RS UGM</a>
+					        <a class="dropdown-item" href="/kota">RSUD Kota Yogyakarta</a>
+					        <a class="dropdown-item" href="/sardjito">RS dr. Sardjito</a>
+				      	</div>
+			    	</li>
+				    <li class="nav-item">
+				       
+				    </li>
+				    <li class="nav-item">
+				       <a class="nav-link" href="#section2">Positif Non Medis</a>
+				    </li>
+				    <li class="nav-item">
+				       <a class="nav-link" href="#section3">Positif Medis</a>
+				    </li>
+				    <li class="nav-item">
+				       <a class="nav-link" href="#section4">Negatif Non Medis</a>
+				    </li>
+				    <li class="nav-item">
+				       <a class="nav-link" href="#section5">Negatif Medis</a>
+				    </li>
+				</ul>
+			</nav>
+		</div>
+
+		<div class="row title">
+	        <div class="col-md-12" id="site-title">
+	        	<p> 
+	        		<h1 class="title-site", style="padding-top:50px">Visualisasi Pelayanan Jasa Kesehatan</h1>
+	        		<p class="desc">Dengan Analisis Sentimen dan Klasifikasi</p>
+	        		
+	        	</p>
+	        </div>
+    	</div>
+
+    	<div id="section1">
+	    	<div class="row" style="padding-top: 5px">
+	    		<hr size="10px" width="100%" color="#0066cc"> 
+	    	</div>
+	    	<div class="row my-2">
+	    		
+	    	</div>
+    	</div>
+
+    	<div id="section2">
+	  		<div class = 'row'>
+	  			<h2>Grafik Frekuensi Frasa Positif non-medis RS Panti Rapih</h2>
+				<canvas id="pnm" width="10px" height="4px"></canvas>		
+			</div>
+
+			<div class="row">
+				<h2>Tabel Review Positif non-medis RS Panti Rapih</h2>
+			<!-- <canvas id="pm" width="10px" height="8px"></canvas> -->
+				<table class="table table-striped table-bordered" id="example" style="width:100%">
+				  	<thead>
+				    <tr>
+				      <th scope="col",class="col-lg-1" >No.</th>
+				      <th scope="col",class="col-lg-2" >Frasa</th>
+				      <th scope="col", class="col-lg-3" >Review</th>
+				    </tr>
+				  	</thead>
+				  	<tbody>
+				  		<tr>
+					      	<th scope="row">1</th>
+					      	<td>interior bagus</td>
+					     	<td>
+					      		Pelayanan polinya bagus.  Walau antri lama,  karena memang banyaknya pasien. Dokter dan paramedisnya ramah. Ruang tunggunya bagus, bersih. Gak bau obat
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">2</th>
+					      	<td>ruang bersih</td>
+					     	<td>
+					      		<li>
+					      			(Diterjemahkan oleh Google) Layanan baik. Ruang tunggu yang bersih dan mereka memfasilitasi wifi dan tv. Rumah sakit ini juga bersih. Tetapi area parkir adalah sedikit membingungkan.(Asli)The services are good. Waiting room are clean and they facilitate wifi and tv. This hospital is also clean. But the parking area is a little bit confusing.
+					      		</li>
+					      		<li>
+					      			fasilitas cukup lengkap, nyaman, salah satu RS swasta di Jogja yang recommended untuk rujukan
+					      		</li>
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">3</th>
+					      	<td>pelayan bagus</td>
+					     	<td>
+					      		Tempat bersih.pelayan bagus baik umum atupun dgn jaminan.tpi agak luamaaaa antrinw.tpi gpp...yg penting servisnya.masukan utk nurse kelihatanya kurang banyak
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">4</th>
+					      	<td>tempat baik</td>
+					     	<td>
+					      		Salah satu rumah sakit tertua dan terbaik di Yogyakarta. Tempatnya bersih, penanganan juga baik.
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">5</th>
+					      	<td>fasilitas sangat baik</td>
+					     	<td>
+					      		Rumah Sakit yang sangat luas dengan fasilitas yang sangat baik dan lengkap di tengah kota Yogyakarta. Dimana saat i i masih juga menambah area dan ruangan untuk pasien. Rumah sakit ini juga salah ssatu cagar budaya yang masih di pertahankan walau banyak bangunan yang baru yang berdiri di dalamnya. Rumah sakit yang selalu siap melayani selama 24jam ini, di lengkapai fasilitas komplit dan penanganan yang baik serta pelayanan yang baik.. Bersih dan rapi serta parkir kendaraan yang semakin di perluas daya tampungnya..
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">6</th>
+					      	<td>ruang nyaman</td>
+					     	<td>
+					      		Ruang tunggu nyaman, kursi cukup memadai
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">7</th>
+					      	<td>fasilitas baik</td>
+					     	<td>
+					      		Sangat menyesalkan layanan parkir yang kurang maksimal,dimana sudah dikenai cas per 2jam tapi petugas parkirnya ada motor kesusahan mau keluar tidak membantu,malah diliatin saja sambil ditinggal ngopi rokok dan musikan pdahal sudah tertulis AREA BEBAS ASAP ROKOK mohon dengan sangat tolong di perbaiki untuk layanan parkirnya || untuk Pelayanan medis semua sudah maksimal bagus sangat puas sekali dari segi medis dan fasilitas sangat bagus dan baik puas pokokknya maju terus rs panti rapih   
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">8</th>
+					      	<td>fasilitas bagus</td>
+					     	<td>
+					     		<li>
+					     			Pelayananya smkn baik, fasilitas bagus, alat2 Radiologi canggih...
+					     		</li>
+					     		<li>
+					     			PENANGANAN MEDIS SECARA UMUM BAGUS.UTK IGD PENANGANAN MEDIS SPY LEBIH DITINGKATKAN KHUSUSNYA WAKTU PENANGANANNYA JGN TERLALU LAMA. FASILITAS PENUNJANG LAINNYA CUKUP BAGUS BAIK UTK RAWAT JALAN ATAU RAWAT INAP, HARAP DIPERTAHANKAN & DITINGKATKAN.FASILITAS PARKIR TOLONG DIPERHATIKAN KHUSUSNYA DAYA TAMPUNG KENDARAAN.
+					     		</li>
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">9</th>
+					      	<td>petugas ramah</td>
+					     	<td>
+					     		<li>
+					     			Tempat ini so far nyaman, sejuk, hijau, fasilitas lengkap, petugas ramah, pilhan dokter banyak, kalau cari parkir agak susah, ada minimarket, kantin dengan pilihan jajanan pasar dan makanannya lengkap, ada fasilitas FC di dalamnya, bisa pakai BPJS, akses ke RS gampang, ada banyak sarana transportasi untuk bisa sampai ke tempat ini. Ada healing garden tiap sabtu. Ada menu catering diet jg. Bisa go food juga. Vaksinasi lengkap dijamin asli.
+					     		</li>
+					     		<li>
+					     			Petugas ramah, kebersihan sangat dijaga
+					     		</li>
+					     		<li>
+					     			Pelayananny cepat, petugasny ramah, lingkunganny bersih dan sejuk. Cuma sayang, parkiran mobilny terbatas sekali dan sedikit pohon..
+					     		</li>
+					     		<li>
+					     			RS yang bersih dan apik, petugasnya ramah
+					     		</li>
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">10</th>
+					      	<td>tempat nyaman</td>
+					     	<td>
+					      		Tempat ini so far nyaman, sejuk, hijau, fasilitas lengkap, petugas ramah, pilhan dokter banyak, kalau cari parkir agak susah, ada minimarket, kantin dengan pilihan jajanan pasar dan makanannya lengkap, ada fasilitas FC di dalamnya, bisa pakai BPJS, akses ke RS gampang, ada banyak sarana transportasi untuk bisa sampai ke tempat ini. Ada healing garden tiap sabtu. Ada menu catering diet jg. Bisa go food juga. Vaksinasi lengkap dijamin asli.
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">11</th>
+					      	<td>fasilitas lengkap</td>
+					     	<td>
+					      		<li>
+					      			Rumah Sakit yang sangat luas dengan fasilitas yang sangat baik dan lengkap di tengah kota Yogyakarta. Dimana saat i i masih juga menambah area dan ruangan untuk pasien. Rumah sakit ini juga salah ssatu cagar budaya yang masih di pertahankan walau banyak bangunan yang baru yang berdiri di dalamnya. Rumah sakit yang selalu siap melayani selama 24jam ini, di lengkapai fasilitas komplit dan penanganan yang baik serta pelayanan yang baik.. Bersih dan rapi serta parkir kendaraan yang semakin di perluas daya tampungnya..
+					      		</li>
+					      		<li>
+					      			Panti Rapih jadi salah satu rumah sakit dengan fasilitas yang lengkap dan berkualitas. Pelayanan yang cepat tanggap. Di dalam rumah sakit juga terdapat Dunkin Donut. Hanya aja lahan parkir tergolong sempit untuk rumah sakit sebesar ini
+					      		</li>
+					      		<li>
+					      			Tempat ini so far nyaman, sejuk, hijau, fasilitas lengkap, petugas ramah, pilhan dokter banyak, kalau cari parkir agak susah, ada minimarket, kantin dengan pilihan jajanan pasar dan makanannya lengkap, ada fasilitas FC di dalamnya, bisa pakai BPJS, akses ke RS gampang, ada banyak sarana transportasi untuk bisa sampai ke tempat ini. Ada healing garden tiap sabtu. Ada menu catering diet jg. Bisa go food juga. Vaksinasi lengkap dijamin asli.
+					      		</li>
+					      		<li>
+					      			Salah saru rumah sakit swasta di jogja, letaknya di tengah kota jogja di depan kampus ugm.Kalo orang jogja nyebutnya di bunderan ugm, rumah sakit yg memiliki fasilitas yg baik di jogja ini lengkap dengan berbagai spesialis dan perlengkapan medis.Untuk kamar banyak pilihan, untuk rawat jalan bisa juga melalui telepon untuk reservasi. Dan di sini juga canggih karena antrian sudah menggunakan komputer. Ruang tunggu nyaman, kursi cukup memadai
+					      		</li>
+					      		<li>
+					      			Salah satu RS terbaik di Jogja. Pelayanan para dokter dan perawatnya sangat baik. Fasilitas lengkap. Tempat tertata rapi dan bersih. Lokasi mudah ditemukan dan diakses karena berada di tengah kota dan di pinggir jalan besar.  Tempat parkir luas.
+					      		</li>
+					      		<li>
+					      			Rumah sakit dengan pelayanan baik dan fasilitas lengkap
+					      		</li>
+					      		<li>
+					      			RS terbaik di Yogyakarta. Fasilitas terlengkap, Sistemnya bagus dan dokternya juga bagus-bagus. 
+					      		</li>
+					      		<li>
+					      			Rumah sakit swasta terbaik di Jogja. Semua serba profesional. Semakin berkembang lagi dengan pembangunan gedung baru utk menjadi RS tipe A. Kualitas pelayanan dan harganya sudah sesuai. Fasilitasnya sudah lengkap, tenaga medis juga banyak dengan spesialisasinya. Kebersihan t.o.p pokoknya. Semoga sistem dan pelayanannya jg semakin ditingkatkan apalagi utk peserta bpjs sekarang jg semakin dimudahkan sistemnya disini gk ribet lg.
+					      		</li>
+					      		<li>
+					      			Fasilitasnya sudah lengkap, tenaga medis juga banyak dengan spesialisasinya. Kebersihan t.o.p pokoknya. Semoga sistem dan pelayanannya jg semakin ditingkatkan apalagi utk peserta bpjs sekarang jg semakin dimudahkan sistemnya disini gk ribet lg.
+					      		</li>
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">12</th>
+					      	<td>tempat bersih</td>
+					     	<td>
+					     		<li>
+					     			Sangat memuaskan.....suster dan dokternya ramah ramah....tempatnya bersihTindakanya sangat cepat dan tepat..... Trmksh sudah membantu oprasi ibu saya.......
+					     		</li>
+					     		<li>
+					     			Pelayanan bagus dan cukup cepat. Tempat bersih
+					     		</li>
+					     		<li>
+					     			Salah satu rumah sakit besar di yogyakarta. Tempat bersih. Pelayanan bagus. Lokasi mudah dijangkau. Peralatan medis lumayan lengkap. Pelayan IGD cukup sigap. Petugas informasi dan pendaftaran cukup banyak. Pelayanan poli cukup lengkap.
+					     		</li>
+					     		<li>
+					     			RS yang bagus. Pelayanan profesional, tempat bersih dan sudah didukung teknologi informasi untuk menyimpan medical recording pasien.
+					     		</li>
+					     		<li>
+					     			Salah satu RS terbaik di Jogja. Pelayanan para dokter dan perawatnya sangat baik. Fasilitas lengkap. Tempat tertata rapi dan bersih. Lokasi mudah ditemukan dan diakses karena berada di tengah kota dan di pinggir jalan besar.  Tempat parkir luas.
+					     		</li>
+					     		<li>
+					     			Tempat bersih.pelayan bagus baik umum atupun dgn jaminan.tpi agak luamaaaa antrinw.tpi gpp...yg penting servisnya.masukan utk nurse kelihatanya kurang banyak
+					     		</li>
+					     		<li>
+					     			Tempatnya bersih, nyaman, dan mendukung pasien bisa cepet sembuh. Pelayanannya juga bagus baik dokter, perawat dan karyawannya. Perawatnya cepat tanggap jika dipanggil. Hanya saja karena sedang direnovasi lahan parkir jadi kurang, semoga renovasinya dapat segera selesai sehingga lahan parkir tersedia. Tersedia juga beberapa tempat yang menjual makanan seperti Trubus & Vivo Market di depan bangsal Carolus, Dunkin Donut di depan Pendaftaran, Kantin di belakang Dunkin Donut dan Burger di lantai 2 atau 3 ya saya lupa, pokoknya satu lantai dengan poli anak.
+					     		</li>
+					     		<li>
+					     			Tempatnya bersih jadi yakin kalo steril..Tapi bukan berarti disarankan untuk kerasan ya..
+					     		</li>
+					     		<li>
+					     			(Diterjemahkan oleh Google) Tempat bersih, layanan manajemen yang baik dan staf yang ramah. Menemukan tempat parkir merupakan tantangan selama kunjungan.(Asli)Clean place, good management service and friendly staff. Finding parking lot is challenging one during visitation time.
+					     		</li>
+					      	</td>
+				      	</tr>
+				  	</tbody>
+				</table>
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+
+		<div id="section3">
+			<div class="row">
+				<h2>Grafik Frekuensi Frasa Positif Medis RS Panti Rapih</h2>
+				<canvas id="pm" width="10px" height="4px"></canvas>
+			</div>
+
+			<div class="row">
+				<h2>Tabel Review Positif Medis RS Panti Rapih</h2>
+				<table class="table table-striped table-bordered" id="example1" style="width:100%">
+				  	<thead>
+				    <tr>
+				      <th scope="col",class="col-lg-1" >No.</th>
+				      <th scope="col",class="col-lg-2" >Frasa</th>
+				      <th scope="col", class="col-lg-3" >Review</th>
+				    </tr>
+				  	</thead>
+				  	<tbody>
+				  		<tr>
+					      	<th scope="row">1</th>
+					      	<td>ruang besar</td>
+					     	<td>
+					      		Ruang Perawatan Panglima Besar Jenderal Soedirman  
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">2</th>
+					      	<td>dokter cepat</td>
+					     	<td>
+					      		Penanganan dokter cepat, susternya juga ramah, birokrasi ga ribet
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">3</th>
+					      	<td>perawat cekatan</td>
+					     	<td>
+					      		<li>
+					      			RSPR bagus dan profesional, bersih, perawatnya cekatan dan ramah, mungkin bagi yang  komen jelek, belum merasakan pelayanan di RS lain. maju terus RSPR. thanks
+					      		</li>
+					      		<li>
+					      			Pelayanan bagus dr dan perawat ramah  cekatan pasien cepat di tangani.juga mlyni bpjs .Rs nya besar  kelihatan dari jln raya.tepatnya di jln cik Ditiro. bundaran ugm.jogya.
+					      		</li>
+					      		<li>
+					      			Pelayanan bagus n perawatnya cekatan...Administrasinya pun makin canggih dan online...Peningkatan tsb juga meningkatkan harga n biaya layanan.... jadi makin mahal .... apalagi klo periksa ke dokter spesialis dan tanpa BPJS....
+					      		</li>
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">4</th>
+					      	<td>ruang ramah</td>
+					     	<td>
+					      		Saya bersyukur RS Panti Rapih menangani pasien BPJS seperti saya. Tidak ada perbedaan kualitas pelayanan yang diberikan dan staffnya seluruhnya ramah. Sedikit sharing,  kemarin 29 September 2017 istri saya menjalani tindakan SC, bisa dibayangkan berapa pengeluaran riil jika tidak menggunakan BPJS. Namun, berkat pertolongan RSPR yang bekerja sama dengan BPJS, maka kami bisa terbantu. Dari awal, semenjak konsul di poli kandungan Dr. Lusiana dengan ramah dan santun memberikan petunjuk cara penggunaan BPJS bagi kami, kemudian saat kami mendaftar pun dilayani dengan baik oleh petugas PPRI. Memang saya menginginkan kenaikan kelas, hak kami di kelas 1, namun karena satu dan lain pertimbangan kami menaikan ke VIP Standard. Proses ini pun dilayani dengan sangat amat baik oleh petugas PPRI walaupun kami adalah peserta BPJS. Ibu petugasnya menjelaskan prosedur penggunaan BPJS dengan detil dan sangat ramah. Bahkan ketika di ruang rawat Carolus 404, kami ditangani secara ramah, sangat baik, dan profesional, tidak ada pembedaan apapun walaupun kami peserta BPJS. Singkat cerita, 2 Oktober 2017 kami diijinkan pulang dan memang tagihan yang diberikan sudah diperhitungkan dengan kepesertaan BPJS kami. Saya bersyukur hidup di kota yang memiliki fasilitas medis seperti RS Panti Rapih ini, sangat membantu sekali. Pertahan dan tingkatkan mutu pelayanan kesehatannya. Saya yakin RSPR bisa menjadi RS terbaik di DIY. Untuk segenap staff baik administrasi, petugas kebersihan, pengantar makanan, satpam, perawat, dokter, maupun suster CB yang selalu memberikan penguatan dan doa, kami sekeluarga mengucapkan terima kasih. Proficiat untuk proses akreditasi yang baru, Tuhan yang membalas kebaikan anda-anda semua. Amin.
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">5</th>
+					      	<td>ruang bersih</td>
+					     	<td>
+					     		<li>
+					     			(Diterjemahkan oleh Google) Layanan baik. Ruang tunggu yang bersih dan mereka memfasilitasi wifi dan tv. Rumah sakit ini juga bersih. Tetapi area parkir adalah sedikit membingungkan.(Asli)The services are good. Waiting room are clean and they facilitate wifi and tv. This hospital is also clean. But the parking area is a little bit confusing.
+					     		</li>
+					      		<li>
+					      			Pelayanan polinya bagus.  Walau antri lama,  karena memang banyaknya pasien. Dokter dan paramedisnya ramah. Ruang tunggunya bagus, bersih. Gak bau obat
+					      		</li>
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">6</th>
+					      	<td>dokter sangat bagus</td>
+					     	<td>
+					      		Anter istri Konsul dengan dr. Danny Wiguna, Sp.OG , dokter nya sangat baikkkk dan komunikatif sekali, puas rasanya, semua hal dijelaskan dengan sangat detail dan baik oleh pak dokter, dokter nya humoris dan sangat ramah.
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">7</th>
+					      	<td>pasien nyaman</td>
+					     	<td>
+					      		<li>
+					      			salah satu rumah sakit swasta terbaik di kota jogjakarta.lokasi sangat strategis di tengah kota.parkir mobil juga cukup luas ada 2 lokasi.rumah sakit cukup megah terlebih sekarang sudah ada gedung baru yang tentu membuat pasien dan penunggu pasien lebih nyaman.cuman parkiran agak ribet.satpam juga menyapa dengan ramah.kamar pun nyaman.pelayanan juga baik dan cepat.kebersihan juga terjaga.rumah sakit yang recomended
+					      		</li>
+					      		<li>
+					      			Pelayanan bagus, kamar bersih , staff ramah & sangat membantu sehingga patient merasa merasa nyaman .
+					      		</li>
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">8</th>
+					      	<td>dokter lengkap</td>
+					     	<td>
+					      		<li>
+					      			Dokternya lengkap. Pelayanan baik.
+					      		</li>
+					      		<li>
+					      			Pelayanan baik, dokter lengkap, cuma tempat parkirnya sangat terbatas..
+					      		</li>
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">9</th>
+					      	<td>ruangan nyaman</td>
+					     	<td>
+					      		ruangannya bersih, nyaman
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">10</th>
+					      	<td>perawat baik</td>
+					     	<td>
+					      		<li>
+					      			Salah satu RS terbaik di Jogja. Pelayanan para dokter dan perawatnya sangat baik. Fasilitas lengkap. Tempat tertata rapi dan bersih. Lokasi mudah ditemukan dan diakses karena berada di tengah kota dan di pinggir jalan besar.  Tempat parkir luas.
+					      		</li>
+					      		<li>
+					      			Dokter dan perawatnya baik dan ramah. Tetapi untuk operator pendaftaran sangat perlu diperhatikan karena tidak ramah sekali.
+					      		</li>
+					      		
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">11</th>
+					      	<td>ruang nyaman</td>
+					     	<td>
+					      		Salah saru rumah sakit swasta di jogja, letaknya di tengah kota jogja di depan kampus ugm.Kalo orang jogja nyebutnya di bunderan ugm, rumah sakit yg memiliki fasilitas yg baik di jogja ini lengkap dengan berbagai spesialis dan perlengkapan medis.Untuk kamar banyak pilihan, untuk rawat jalan bisa juga melalui telepon untuk reservasi. Dan di sini juga canggih karena antrian sudah menggunakan komputer. Ruang tunggu nyaman, kursi cukup memadai
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">12</th>
+					      	<td>dokter bagus</td>
+					     	<td>
+					      		Sebenernya dokternya bagus dan pelayanan RSnya sendiri juga. Tp bener2 mengecewakan parkir mobilnya, tukang parkir gak sopan dan ga kooperatif. Pas dibilang kalo udah muter 7x masa dibilang suruh ngitung sampe 50. Nyebelin bgt
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">13</th>
+					      	<td>pasien cepat</td>
+					     	<td>
+					      		<li>
+					      			Pelayanan bagus dr dan perawat ramah  cekatan pasien cepat di tangani.juga mlyni bpjs .Rs nya besar  kelihatan dari jln raya.tepatnya di jln cik Ditiro. bundaran ugm.jogya.
+					      		</li>
+					      		<li>
+					      			Dokter-dokternya berpengalaman, kebanyakan dokter-dokter senior yang praktek. Proses penanganan pasien cepat. Dari segi biaya walaupun rumah sakit swasta tidak terlalu mahal. Bisa menggunakan BPJS
+					      		</li>
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">14</th>
+					      	<td>dokter baik</td>
+					     	<td>
+					      		<li>
+					      			Anter istri Konsul dengan dr. Danny Wiguna , Sp.OG , dokter nya sangat baikkkk dan komunikatif sekali , puas rasanya , semua hal dijelaskan dengan sangat detail dan baik oleh pak dokter , dokter nya humoris dan sangat ramah .
+					      		</li> 
+					      		<li>
+					      			RS swasta yayasan yang letaknya di tengah tengah kota.Pelayanan yang Ok banget .Bisa daftar by on line .Dokternya baik baik smua.Dan spesilisnya favorit di kota yogya ,lengkap  di rs ini.Dari internis sub spesialis internis KHOM ,internis gastro ,internis thropmed, internis endokrin ,internis nefro ,bedah onko, bedah digestive ,bedah uro ,bedah btvk berah syaraf ,bedah anak , dokter gizi  , rehab medik , orhtopedi , pulmo,obgyn onko .dllLengkap kannnn.rs ini dilengkapi kantin yang bersih di dalam RS nya.Serta fasilitas yg cukup memadai.Oh ya .RS ini  juga menyediakan catering makanan diet lo.dan snack seperti cookies rendah kalori.Yg pasti ,udah di itung2 kalorinyaa ya.Hihihi.
+					      		</li> 
+					      		<li>
+					      			Tempat aku di lahirkan , pelayanan ramah ,dokternya baik ... semangat
+					      		</li> 
+					      		<li>
+					      			Pelayanannya cepat, administrasi sudah terkomputerisasi, dokter umumnya baik komunikasi dengan pasien, layanan labnya cepat, biaya wajar . Rumah sakit bersih, rapi, hiegienis.
+					      		</li>
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">15</th>
+					      	<td>ruangan bersih</td>
+					     	<td>
+					      		<li>
+					      			Good service. Ruangan bersih, dokter dan pegawai sangat ramah.
+					      		</li> 
+					      		<li>
+					      			ruangannya bersih, nyaman
+					      		</li>
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">16</th>
+					      	<td>perawat ramah</td>
+					     	<td>
+					      		<li>
+					      			Rumahsakit modern dan bagus pelayanannya, tertata rapi data-data pasien sehingga dokter akan lebih tepat dalam mendiagnosa pasien. Perawat cepat tanggap, ramah dan semoga tetap dipertahankan. Taman yang sangat indah, membuat kita dapat berbetah-betah di sini.Mengapa saya beri bintang satu, setiap rumah sakit seindah apapun sebaik apapun, selalu tidak diinginkan kedatangan kita di sini. Saya hanya bahagia saat datang menjelang kelahiran anak ke rumah sakit ini. Anak saya pertama dan ke tiga di rumah sakit ini. Anak kedua saya didiagnosa leukemia juga di rumah sakit ini, istri saya berjuang kemoterapi kanker payudara bertahun-tahun di sini. Sungguh tempat yang sangat tidak saya inginkan.
+					      		</li>
+					      		<li>
+					      			Dokter dan perawatnya baik dan ramah. Tetapi untuk operator pendaftaran sangat perlu diperhatikan karena tidak ramah sekali.
+					      		</li>
+					      		<li>
+					      			Berobat di poli anak dua kali. Perawat ramah anak, dokter komunikatif
+					      		</li>
+					      		<li>
+					      			Pelayanan bagus dr dan perawat ramah  cekatan pasien cepat di tangani.juga mlyni bpjs .Rs nya besar  kelihatan dari jln raya.tepatnya di jln cik Ditiro. bundaran ugm.jogya.
+					      		</li>
+					      		<li>
+					      			RSPR bagus dan profesional, bersih, perawatnya cekatan dan ramah, mungkin bagi yang  komen jelek, belum merasakan pelayanan di RS lain. maju terus RSPR. thanks
+					      		</li>
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">17</th>
+					      	<td>dookter ramah</td>
+					     	<td>
+					      		<li>
+					      			Puji Tuhan Yesus, sy mendapat kan pelayanan yg sangat baik di RSU ini, mulai dari IGD sampai layanan rawat inap yg begitu baik, dokter dokternya begitu baik dan ramah ramah, kebersihan juga begitu baik, layanan BPJS nya juga sangat baik, biaya juga bisa terjangkau, sangat recomended untuk mendapatkan layanan kesehatan. Sy drg ebsan tobing, menghaturkan banyak trimakasih untuk semua dokter, paramedis dan seluruh staf di RSU Panti Rapih, Tuhan lah yg membalaskan kebaikan dan pengabdian kalian selama sy mendapat kan layanan operasi tulang belakang di RSU ini. Dan sangat pantas RSU ini mendapatkan penilaian PARIPURNA .ðŸ‘ðŸ‘ðŸ‘ðŸ‘ðŸ‘
+					      		</li> 
+					      		<li>
+					      			Sangat memuaskan.....suster dan dokternya ramah ramah....tempatnya bersihTindakanya sangat cepat dan tepat..... Trmksh sudah membantu oprasi ibu saya.......
+					      		</li>
+					      		<li>
+					      			Pelayanannya sangat memuaskan. Perawat dan dokternya sangat profesional dan ramah. Untuk biaya rumah sakit sesuai dengan pelayanannya. Terbaik ðŸ‘
+					      		</li>
+					      		<li>
+					      			Tempat bersih. Petugas dan dokter ramah. Pendaftatan cepat. Urus BPJS cepat. Periksa dokter cepat. ANTRI OBAT LAMA SEKALI antri dari jam 12.00 - 17.00 dan sya alami lebih dari 1x periksa. Nasib pengguna BPJS
+					      		</li>
+					      		<li>
+					      			Anter istri Konsul dengan dr. Danny Wiguna, Sp.OG , dokter nya sangat baikkkk dan komunikatif sekali, puas rasanya, semua hal dijelaskan dengan sangat detail dan baik oleh pak dokter, dokter nya humoris dan sangat ramah.
+					      		</li> 
+					      		<li>
+					      			Satpam, ob, suster, Dokter semuanya ramah...
+					      		</li>
+					      		<li>
+					      			(Diterjemahkan oleh Google) Layanan dokter umum yang tersedia selama 24 jam. Meskipun layanan ini agak lambat, ia menyediakan berbagai layanan dan spesialisasi untuk pasien. harga masih wajar dan terjangkau bahkan untuk pasien lokal. Beberapa dokter yang baik dan ramah.(Asli)The general practitioner service available for 24 h. Although the service is a bit slow, it provides various  services and specialties for patient. The price is still reasonable and affordable even for local patient. Some doctors are nice and friendly.
+					      		</li>  
+					      	</td>
+				      	</tr>
+				  	</tbody>
+				</table> 
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+
+		<div id="section4">
+			<div class="row">
+				<h2>Grafik Frekuensi Frasa Negatif Non-medis RS Panti Rapih</h2>
+				<canvas id="nnm" width="10px" height="4px"></canvas>
+			</div>
+			<div>
+				<h2>Tabel Review Negatif non-medis RS Panti Rapih</h2>
+			<!-- <canvas id="pm" width="10px" height="8px"></canvas> -->
+				<table class="table table-striped table-bordered" id="example2" style="width:100%">
+				  	<thead>
+				    <tr>
+				      	<th scope="col",class="col-lg-1" >No.</th>
+				      	<th scope="col",class="col-lg-2" >Frasa</th>
+				      	<th scope="col", class="col-lg-3" >Review</th>
+				    </tr>
+				  	</thead>
+				  	<tbody>
+				    <tr>
+				      	<th scope="row">1</th>
+				      	<td>tempat susah</td>
+				     	<td>
+				      		'Salah salah Rumah Sakit rujukan di Yogyakarta setelah RSP dr. Sardjito. RS ini sudah menerapkan Standard ISO 9000, dan semua sistem sudah mengunakan IT.Pelayanan sudah jauh lebih baik. Sayang tempat parkir yg sedikit susah bila datang pada jam bezuk pasien. Sebelum berkunjung untuk berobat pastikan sudah Appoinment terlebih dahulu.
+				      	</td>
+				    </tr>
+				    <tr>
+				      	<th scope="row">2</th>
+				      	<td>pelayanan mahal</td>
+				      	<td>
+				      		<li>Pelayanan bertele-tele, lama, mahal.Sudah daftar melalui call center,- daftar ulang buat kartu pasien,- ngantre nomor,- disuruh ke bagian piutang (padahal mau bayar cash),- sampe di administrasi keuangan ditanyai ada ini itu ga,- akhirnya baru periksa. (1 jam proses sampe lini ini)Kalo sakit parah, ada butuh kartu pasien dulu kah? Ditanya piutang?Ribet.</li>
+				      		<li>
+				      			(Diterjemahkan oleh Google) Untuk layanan seperti mereka memberi maka saya tidak bisa mengatakan itu mahal.Bandingkan dengan rumah sakit lain di sekitar kota ini, saya dapat mengatakan bahwa di sini lebih baik.(Asli)For such services they give then I can't say it's expensive.Compare with another hospital around this city, I can say that here is better.
+				      		</li>
+				      		
+				      	</td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">3</th>
+				    	<td>waktu lama</td>
+				    	<td>
+				    		'Jgn membawa anak kesini.. jika kamu butuh penanganan cepat.. karena disini alur nya lambat.. 4-5 pasien dalam waktu 1 jam.. kemudian instalasi farmasi yang menangani dr poliklinik lain juga membuat proses antrian jd lebih lama lagi.. akan makan waktu 1 jam-an..Jadi anda akan menghabiskan waktu kurang lebih 2-3 jam.. kalau anda sehat, gk masalah namun kasihan bagi yang sakit..Alangkah baik nya.. ibu dan anak di pisah.. kasian si kecil terlalu lama menunggu..
+				    	</td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">4</th>
+				    	<td>pelayanan lama</td>
+				    	<td>
+				    		Pelayanan bertele-tele, lama, mahal.Sudah daftar melalui call center,- daftar ulang buat kartu pasien,- ngantre nomor,- disuruh ke bagian piutang (padahal mau bayar cash),- sampe di administrasi keuangan ditanyai ada ini itu ga,- akhirnya baru periksa. (1 jam proses sampe lini ini)Kalo sakit parah, ada butuh kartu pasien dulu kah? Ditanya piutang?Ribet.
+				    	</td>
+				    </tr>
+				  	</tbody>
+				</table> 
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+
+		<div id="section5">	
+			<div>
+				<h2>Grafik Frekuensi Frasa Negatif Medis RS Panti Rapih</h2>
+				<canvas id="nm" width="10px" height="4px"></canvas>
+			</div>
+			<div>
+			<h2>Tabel Review Negatif Medis RS Panti Rapih</h2>
+			<!-- <canvas id="pm" width="10px" height="8px"></canvas> -->
+				<table class="table table-striped table-bordered" id="example3" style="width:100%">
+				  	<thead>
+				    <tr>
+				      <th scope="col",class="col-lg-1" >No.</th>
+				      <th scope="col",class="col-lg-2" >Frasa</th>
+				      <th scope="col", class="col-lg-3" >Review</th>
+				    </tr>
+				  	</thead>
+				  	<tbody>
+				    <tr>
+				      	<th scope="row">1</th>
+				      	<td>dokter mahal</td>
+				     	<td>
+				      		'Semua ini hanya gara-gara dokter terlambat datang, dan karena saya memilih menggunakan jasa dokter yang notabene lebih mahal daripada jasa bidan. 
+				      	</td>
+
+				    </tr>
+				    <tr>
+				      	<th scope="row">2</th>
+				      	<td>dokter benar</td>
+				      	<td>
+				      		Gila ya selama ini aku kalau sakit ke sini terus fine aja pelayanan memuaskan. Nah baru ini priksa kesini pelayanan burukDapet dokter spOg atos bener ditanya baik2 jawabannya sengak situ sehat? Abis itu dia jelek2in dokter lain yg di rs lain lagi gilaaaTrs gw dikasi obat pilek, eh gw minum obatnya malah pilek parahh pdhal sblm nya ga pilek gila di dokter ngasi obat pembuat pilek kali yaPokoknya masih banyak lagi. Bsk gw bakal balik lagi ke panti rapih mau cek darah klo sampe ditangani tu dokter gw bakal omongin ke angkuh an dia ke semuanyaInisial dr. D..... ......
+				      	</td>
+				    </tr>
+				    <tr>
+					    <th scope="row">3</th>
+					    <td>dokter banyak</td>
+					    <td>
+				      		'Tempat ini so far nyaman, sejuk, hijau, fasilitas lengkap, petugas ramah, pilhan dokter banyak, kalau cari parkir agak susah, ada minimarket, kantin dengan pilihan jajanan pasar dan makanannya lengkap, ada fasilitas FC di dalamnya, bisa pakai BPJS, akses ke RS gampang, ada banyak sarana transportasi untuk bisa sampai ke tempat ini. Ada healing garden tiap sabtu. Ada menu catering diet jg. Bisa go food juga. Vaksinasi lengkap dijamin asli. 
+				        </td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">4</th>
+				    	<td>pasien penting</td>
+				    	<td>
+				    		'Pernah sekali masuk UGD Panti Rapih dan agak kapok karena saat itu dalam keadaan sesak tapi didiamkan lama oleh perawatnya. Ntah saat itu ada situasi urgency/pasien yg lebih penting, cuman setelah itu udah kapok ke sana. Pernah juga menjenguk dan menemani teman yg dirawat di sini, keadaannya bersih dan terorganisir dengan baik. Tempatnya nyaman.
+				    	</td>			    	
+				    </tr>
+				    <tr>
+				    	<th scope="row">5</th>
+				    	<td>rumah sakit mahal</td>
+				    	<td>
+				    		'(Diterjemahkan oleh Google) rumah sakit mahal(Asli)Expensive hospital
+				    	</td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">6</th>
+				    	<td>rumah sakit sedikit</td>
+				    	<td>
+				    		' 'rumah_sakit sedikit kotor kurang_bersih penjagaan ketat sekali padahal mau menjenguk sakit qw', 
+				    	</td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">7</th>
+				    	<td>obat lama</td>
+				    	<td>
+				    		Tempat bersih. Petugas dan dokter ramah. Pendaftatan cepat. Urus BPJS cepat. Periksa dokter cepat. ANTRI OBAT LAMA SEKALI antri dari jam 12.00 - 17.00 dan sya alami lebih dari 1x periksa. Nasib pengguna BPJS
+				    	</td>
+				    </tr>
+				  	</tbody>
+				</table> 
+
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+	</div>
+</body>
+
+<script>
+	$(document).ready(function () {
+		$('#example').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	$(document).ready(function () {
+		$('#example1').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	$(document).ready(function () {
+		$('#example2').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	$(document).ready(function () {
+		$('#example3').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	var ctx = document.getElementById("sent").getContext('2d');
+	var myChart = new Chart(ctx, {
+
+	  	type: 'pie',
+	 	data: {
+	    labels: ["Positif","Negatif","Netral"],
+	    datasets: [{
+	      backgroundColor: [
+            '#3366cc',
+            '#ff5050',
+            '#ffff00'
+	      ],
+	      data: [2585, 1405, 1279]
+	    }]
+	  }
+	});
+
+</script>
+
+<script>
+var ctx = document.getElementById('pnm').getContext('2d');
+var pnm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['interior bagus',
+        		 'ruang bersih',
+        		 'pelayan bagus',
+        		 'tempat baik',
+        		 'fasilitas sangat baik',
+        		 'ruang nyaman',
+        		 'fasilitas baik',
+        		 'fasilitas bagus',
+        		 'petugas ramah',
+        		 'tempat nyaman',
+        		 'fasilitas lengkap',
+        		 'tempat bersih'
+				],
+        datasets: [{
+            label: 'Positif non Medis',
+            data: [1,2,1,1,1,1,1,2,4,
+            	   1,9,9],
+            backgroundColor: [
+                'rgba(100, 150, 232, 1)','rgba(100, 159, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 159, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)'
+            ],
+            
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx = document.getElementById('pm').getContext('2d');
+var pm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['ruang besar',
+        		 'dokter cepat',
+        		 'perawat cekatan',
+        		 'ruang ramah',
+        		 'ruang bersih',
+        		 'dokter sangat bagus',
+        		 'pasien nyaman',
+        		 'dokter lengkap',
+        		 'ruangan nyaman',
+        		 'perawat baik',
+        		 'ruang nyaman',
+        		 'dokter bagus',
+        		 'pasien cepat',
+        		 'dokter baik',
+        		 'ruangan bersih',
+        		 'perawat ramah',
+        		 'dokter ramah'
+				],
+        datasets: [{
+            label: 'Positif Medis',
+            data: [1,1,2,1,2,1,
+            	   2,2,1,2,1,1,
+            	   2,4,2,5,7],
+            backgroundColor: [
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)'],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+	var ctx = document.getElementById('nnm');
+    var nnm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [
+             'tempat susah', 
+             'pelayanan mahal',
+             'waktu lama', 
+             'pelayanan lama' 
+],
+        datasets: [{
+            label: 'Negatif Non Medis',
+            data: [1,2,1,1],
+            backgroundColor: [
+                'rgba(255, 102, 0, 1)','rgba(255, 102, 0, 1)',
+                'rgba(255, 102, 0, 1)','rgba(255, 102, 0, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx = document.getElementById('nm');
+var nm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [ 
+          'dokter mahal', 
+          'dokter benar', 
+          'dokter banyak', 
+          'pasien sedikit',
+          'rumah_sakit mahal',  
+          'rumah_sakit sedikit', 
+ 		  
+          'obat lama', 
+
+],
+        datasets: [{
+            label: 'Negatif Medis',
+            data: [1,1,1,1,1,1,1,1,1,1,2,2,2,3,3,3,3,3,3,4,5,4,5,5,6
+],
+            backgroundColor: [
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        events: ['click']
+    }
+});
+</script>
+</html>

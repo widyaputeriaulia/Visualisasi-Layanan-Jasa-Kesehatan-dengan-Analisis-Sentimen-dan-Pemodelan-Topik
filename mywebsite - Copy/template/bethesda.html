@@ -1,0 +1,763 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<style>
+ 
+  </style>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50" style="background-image: url('/static/img/bg4.png'); background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: cover;">
+	<div class="container">
+
+		<div class="row">
+			<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">  
+			   <ul class="navbar-nav">
+			  		<li class="nav-item dropdown">
+			      		<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+			        	Home
+			      		</a>
+			      		<div class="dropdown-menu">
+			      			<a class="dropdown-item" href="/">Home</a>
+					        <a class="dropdown-item" href="/bethesda">RS Bethesda</a>
+					        <a class="dropdown-item" href="/sleman">RSUD Sleman</a>
+					        <a class="dropdown-item" href="/wates">RSUD Wates</a>
+					        <a class="dropdown-item" href="/jih">RS JIH</a>
+					        <a class="dropdown-item" href="/panti_rapih">RS Panti Rapih</a>
+					        <a class="dropdown-item" href="/pku_muhammadiyah">RS PKU Muhammadiyah</a>
+					        <a class="dropdown-item" href="/panembahan">RSUD Panembahan Senopati</a>
+					        <a class="dropdown-item" href="/pau_hardjolukito">RS PAU Dr. S. Hardjolukito</a>
+					        <a class="dropdown-item" href="/ugm">RS UGM</a>
+					        <a class="dropdown-item" href="/kota">RSUD Kota Yogyakarta</a>
+					        <a class="dropdown-item" href="/sardjito">RS dr. Sardjito</a>
+				      	</div>
+			    	</li>
+				    <!-- <li class="nav-item">
+				       <a class="nav-link" href="#section1">Analisis Sentimen</a>
+				    </li> -->
+				    <li class="nav-item">
+				       <a class="nav-link" href="#section2">Positif Non Medis</a>
+				    </li>
+				    <li class="nav-item">
+				       <a class="nav-link" href="#section3">Positif Medis</a>
+				    </li>
+				    <li class="nav-item">
+				       <a class="nav-link" href="#section4">Negatif Non Medis</a>
+				    </li>
+				    <li class="nav-item">
+				       <a class="nav-link" href="#section5">Negatif Medis</a>
+				    </li>
+				</ul>
+			</nav>
+		</div>
+
+		<div class="row title">
+	        <div class="col-md-12" id="site-title">
+	        	<p> 
+	        		<h1 class="title-site", style="padding-top:50px">Visualisasi Pelayanan Jasa Kesehatan</h1>
+	        		<p class="desc">Dengan Analisis Sentimen dan Klasifikasi</p>
+	        		
+	        	</p>
+	        </div>
+    	</div>
+
+    	<div id="section1">
+	    	<div class="row" style="padding-top: 5px">
+	    		<hr size="10px" width="100%" color="#0066cc">
+	    		
+	    	</div>
+	    	
+    	</div>
+
+    	<div id="section2">
+	  		<div class = 'row'>
+	  			<h2>Grafik Frekuensi Frasa Positif non-medis RS Bethesda</h2>
+				<canvas id="pnm" width="10px" height="4px"></canvas>		
+			</div>
+
+			<div class="row">
+				<h2>Tabel Review Positif non-medis RS Bethesda</h2>
+			<!-- <canvas id="pm" width="10px" height="8px"></canvas> -->
+				<table class="table table-striped table-bordered" id="example" style="width:100%">
+				  	<thead>
+				    <tr>
+				      <th scope="col",class="col-lg-1" >No.</th>
+				      <th scope="col",class="col-lg-2" >Frasa</th>
+				      <th scope="col", class="col-lg-3" >Review</th>
+				    </tr>
+				  	</thead>
+				  	<tbody>
+				  		<tr>
+					      	<th scope="row">1</th>
+					      	<td>taman luas</td>
+					     	<td>
+					      		Pelayanan cepat dengan layanan tenaga medis yang ramah , ruang perawatan bersih , dan adanya taman yang luas ,
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">2</th>
+					      	<td>fasilitas besar</td>
+					     	<td>
+					      		Rumah sakit ini bagus , nyaman , ramah , cepat , fasilitas lengkap , besar & luas sekali parkirnya , jadi jangan sampai kesasar ya ...
+					      	</td>
+				      	</tr>
+				      	<tr>
+				      		<th scope="row">3</th>
+				      		<td>tempat baik</td>
+				      		<td>
+				      			Sebuah RS yg nyaman , mulai dari letaknya yg berada di tengah kota , tempatnya mudah di akses lewat moda apa saja baik yg dr dlm kota maupun luar kota
+				      		</td>
+				      	</tr>
+					  	<tr>
+					      	<th scope="row">4</th>
+					      	<td>fasilitas bagus</td>
+					     	<td>
+					      		<li>fasilitas bagus</li>
+					      		<li>Rumah Sakit dengan pelayanan (dokter, perawat, customer services, dan fasilitas2 penunjangnya) sangat bagus.ðŸ‘ðŸ‘</li> 
+					      	</td>
+					    </tr>
+					    <tr>
+					      	<th scope="row">5</th>
+					      	<td>tempat nyaman</td>
+					     	<td>
+					     		<li>
+					     			Tempatnya bersih..nyaman...dokter dan perawat nya ramah...ini rumah sakit langganan keluarga... Dulu pernah opname ak..adikku dan alm ayahku...ini penanganan yang super cepat....sangat bagus..peralatan disini pun lengkap...
+					     		</li>
+					      		<li>
+					      			Rumah Sakit Era Belanda. .Kalau ke sini, di ruang tunggu poliklinik jarang ada AC.!!namun cukup nyaman dengan adanya kipas angin-uap. .tempatnya nyaman. . bersih. .Sistem Pendaftaran yang simpel dan cepat. .Dokter Spesialis yang Berkualitas Tinggi. .Menerima pasien peserta BPJS. .Apotik BPJS di atas Lantai 1 kalau naik Lift. .Antrian Obat Maksimal 2jam^^
+					      		</li>
+					      		<li>
+					      			Pengalaman ketika ada saudara/keluarga yang opname di RS ini... Tempatnya bersih dan nyaman juga lengkap. Urusan parkir juga gak ribet sementara letaknya juga mudah diakses berada di tengah kota Jogja tercinta. Tingkatkan terus pelayanan dengan lebih ramah lagi ya...
+					      		</li>
+					      		<li>
+					      		Tempatnya luas,  nyaman, bersih dan pelayanannya juga ramah ramah dari mulai pendaftaran sampai pelayanan semua memuaskan aslii merasa puas periksa disini dokternya ramah ramah perawatnya jugaa duuh the best banget dan diruang tunggu juga disediain banyak stopkontak jadi kalau nunggu lama batreai hp habis bisa numpang charge disinii.....
+					      		</li>
+					      		<li>
+					      			Lumayan ramah dibagian pendaftaran, tempatnya nyaman dan bersih,  melayani pasien bpjs dengan ramah, fasilitas lengkap dari kantin jasmine cake, koperasi, atm mandiri,bri,bni semua ada didalam ruangan pun ada fasilitas atmnya..
+					      		</li>
+					      		<li>
+					      			Pelayanan cepat, tempat juga nyaman
+					      		</li>
+					      		<li>tempat nyaman</li>
+					      	</td>
+					    </tr>
+					    <tr>
+					      	<th scope="row">6</th>
+					      	<td>fasilitas lengkap</td>
+					     	<td>
+					      		<li>Salah satu rumah sakit di jogja, pelayanan bagus, perawat dan dokternya ramah, parkirnya luas, fasilitas lengkap.</li>
+					      		<li>Lumayan ramah dibagian pendaftaran, tempatnya nyaman dan bersih,  melayani pasien bpjs dengan ramah, fasilitas lengkap dari kantin jasmine cake, koperasi, atm mandiri,bri,bni semua ada didalam ruangan pun ada fasilitas atmnya..</li> 
+					      		<li>fasilitas lengkap</li>
+					      		<li>
+					      			Pelayanan kesehatan dgn fasilitas yg lengkap.... kalo butuh pengobatan mendadak.... nga usah kuatir ada ruang ruang I G D 24 jam & dokter jaga yg piket 24jam..... pelayanan jg tdk perlu ditanyakan lagi....
+					      		</li>
+					      		<li>
+					      			Kamar2nya nyaman,,, bentuk paviliun-paviliun, fasilitas kesehatan lengkap, pelayanan ramah dan cepat. Banyak lorong2 tapi penunjuknya jelas.
+					      		</li>
+					      	</td>
+					    </tr>
+					    <tr>
+					      	<th scope="row">7</th>
+					      	<td>tempat bersih</td>
+					     	<td>
+					     		<li>Pelayananya sangat bagus...tempatnya bersih...</li>
+					     		<li>Pengalaman ketika ada saudara/keluarga yang opname di RS ini... Tempatnya bersih dan nyaman juga lengkap. 
+					     		</li>
+					     		<li>Tempatnya luas,  nyaman, bersih dan pelayanannya juga ramah ramah dari mulai pendaftaran sampai pelayanan semua memuaskan aslii merasa puas periksa disini dokternya ramah ramah perawatnya jugaa duuh the best banget dan diruang tunggu juga disediain banyak stopkontak jadi kalau nunggu lama batreai hp habis bisa numpang charge disinii.....</li>
+					     		<li>
+					     			Lumayan ramah dibagian pendaftaran, tempatnya nyaman dan bersih,  melayani pasien bpjs dengan ramah, fasilitas lengkap dari kantin jasmine cake, koperasi, atm mandiri,bri,bni semua ada didalam ruangan pun ada fasilitas atmnya..
+					     		</li>
+					      	</td>
+					    </tr>
+					    <tr>
+					      	<th scope="row">8</th>
+					      	<td>petugas ramah</td>
+					     	<td>
+					      		<li>
+					      			Rumah sakit dengan pelayanan yang menyenangkan. Petugas ramah, dokter yang menangani dengan baik dan telaten menjelaskan (kalau beruntung), dan bisa daftar online dengan gampang. Selain itu tersedia koneksi wifi gratis sepanjang hari. Tidak terlalu cepat tapi cukup baik. Mungkin service charge agak mahal tapi saya puas.
+					      		</li>
+					      		<li>
+					      			Desain rumah sakitnya bagus, petugas medisnya ramah. Ke UGD karena passed out, akhirnya disuntik 3 injection dengan infus. Petugasnya ramah dan ngajakin ngobrol saat injection, jadi nyaman. 
+					      		</li> 
+					      	</td>
+					    </tr>
+				  	</tbody>
+				</table>
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+
+		<div id="section3">
+			<div class="row">
+				<h2>Grafik Frekuensi Frasa Positif Medis RS Bethesda</h2>
+				<canvas id="pm" width="10px" height="4px"></canvas>
+			</div>
+
+			<div class="row">
+				<h2>Tabel Review Positif Medis RS Bethesda</h2>
+				<table class="table table-striped table-bordered" id="example1" style="width:100%">
+				  	<thead>
+				    <tr>
+				      <th scope="col",class="col-lg-1" >No.</th>
+				      <th scope="col",class="col-lg-2" >Frasa</th>
+				      <th scope="col", class="col-lg-3" >Review</th>
+				    </tr>
+				  	</thead>
+				  	<tbody>
+				  		<tr>
+					      	<th scope="row">1</th>
+					      	<td>dokter unggul</td>
+					     	<td>
+					      		(Diterjemahkan oleh Google) Bersih, staf yang baik dan dokter yang unggul(Asli)Clean,good staff and excelent doctors
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">2</th>
+					      	<td>dokter mumpuni</td>
+					     	<td>
+					      		Bagus buat kamu yg mau cek di dokter spesialis. Dokternya sgt sgt mumpuni.
+					      	</td>
+				      	</tr>
+				      	<tr>
+				      		<th scope="row">3</th>
+				      		<td>dokter cepat</td>
+				      		<td>
+				      			suster sangat ramah dokter cepat tanggap makanan ala rumah sakit lezat tentu bergizi 
+				      		</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">4</th>
+					      	<td>ruang ramah</td>
+					     	<td>
+					     		<li>
+					     			Perawat di ruang galilea 3 ruang anak lumayan friendly..
+					     		</li>
+					      		<li>
+					      			pelayanan dokter purwaka spb dokter handoyo spbs perawat ruang icu imc catthleya bagus ramah semua puas pelayanan rumah sakit bhetesda nyawa suami tertolong
+					      		</li>
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">5</th>
+					      	<td>ruang bersih</td>
+					     	<td>
+					      		Pelayanan cepat  dengan layanan tenaga medis yang ramah,  ruang perawatan bersih,  dan adanya taman yang luas,
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">6</th>
+					      	<td>perawat bagus</td>
+					     	<td>
+					      		Hampir 1 bulan disini.. Dengan diagnosa CKB dan CGS 3.coma di icu 7hari allhamdulillah suami saya bisa Sembuh dan pulih. Pelayanan dokter purwaka SpB dan dokter handoyo SpBS... Dan prawat ruang ICU.. IMC.. Pav Catthleya.. Bagus ramah ssmua.. Puas dengan pelayanan dsini.. Terima kasih buat rs bhetesda nyawa suami saya tertolong..
+					      	</td>
+				      	</tr>
+				      	<tr>
+				      		<th scope="row">7</th>
+				      		<td>dokter sangat baik</td>
+				      		<td>
+				      		<li>
+				      			Rumkit ini bersejarah. Rumkit yg memudahkan urusan byk orang dg misi "Tolong dulu, urusan belakang" ðŸ™, dg kualitas dokter yg sangat baik, gedung yg bagus & bersih jg nyaman, team operasional harian yg jg berintegritas. Terimakasih smuanya..ðŸ˜‡ðŸŒ¿ðŸ¦ðŸ™
+				      		</li>
+				      		<li>
+				      			(Diterjemahkan oleh Google) Sering-seringlah mengunjungi orangtuaku. Lokasinya mudah dijangkau. Perhotelan yang baik dan langkah registrasi sederhana. Nikmati saja dilayani oleh dokter dan staf yang sangat baik.(Asli)Took my parents many times. Its location is easy to reach. Good hospitality and simple registration steps. Just enjoy being served by excellent doctors and staff.
+				      		</li>
+				      		</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">8</th>
+					      	<td>pasien nyaman</td>
+					     	<td>
+					      		Rumah sakit yang bersih, petugas ramah. Sebagai pengunjung dari pasien yang sakit merasa nyaman. Semoga pasien menjadi lebih tenang dan cepat sembuh
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">9</th>
+					      	<td>ruangan nyaman</td>
+					     	<td>
+					      			ruangan nyaman dan bersih
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">10</th>
+					      	<td>perawat baik</td>
+					     	<td>
+					      		
+					      			Pelayanan sangat memuaskan.. Dokter2 terpilih profesional.. Perawat juga melayani dengan baik
+					      		
+
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">11</th>
+					      	<td>dokter bagus</td>
+					     	<td>
+					      		
+					      			Dokter kulitnya bagus, Rumah sakitnya tidak terlalu besar, tempat parkirnya juga tidak terlalu luas, kamar mandinya kurang bersih
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">12</th>
+					      	<td>pasien cepat</td>
+					     	<td>
+					      		<li>
+					      			Pelayanannya bagus .pasien cepat di tangani.peralatan lab.lengkap.dokter dan perawatnya ramah2.Rs nya di dlm kota.pinggir jln utama di jogya.
+					      		</li>
+					      		<li>
+					      			Rumah sakit yang bersih, petugas ramah. Sebagai pengunjung dari pasien yang sakit merasa nyaman. Semoga pasien menjadi lebih tenang dan cepat sembuh
+					      		</li>
+					      		<li>
+					      			Di IGD pasien ditangani dengan cepat dan baik.... ketika hrs rawat inap prosesnya pun cepat.... terima kasih Bethesda.... 
+					      		</li>
+					      	</td>
+				      	</tr>
+				      	<tr>
+				      		<th scope="row">13</th>
+				      		<td>dokter baik</td>
+				      		<td>
+				      			<li>
+				      				Paling tdk kita sdh berusaha menyelamatkan diri sendiri..Soal paramedis & dokter , semuanya baik , ramah & profesional.Kebersihan RS BETHESDA , Top banget .
+				      			</li>
+				      			<li>
+				      				perawat dokter anak sangat ramah baik kepada pasien maupun keluarganya bethesda baik
+				      			</li>
+				      		</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">14</th>
+					      	<td>ruangan bersih</td>
+					     	<td>
+					      		<li>
+					      			TerbaikðŸ‘Staff nya ramah". Pelayanan cepat tanggap. Ruangan selalu bersih. Apalagi di paviliun, bersih, wangi, berAC, bikin betah kyk di rumah. Makanan nya juga lumayan ada rasa nya.
+					      		</li>
+					      		<li>
+					      			pasien langsung diambil tindakan medis, beda dengan rumah sakit yang lain. dimintai beaya administrasi baru diambil tindakan. para dokter dan perawatnya ramah dan profesional. ruangan bersih dan nyaman
+					      		</li>
+					      		<li>
+					      			rumah sakit rekomended. pelayanan cepat apalagi kalo booking dokter dulu.ada dokter praktek tiap hari sesuai spesialist penyakit.parkir mobil di halaman masuk rs. kalau motor di basement. ruangan lumayan bersih. ada liftnya jg di tengah rs. ada tempat bermain anak di dekat dokter anak. paling lama adalah pas nunggu obat karena antrian selalu banyak. tapj pelayanan sdh cukup bagus dg pengeras suara dan di sediakan tv kabel.
+					      		</li>
+					      		<li>
+					      			RS yg nyaman, dokternya ramah, ruangan bersih. Pelayanan oke, dan cepat. Parkir luas.  Birokrasi tidak rumit.
+					      		</li>
+					      		<li>
+					      			25 juli 2016 melahirkan ðŸ‘¶ ke dua disini pelayanannya sangat memuaskan membuat saya nyaman sama penanganan yg cepat tanggap saat masuk UGD, dokter dan susternya ramah, ðŸ´ enak, ruangan bersih, #jogjaistimewa
+					      		</li>
+					      		
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">15</th>
+					      	<td>perawat ramah</td>
+					     	<td>
+					      		<li>
+					      			Pelayanannya bagus .pasien cepat di tangani.peralatan lab.lengkap.dokter dan perawatnya ramah2.Rs nya di dlm kota.pinggir jln utama di jogya.
+					      		</li>
+					      		<li>
+					      			Pelayanan rumah sakit cepat tepat dokter dan perawatnya ramah .terima kasih RS BTHESDA .
+					      		</li>
+					      		<li>
+					      			Hampir 1 bulan disini.. Dengan diagnosa CKB dan CGS 3.coma di icu 7hari allhamdulillah suami saya bisa Sembuh dan pulih. Pelayanan dokter purwaka SpB dan dokter handoyo SpBS... Dan prawat ruang ICU.. IMC.. Pav Catthleya.. Bagus ramah ssmua.. Puas dengan pelayanan dsini.. Terima kasih buat rs bhetesda nyawa suami saya tertolong..
+					      		</li>
+					      		<li>
+					      			pasien langsung diambil tindakan medis, beda dengan rumah sakit yang lain. dimintai beaya administrasi baru diambil tindakan. para dokter dan perawatnya ramah dan profesional. ruangan bersih dan nyaman
+					      		</li>
+					      		<li>
+					      			Tempatnya bersih..nyaman...dokter dan perawat nya ramah...ini rumah sakit langganan keluarga... Dulu pernah opname ak..adikku dan alm ayahku...ini penanganan yang super cepat....sangat bagus..peralatan disini pun lengkap... 
+					      		</li>
+					      		<li>
+					      			Pelayanannya bagus .pasien cepat di tangani.peralatan lab.lengkap.dokter dan perawatnya ramah2.Rs nya di dlm kota.pinggir jln utama di jogya.
+					      		</li>
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">16</th>
+					      	<td>dokter ramah</td>
+					     	<td>
+					      		<li>
+					      			Salah satu rumah sakit di jogja, pelayanan bagus, perawat dan dokternya ramah, parkirnya luas, fasilitas lengkap.
+					      		</li>
+					      		<li>
+					      			Pelayanannya sangat baik. Dokter dan tim medis juga ramah,sabar, dan bersedia memberikan penjelasan yang baik untuk pasien. Di sini juga digunakan untuk tempat koas bagi mahasiswa FK UKDW. Jadi kita jg akan melihat banyak dokter muda d sini hehe
+					      		</li>
+					      		<li>
+					      			Soal paramedis & dokter, semuanya baik, ramah & profesional.Kebersihan RS BETHESDA, Top banget. Alat medisnya pun lengkap, ga hrs lari2 ke RS lain. Sdh sakit masih hrs keluar masuk RS beda2..haduh enggak mau deh.Tidak ada pembedaan semua pasien, dr karyawan, VIP, Umum, BPJS di perlakukan sama.Kalau ga mau antre ya pilih saja no urut VIP. atau DOWN LOAD Aplikasi RS BETHESDA di smart phone mu.Anda bisa milih kpn mau periksa, milih dokter siapa , jam berapa.Semua ssh ada terjadwal disana.Kalau ga bawa uang chash, ATM banyak di sana.
+					      		</li>
+					      		<li>
+					      			Tempatnya luas,  nyaman, bersih dan pelayanannya juga ramah ramah dari mulai pendaftaran sampai pelayanan semua memuaskan aslii merasa puas periksa disini dokternya ramah ramah perawatnya jugaa duuh the best banget dan diruang tunggu juga disediain banyak stopkontak jadi kalau nunggu lama batreai hp habis bisa numpang charge disinii.....
+					      		</li>
+					      		<li>
+					      			RS yg nyaman, dokternya ramah, ruangan bersih. Pelayanan oke, dan cepat. Parkir luas.  Birokrasi tidak rumit.
+					      		</li>
+					      	</td>
+				      	</tr>
+				  	</tbody>
+				</table> 
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+
+		<div id="section4">
+			<div class="row">
+				<h2>Grafik Frekuensi Frasa Negatif Non-medis RS Bethesda</h2>
+				<canvas id="nnm" width="10px" height="4px"></canvas>
+			</div>
+			<div>
+				<h2>Tabel Review Negatif non-medis RS Bethesda</h2>
+			<!-- <canvas id="pm" width="10px" height="8px"></canvas> -->
+				<table class="table table-striped table-bordered" id="example2" style="width:100%">
+				  	<thead>
+				    <tr>
+				      	<th scope="col",class="col-lg-1" >No.</th>
+				      	<th scope="col",class="col-lg-2" >Frasa</th>
+				      	<th scope="col", class="col-lg-3" >Review</th>
+				    </tr>
+				  	</thead>
+				  	<tbody>
+				    <tr>
+				      	<th scope="row">1</th>
+				      	<td>ruang mahal</td>
+				     	<td>
+				      		<li>
+				      			(Diterjemahkan oleh Google) Semuanya bagus, kecuali satu. Adikku ada di sana dan tinggal di kamar superior. Itu harus lebih besar dan lebih lebar dari ruang VIP karena lebih mahal. Tapi kamarnya tidak sebesar yang kami harapkan dan terlalu berisik. Kemudian kami pindah ke ruang VIP dan itu jauh lebih baik. Saya tidak tahu mengapa tetapi mereka harus benar-benar bekerja dengan masalah iniDan, ketika Anda datang ke sini untuk mengunjungi dokter, Anda akan menunggu berjam-jam hanya untuk mendapatkan obat, meskipun Anda pasien biasa (berarti tanpa JKN). Jadi bersiaplah untuk itu(Asli)Everything is great, except one. My sister was there and stayed in superior room. It should be bigger and wider than VIP room since it's more expensive. But the room is not as big as what we expected and it's too noisy. Then we moved to VIP room and it's much better. I don't know why but they should really work with this problemAnd, when you came here to visit the doctors, you will wait hours just to get the medicine, though you're regular patient (means without JKN). So be prepared for that
+				      		</li>
+				      		<li>
+				      			Pelayanan dokter jaga mengecewakan,penjelasan dokter ga jelas.ruang IGD panas dan banyak nyamuk.klo pasien DB yg ada malah makin parah.harga jg lumayan mahal..
+				      		</li>
+				      	</td>
+				    </tr>
+				    <tr>
+				      	<th scope="row">2</th>
+				      	<td>tempat sedikit</td>
+				      	<td>
+				      		'(Diterjemahkan oleh Google) Tempat ini mungkin tampak sedikit tua, tetapi jika Anda mencari spesialis THT yang baik dan dapat dipercaya, Anda harus datang ke sini dan mencoba untuk melihat dr. Gatot Titus Wratsongko, Sp. THT. Dia sangat membantu dan sangat kooperatif dalam mencoba memecahkan masalah saya dengan telinga saya yang telah saya alami selama beberapa bulan. Harganya juga sangat terjangkau dan terletak di seberang Galeria Mall.(Asli)The place may seem a little old, but if you are searching for a good and trustworthy ENT (THT) specialist, you should come here and try to see dr. Gatot Titus Wratsongko, Sp. THT. He was very helpful and was very cooperative in trying to solve my problem with my ear that I have been experiencing for several months. The price is also very reasonable and located across from Galeria Mall.
+				      	</td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">3</th>
+				    	<td>tempat susah</td>
+				    	<td>
+				    		'Beberapa taun silam...Dan minggu2 trakhir Mulai dari parkiran..... ada benernya juga ulasan2 sebelumnya...ngalamin juga muter mpe 5x dan ga dapet tempat, pernah juga naek motor waktu hamil gede... tu ada bapak2 pake sragam parkir sih... tp tetep diem aja... lihat saya kesusahan geser2 motor gede..mungkin si bapak lelah ðŸ˜‚..pendaftaran....lanjut periksa ke ruang periksa dan bertemu perawat dan dokter spesialis....Resep trus kefarmasi...Resepnya online.. jd pasien yang sudah dari diperiksa dokter akan mendapat kwitansi dilanjutkan kefarmasi tinggal pilih nich mau dibeli skalian atau mo dibelikan diluar rs bethesda... jika mau diluar bilang saja sama petugas farmasinya "mba saya minta copyr/nya saja" pasti antrianny akan lebih cepat dari pada  pasien2 lainnya ya.... tp kita pulang masih harus cari2 tempat untuk menebus resep obat tersebut...belum lagi klo obatnya adanya cuma dibethesda... jd repot dech kita..bolak balik lagi ujung2nya..Saran aja, klo menurut saya mending ketika memang kita terburu2 pastikan obatnya ini khusus made in bethesda atau pabrik umum..Nah lain cerita klau beli dibethesda... kebetulan wktu kesini pernah juga hari libur dan memang lumayan sepi.. namun ada beberapa yang menunggu.... nah, pelayanannya ada yg mengganggu pandangan saya itu para pegawai lain (sudah ya pastikan )ada tertulis bethesda dibaju mereka...  tiba2 datang bersama2 masih dengan pakaian lengkap trus langsung duduk di depan meja counter dan ngerti nih kita pasien dateng koq ya cuma duduk diem tanpa kata.. ya yang sakit dan pasien umum harus "mengalah" untuk berdiri ketika petugas farmasi memangil...untuk memberi kwitansi pembayaran...Ga minta lebih... hanya Ya seharusnya taulah ya..Atau menang pelayannan untuk interent harus jadi satu di pelayanan pasien umum kah????Baru datang sudah bayar trus dapet obat ..Oia 1 lagi 1 bulan lalu sudah ada uji coba mesin antrian untuk bag farmasi semoga dengan ini makin ngerti yang namanya "antri" tanpa memandang seragam yang sama!!Terimakasih ini ulasan saya semoga bermanfaat... â¤ï¸â¤ï¸ bagi semua..Mohon maaf bila ada yang tersinggung..Ini hanya sekedar ulasan saya secara pribadi .. dan pengalaman yang pernah saya rasakan...mungkin akan berbeda pengalaman dan rasa untuk masing2 orang...Untuk rs bethesda makin sipp pokoknya, untuk fasilitas lainnya yang ada didalamnya makin maju ðŸ‘
+				    	</td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">4</th>
+				    	<td>waktu lama</td>
+				    	<td>
+				    		'Pelayanan rawat jalannya cukup terorganisir. Waktu kemaren kesana ngantri dokternya tidak begitu lama.
+				    	</td>
+				    </tr>
+				    
+				  	</tbody>
+				</table> 
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+
+		<div id="section5">	
+			<div>
+				<h2>Grafik Frekuensi Frasa Negatif Medis RS Bethesda</h2>
+				<canvas id="nm" width="10px" height="4px"></canvas>
+			</div>
+			<div>
+			<h2>Tabel Review Negatif Medis RS Bethesda</h2>
+			<!-- <canvas id="pm" width="10px" height="8px"></canvas> -->
+				<table class="table table-striped table-bordered" id="example3" style="width:100%">
+				  	<thead>
+				    <tr>
+				      <th scope="col",class="col-lg-1" >No.</th>
+				      <th scope="col",class="col-lg-2" >Frasa</th>
+				      <th scope="col", class="col-lg-3" >Review</th>
+				    </tr>
+				  	</thead>
+				  	<tbody>
+				    <tr>
+				      	<th scope="row">1</th>
+				      	<td>ruang mahal</td>
+				     	<td>
+				      		(Diterjemahkan oleh Google) Semuanya bagus, kecuali satu. Adikku ada di sana dan tinggal di kamar superior. Itu harus lebih besar dan lebih lebar dari ruang VIP karena lebih mahal. Tapi kamarnya tidak sebesar yang kami harapkan dan terlalu berisik. Kemudian kami pindah ke ruang VIP dan itu jauh lebih baik. Saya tidak tahu mengapa tetapi mereka harus benar-benar bekerja dengan masalah iniDan, ketika Anda datang ke sini untuk mengunjungi dokter, Anda akan menunggu berjam-jam hanya untuk mendapatkan obat, meskipun Anda pasien biasa (berarti tanpa JKN). Jadi bersiaplah untuk itu(Asli)Everything is great, except one. My sister was there and stayed in superior room. It should be bigger and wider than VIP room since it's more expensive. But the room is not as big as what we expected and it's too noisy. Then we moved to VIP room and it's much better. I don't know why but they should really work with this problemAnd, when you came here to visit the doctors, you will wait hours just to get the medicine, though you're regular patient (means without JKN). So be prepared for that
+				      	</td>
+
+				    </tr>
+				    <tr>
+				      	<th scope="row">2</th>
+				      	<td>perawat banyak</td>
+				      	<td>
+				      		perawat banyak, kurang ramah
+				      	</td>
+				    </tr>
+				    <tr>
+					    <th scope="row">3</th>
+					    <td>rumah sakit lama</td>
+					    <td>
+				      		'Rumah sakit lama,  selalu penuhhhhh
+				        </td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">4</th>
+				    	<td>dokter lama</td>
+				    	<td>
+				    		'Pelayanan rawat jalannya cukup terorganisir. Waktu kemaren kesana ngantri dokternya tidak begitu lama.
+				    	</td>			    	
+				    </tr>
+				    <tr>
+				    	<th scope="row">5</th>
+				    	<td>pasien lama</td>
+				    	<td>
+				    		'Cukup memadai IGD apabila dokterjaga di tambah personilnya pasien akan banyak yang teratasi tanpa lama menunggu
+				    	</td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">6</th>
+				    	<td>pasien sedikit</td>
+				    	<td>
+				    		'Kamar pasien sedikit sempit
+				    	</td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">7</th>
+				    	<td>obat lama</td>
+				    	<td>Saya beberapa kali kesini untuk berobat. Tidak perlu membawa kartu kalau sudah terdaftar hanya ditanyai nama lengkap lalu ditanya keluhannya apa lalu ingin menemui dokter siapa/yang mana. Jika kota tidak tau maka CS di depan akan memberi saran. Pemeriksaan dokter cukup cepat walau ruangan praktek dokter terkesan jaman dulu dan sempit. Tarif dokter disini juga lebih murah dengan tetap profesional. Hanya sayang antrian obatnya lamaa</td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">8</th>
+				    	<td>pasien banyak</td>
+				    	<td>'Cukup memadai IGD apabila dokterjaga di tambah personilnya pasien akan banyak yang teratasi tanpa lama menunggu</td>
+				    </tr>
+				  	</tbody>
+				</table> 
+
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+	</div>
+</body>
+
+<script>
+	$(document).ready(function () {
+		$('#example').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	$(document).ready(function () {
+		$('#example1').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	$(document).ready(function () {
+		$('#example2').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	$(document).ready(function () {
+		$('#example3').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	var ctx = document.getElementById("sent").getContext('2d');
+	var myChart = new Chart(ctx, {
+
+	  	type: 'pie',
+	 	data: {
+	    labels: ["Positif","Negatif","Netral"],
+	    datasets: [{
+	      backgroundColor: [
+            '#3366cc',
+            '#ff5050',
+            '#ffff00'
+	      ],
+	      data: [2585, 1405, 1279]
+	    }]
+	  }
+	});
+
+</script>
+
+<script>
+var ctx = document.getElementById('pnm').getContext('2d');
+var pnm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [ 
+             'taman luas',
+             'fasilitas besar',  
+             'tempat baik', 
+             'fasilitas bagus',  
+             'tempat nyaman', 
+             'fasilitas lengkap', 
+             'tempat bersih',
+             'petugas ramah'
+              
+],
+        datasets: [{
+            label: 'Positif Non Medis',
+            data: [1,1,1,2,7,5,4,2
+				],
+            backgroundColor: [
+                'rgba(100, 150, 232, 1)','rgba(100, 159, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 159, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)'
+            ],
+            
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx = document.getElementById('pm').getContext('2d');
+var pm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['dokter unggul', 
+          'dokter mumpuni', 
+          'dokter cepat', 
+          'ruang ramah',  
+          'ruang bersih', 
+          'perawat bagus', 
+          'dokter sangat_baik', 
+          'pasien nyaman', 
+          'ruangan nyaman', 
+          'perawat baik',
+          'dokter bagus', 
+          'pasien cepat', 
+          'dokter baik', 
+          'ruangan bersih', 
+          'perawat ramah', 
+          'dokter ramah', 
+ 
+				],
+        datasets: [{
+            label: 'Positif Medis',
+            data: [1,1,1,2,1,1,2,1,1,
+            	   1,1,3,2,5,6,5],
+            backgroundColor: [
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)'],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+	var ctx = document.getElementById('nnm');
+    var nnm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [ 
+             'ruang mahal', 
+             'tempat sedikit', 
+             'tempat susah', 
+             'waktu lama' 
+],
+        datasets: [{
+            label: 'Negatif Non Medis',
+            data: [2,1,1,1],
+            backgroundColor: [
+                'rgba(255, 102, 0, 1)','rgba(255, 102, 0, 1)',
+                'rgba(255, 102, 0, 1)','rgba(255, 102, 0, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx = document.getElementById('nm');
+var nm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [
+          'ruang mahal', 
+          'perawat banyak', 
+          'rumah_sakit lama', 
+          'rumah_sakit sedikit', 
+          'dokter lama', 
+          'pasien lama', 
+          'pasien sedikit', 
+          'obat lama', 
+          'pasien banyak', 
+
+],
+        datasets: [{
+            label: 'Negatif Medis',
+            data: [1,1,1,1,1,1,1,1,1
+],
+            backgroundColor: [
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        events: ['click']
+    }
+});
+</script>
+</html>

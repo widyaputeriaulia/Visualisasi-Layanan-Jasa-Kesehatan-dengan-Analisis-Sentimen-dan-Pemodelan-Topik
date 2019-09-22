@@ -1,0 +1,475 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<style>
+ 
+  </style>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50" style="background-image: url('/static/img/bg4.png'); background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: cover;">>
+	<div class="container">
+
+		<div class="row">
+			<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">  
+			   <ul class="navbar-nav">
+			  		<li class="nav-item dropdown">
+			      		<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+			        	Home
+			      		</a>
+			      		<div class="dropdown-menu">
+			      			<a class="dropdown-item" href="/">Home</a>
+					        <a class="dropdown-item" href="/bethesda">RS Bethesda</a>
+					        <a class="dropdown-item" href="/sleman">RSUD Sleman</a>
+					        <a class="dropdown-item" href="/wates">RSUD Wates</a>
+					        <a class="dropdown-item" href="/jih">RS JIH</a>
+					        <a class="dropdown-item" href="/panti_rapih">RS Panti Rapih</a>
+					        <a class="dropdown-item" href="/pku_muhammadiyah">RS PKU Muhammadiyah</a>
+					        <a class="dropdown-item" href="/panembahan">RSUD Panembahan Senopati</a>
+					        <a class="dropdown-item" href="/pau_hardjolukito">RS PAU Dr. S. Hardjolukito</a>
+					        <a class="dropdown-item" href="/ugm">RS UGM</a>
+					        <a class="dropdown-item" href="/kota">RSUD Kota Yogyakarta</a>
+					        <a class="dropdown-item" href="/sardjito">RS dr. Sardjito</a>
+				      	</div>
+			    	</li>
+				    <li class="nav-item">
+				       
+				    </li>
+				    <li class="nav-item">
+				       <a class="nav-link" href="#section2">Positif Non Medis</a>
+				    </li>
+				    <li class="nav-item">
+				       <a class="nav-link" href="#section3">Positif Medis</a>
+				    </li>
+				    <li class="nav-item">
+				       <a class="nav-link" href="#section4">Negatif Non Medis</a>
+				    </li>
+				    <li class="nav-item">
+				       <a class="nav-link" href="#section5">Negatif Medis</a>
+				    </li>
+				</ul>
+			</nav>
+		</div>
+
+		<div class="row title">
+	        <div class="col-md-12" id="site-title">
+	        	<p> 
+	        		<h1 class="title-site", style="padding-top:50px">Visualisasi Pelayanan Jasa Kesehatan</h1>
+	        		<p class="desc">Dengan Analisis Sentimen dan Klasifikasi</p>
+	        		
+	        	</p>
+	        </div>
+    	</div>
+
+    	<div id="section1">
+	    	<div class="row" style="padding-top: 5px">
+	    	</div>
+	    	<div class="row my-2">
+	    		<div class="col-md-4">
+	    			
+	    		</div>
+	    	<hr size="10px" width="100%" align="left" color="#0066cc">
+	    	</div>
+    	</div>
+
+    	<div id="section2">
+	  		<div class = 'row'>
+	  			<h2>Grafik Frekuensi Frasa Positif non-medis RS PKU Muhammadiyah</h2>
+				<canvas id="pnm" width="10px" height="4px"></canvas>		
+			</div>
+
+			<div class="row">
+				<h2>Tabel Review Positif non-medis RS PKU Muhammadiyah</h2>
+			<!-- <canvas id="pm" width="10px" height="8px"></canvas> -->
+				<table class="table table-striped table-bordered" id="example" style="width:100%">
+				  	<thead>
+				    <tr>
+				      <th scope="col",class="col-lg-1" >No.</th>
+				      <th scope="col",class="col-lg-2" >Frasa</th>
+				      <th scope="col", class="col-lg-3" >Review</th>
+				    </tr>
+				  	</thead>
+				  	<tbody>
+				  		<tr>
+					      	<th scope="row">1</th>
+					      	<td>pelayan ramah</td>
+					     	<td>
+					      		salah satu rumah sakit di pusat kota jogja. lokasi dekat dengan malioboro dan titik nol kilometer jogja. rumah sakit ini berada di jalan dua arah, sehingga tidak susah akses untuk menuju ke lokasi. pelayanan petugas rumah sakitnya ramah dan baik. tempat bersih dan rapi. tempat parkir kurang luas
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">2</th>
+					      	<td>petugas ramah</td>
+					     	<td>
+					      		Rumah sakitnya bersih, dan ada tanaman ketika berada di lantai 2. Petugasnya ramah dan murah senyum. Anak kecil dibawah 12 tahun tak boleh masuk. Sudah standar B rumah sakit. Hanya saja cukup antri ketika mau parkir, apalagi pakai kendaraan roda empat. #LetsGuide
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">3</th>
+					      	<td>fasilitas lengkap</td>
+					     	<td>
+					      		Salah satu Rumah Sakit di Daerah Istimewa Yogyakarta yang berfasilitas lengkap dan pelayanan baik di DIY. Dengan cara yang syariah. Pelayanan baik dan ramah. Lokasi berada di Kota JOGJA tepat di pusat kota. Mudah dijangkau dan mudah mencaronya. Berada di jalan KH Ahmad Dahlan utara jalan sebelah barat titik 0km. Jalannya 2 arah jadi mudah untuk ke lokasi. Dan Rumah Sakit ini support GRAB juga.
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">4</th>
+					      	<td>tempat bersih</td>
+					     	<td>
+					      		<li>
+					      			Tempatnya bersih,hanya perawatnya yg di igd(sy gk liat namanya)bnr2x galak&gk ramah,,wktu itu sy msuk igd krna kasus preeklamsia,dgn diantr ambulans sama org igd happyland(sy kontrol di happyland)..wktu itu org igd happylandnya janji mau coba bcra sma org igd pku,mengusahakan spy anak sulung sy bsa msuk kmr prwtn sama sy,,eehh..wktu sy tnyakn bknny jwb dgn penjelasan mlh ngoceh2x gk jls(syg sy gk liat namanya)giliran sy dperiksa dktr jaganya luar biasa ramahnyaaa(sy jg gk liat namanya)beliau jelasin knpa ank sy gk boleh masuk lngkp dgn resikony..tpi ql mmg sy memaksa gpp,bsa teken surat pernyataan..penjelasanny singkat,jelas&mudah dterima..hbis itu sy dibawa ke VK,tnpa didampingi suami sy..pdhl sy mau dipasang kateter..ktany bru ada tindakan jdi suami blm blh masuk,bru bsa masuk stlh slsai(maklum sih,,tpi mbok ya ngejelasinny gk ush marah2x gtu..pasien jdi gk nyaman),,singkat crta sy dipasang kateter sama bidan yg berbeda..bidannya ini ramah bgt dbnding yg pertama namanya bu Anugrah..stlh slsai beliau manggil suami sy..jam stgh 1 dini hari dktr kandungannya visit,kesan ptama sih irit ngmng(beda sama dktr sy di happyland),tpi dlm hti mdh2xan krna beliau cape aja..bsk siangny sy caesar..agk deg2xan wktu dktr kandungannya visit,,jgn2x kaya tdi mlm..gk ada penjelasan..alhamdulillah gk..sy djelaskan prosedurnya(walo sy sdh prnh caesar sblmnya di RS lain),jam 11 sy dbawa ke ruang operasi(jdwl sy maju krna pasien yg sblm sy blm siap),kesan serem lgsg terlintasss..ehhh..tpi wktu ktmu tim operasinya kesan itu lgsg hilang..apalagi dkter anestesinya kerennn bggtttt..keren dlm artian kata dktr muda yg cekatan,gk terasa skit sma skli suntikan utk epiduralnya..pdhl sodara sy blg skit(dy udh lpa rasany krna caesar ptma 6thn lalu),diajak becanda&dgr rumpian tim operasi sama dkter kndungannya pasien jdi rileks,,apalgi sy hbis itu masuk ICU(prosedur utk preeklamsia mmg spti itu tyta diPKU),,yg bwt sy stres adl pelayanan di ICU oleh sift malam...infus hmpir hbis,,sy pencet2x bel perawat gk dtg2x,,akhirny sy teriak2x..krg lbh 1/2jam sy teriak bru dtg perawatnya..sdh dtg lama pke acr ngmel lgi..apa krna sy pke bpjs???Bskny sy sdh dbwa ke ruang perawatan..dsni perawatny ramah2x,,sopan,,wktu ngelap bdan(sy blm blh mndi)halus beda dgn di ICU..wktu sy tnya jwb mrka"mmg di ICU spti itu bu",smbil senyum..dan mrka hafal pasienny..tiap aplusan sll perkenalan..wktu sy bru di ruang perawatan stlh dri ICU,perawatny tnya"ibu knpa bsa masuk ICU?"dan mrka pun maklum ql sy mengeluhkan pelayanan di ICUQl utk pelayanan,overall baguss&baik krna tenaga medis cekatan,hnya bbrp perawat yg gk ramah jdi nilainya minus..Nah utk yg mau ksana sy tulis review bbrp tenaga medis yg sy tau*dktr Retno(dktr kndungan):kesannya judes,tpi beliau ramah kok..hnya beliau bicara seperlunya..tpi ql qta tnya penjelasanny lumayan kok..meskipun krg komunikatif jika dbndingkan dgn dktr sy yg dl di happyland*dktr oka(dktr anestesi):dktr ini yg membuat penilaian sy bgus&menghilangkan kekecewaan sy thd bbrp tenaga medis yg krg ramah..kesan serem utk SC(caesar)hilang wktu sy ktmu dktr muda ini..pkkny utk yg mo caesar,mnta dktr anestesiny dktr Oka(wktu itu sy SC hri minggu)*bu Anugrah(bidan di VK):sgt ramah dbndingkn bidan yg sift pagi..cekatan&sgt komunikatif..Overall,,utk perawat di ruang Kelas 1 ada bbrp yg krg ramah(syg sy lpa namanya)tpi yg krg ramah itu ketutup sama perawat yg ramah,,meskipun krg ramah tpi mrka cekatan skli..mrka gk beda2xkan bpjs&umum..peralatan yg lngkp&memadai,bersih..tenaga medis yg cekatan&terampil..sy merekomendasikan RS PKU Muhammadiyah utk yg mo SC,,Utk dktr anak,pilih dktr Komarudin..orgnya santai,asik,komunikatif..	
+					      		</li>
+					      		<li>
+					      			(Diterjemahkan oleh Google) Rumah sakit ini menawarkan harga yang wajar untuk layanan lab yang layak. Tempat yang nyaman: tidak terlalu ramai dan bersih.(Asli)This hospital offers reasonable price for decent lab services. Comfortable place: not too crowded and clean.
+					      		</li>
+					      	</td>
+				      	</tr>
+				  	</tbody>
+				</table>
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+
+		<div id="section3">
+			<div class="row">
+				<h2>Grafik Frekuensi Frasa Positif Medis RS PKU Muhammadiyah</h2>
+				<canvas id="pm" width="10px" height="4px"></canvas>
+			</div>
+
+			<div class="row">
+				<h2>Tabel Review Positif Medis RS PKU Muhammadiyah</h2>
+				<table class="table table-striped table-bordered" id="example1" style="width:100%">
+				  	<thead>
+				    <tr>
+				      <th scope="col",class="col-lg-1" >No.</th>
+				      <th scope="col",class="col-lg-2" >Frasa</th>
+				      <th scope="col", class="col-lg-3" >Review</th>
+				    </tr>
+				  	</thead>
+				  	<tbody>
+				  		<tr>
+					      	<th scope="row">1</th>
+					      	<td>dokter cekatan</td>
+					     	<td>
+					      		Tempatnya bersih,hanya perawatnya yg di igd(sy gk liat namanya)bnr2x galak&gk ramah,,wktu itu sy msuk igd krna kasus preeklamsia,dgn diantr ambulans sama org igd happyland(sy kontrol di happyland)..wktu itu org igd happylandnya janji mau coba bcra sma org igd pku,mengusahakan spy anak sulung sy bsa msuk kmr prwtn sama sy,,eehh..wktu sy tnyakn bknny jwb dgn penjelasan mlh ngoceh2x gk jls(syg sy gk liat namanya)giliran sy dperiksa dktr jaganya luar biasa ramahnyaaa(sy jg gk liat namanya)beliau jelasin knpa ank sy gk boleh masuk lngkp dgn resikony..tpi ql mmg sy memaksa gpp,bsa teken surat pernyataan..penjelasanny singkat,jelas&mudah dterima..hbis itu sy dibawa ke VK,tnpa didampingi suami sy..pdhl sy mau dipasang kateter..ktany bru ada tindakan jdi suami blm blh masuk,bru bsa masuk stlh slsai(maklum sih,,tpi mbok ya ngejelasinny gk ush marah2x gtu..pasien jdi gk nyaman),,singkat crta sy dipasang kateter sama bidan yg berbeda..bidannya ini ramah bgt dbnding yg pertama namanya bu Anugrah..stlh slsai beliau manggil suami sy..jam stgh 1 dini hari dktr kandungannya visit,kesan ptama sih irit ngmng(beda sama dktr sy di happyland),tpi dlm hti mdh2xan krna beliau cape aja..bsk siangny sy caesar..agk deg2xan wktu dktr kandungannya visit,,jgn2x kaya tdi mlm..gk ada penjelasan..alhamdulillah gk..sy djelaskan prosedurnya(walo sy sdh prnh caesar sblmnya di RS lain),jam 11 sy dbawa ke ruang operasi(jdwl sy maju krna pasien yg sblm sy blm siap),kesan serem lgsg terlintasss..ehhh..tpi wktu ktmu tim operasinya kesan itu lgsg hilang..apalagi dkter anestesinya kerennn bggtttt..keren dlm artian kata dktr muda yg cekatan,gk terasa skit sma skli suntikan utk epiduralnya..pdhl sodara sy blg skit(dy udh lpa rasany krna caesar ptma 6thn lalu),diajak becanda&dgr rumpian tim operasi sama dkter kndungannya pasien jdi rileks,,apalgi sy hbis itu masuk ICU(prosedur utk preeklamsia mmg spti itu tyta diPKU),,yg bwt sy stres adl pelayanan di ICU oleh sift malam...infus hmpir hbis,,sy pencet2x bel perawat gk dtg2x,,akhirny sy teriak2x..krg lbh 1/2jam sy teriak bru dtg perawatnya..sdh dtg lama pke acr ngmel lgi..apa krna sy pke bpjs???Bskny sy sdh dbwa ke ruang perawatan..dsni perawatny ramah2x,,sopan,,wktu ngelap bdan(sy blm blh mndi)halus beda dgn di ICU..wktu sy tnya jwb mrka"mmg di ICU spti itu bu",smbil senyum..dan mrka hafal pasienny..tiap aplusan sll perkenalan..wktu sy bru di ruang perawatan stlh dri ICU,perawatny tnya"ibu knpa bsa masuk ICU?"dan mrka pun maklum ql sy mengeluhkan pelayanan di ICUQl utk pelayanan,overall baguss&baik krna tenaga medis cekatan,hnya bbrp perawat yg gk ramah jdi nilainya minus..Nah utk yg mau ksana sy tulis review bbrp tenaga medis yg sy tau*dktr Retno(dktr kndungan):kesannya judes,tpi beliau ramah kok..hnya beliau bicara seperlunya..tpi ql qta tnya penjelasanny lumayan kok..meskipun krg komunikatif jika dbndingkan dgn dktr sy yg dl di happyland*dktr oka(dktr anestesi):dktr ini yg membuat penilaian sy bgus&menghilangkan kekecewaan sy thd bbrp tenaga medis yg krg ramah..kesan serem utk SC(caesar)hilang wktu sy ktmu dktr muda ini..pkkny utk yg mo caesar,mnta dktr anestesiny dktr Oka(wktu itu sy SC hri minggu)*bu Anugrah(bidan di VK):sgt ramah dbndingkn bidan yg sift pagi..cekatan&sgt komunikatif..Overall,,utk perawat di ruang Kelas 1 ada bbrp yg krg ramah(syg sy lpa namanya)tpi yg krg ramah itu ketutup sama perawat yg ramah,,meskipun krg ramah tpi mrka cekatan skli..mrka gk beda2xkan bpjs&umum..peralatan yg lngkp&memadai,bersih..tenaga medis yg cekatan&terampil..sy merekomendasikan RS PKU Muhammadiyah utk yg mo SC,,Utk dktr anak,pilih dktr Komarudin..orgnya santai,asik,komunikatif..
+					      	</td>
+				      	</tr>
+				      	<tr>
+				      		<th scope="row">2</th>
+				      		<td>dokter baik</td>
+				      		<td>
+				      			Dokternya trampil dan baik.
+				      		</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">3</th>
+					      	<td>perawat ramah</td>
+					     	<td>
+					     		<li>
+					     			Untuk perawat di ranapnya ramah2,,hanya saja saya merasa kecewa dgn salah satu dokter obg nya. Penampilan luarnya halus tp ketika ditanya jawabannya ketus & tdk komunikatif
+					     		</li>
+					      		<li>
+					      			Pelayanannya cepat, surter dan perawatnya ramah dan sopan
+					      		</li>
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">4</th>
+					      	<td>dokter ramah</td>
+					     	<td>
+					      		<li>
+					      			Salah satu rumah sakit yang berada di tengah kota Yogyakarta. Pelayanannya memuaskan. Pegawai, perawat, dokternya ramah-ramah. Dan mengutamakan nilai-nilai keislaman
+					      		</li>
+					      		<li>
+					      			Pelayanan bagus dan cepat,petugas dan dokter ramah2
+					      		</li>
+					      	</td>
+				      	</tr>
+				  	</tbody>
+				</table> 
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+
+		<div id="section4">
+			<div class="row">
+				<h2>Grafik Frekuensi Frasa Negatif Non-medis RS PKU Muhammadiyah</h2>
+				<canvas id="nnm" width="10px" height="4px"></canvas>
+			</div>
+			<div>
+				<h2>Tabel Review Negatif non-medis RS PKU Muhammadiyah</h2>
+			<!-- <canvas id="pm" width="10px" height="8px"></canvas> -->
+				<table class="table table-striped table-bordered" id="example2" style="width:100%">
+				  	<thead>
+				    <tr>
+				      	<th scope="col",class="col-lg-1" >No.</th>
+				      	<th scope="col",class="col-lg-2" >Frasa</th>
+				      	<th scope="col", class="col-lg-3" >Review</th>
+				    </tr>
+				  	</thead>
+				  	<tbody>
+				    <tr>
+				      	<th scope="row">1</th>
+				      	<td>tempat susah</td>
+				     	<td>
+				      		'Tempatnya strategis untuk parkir motor penuh.parkir mobil susah
+				      	</td>
+				    </tr>
+				    <tr>
+				      	<th scope="row">2</th>
+				      	<td>pendaftaran lama</td>
+				      	<td>
+				      		Polinya lengkap. Pelayanan cukup bagus. Antrian pendaftaran kadang cepet, kadang lama bgt. Parkir mobil kurang luas. Masjidnya cukup besar & terjangkau. Adanya swalayan & kantin sangat membantu.
+				      		
+				      	</td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">3</th>
+				    	<td>pelayanan buruk</td>
+				    	<td>
+				    		(Diterjemahkan oleh Google) asuransi pengalaman saya menggunakan perusahaan / AdMedika di sini mengambil loong dan prosedur yang kompleks meskipun saya berada dalam kondisi darurat tanpa pendamping apapun. layanan yang buruk(Asli)My experience using company's insurance/admedika in here was taking loong and complex procedure even though I was in emergency condition without any companion. Poor service
+				    	</td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">4</th>
+				    	<td>pelayanan lama</td>
+				    	<td>
+				    		Pelayanannya lemoott bgt, jadwal dokternya selalu molor jam nya..
+				    	</td>
+				    </tr>
+				  	</tbody>
+				</table> 
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+
+		<div id="section5">	
+			<div>
+				<h2>Grafik Frekuensi Frasa Negatif Medis RS PKU Muhammadiyah</h2>
+				<canvas id="nm" width="10px" height="4px"></canvas>
+			</div>
+			<div>
+			<h2>Tabel Review Negatif Medis RS PKU Muhammadiyah</h2>
+			<!-- <canvas id="pm" width="10px" height="8px"></canvas> -->
+				<table class="table table-striped table-bordered" id="example3" style="width:100%">
+				  	<thead>
+				    <tr>
+				      <th scope="col",class="col-lg-1" >No.</th>
+				      <th scope="col",class="col-lg-2" >Frasa</th>
+				      <th scope="col", class="col-lg-3" >Review</th>
+				    </tr>
+				  	</thead>
+				  	<tbody>
+				    <tr>
+				      	<th scope="row">1</th>
+				      	<td>rumah sakit ribet</td>
+				     	<td>
+				      		RS yg ribet! Ga bisa membantu pelayanan pendaftaran awal via telpon, harus dateng ke RS isi form dulu, pdhl di JIH atau RS lainnya bisa dilayani daftar antri dokter dlu baru pendaftaran isi formnya bisa nyusul pas datang periksa,masa iya harus datang ke RS dlu terus baru bisa dikasih antrian dokter, tidak memudahkan bagi pasien yg bekerja dan g bisa ninggalkan kantor
+				      	</td>
+
+				    </tr>
+				    <tr>
+				      	<th scope="row">2</th>
+				      	<td>rumah sakit terburuk</td>
+				      	<td>
+				      		<li>
+				      			'Setelah sy melahirkan, anak saya dirawat di ruang bayi n pada saat perawatan sy disuruh meminumkan asip yg masih dlm keadaan panas oleh perawat langsung saya tolak. Bagaimana waktu itu pas sy tdk ada, hancur hati saya, tidak akan lagi perawatan ke RS ini. Alih2 membantu amal usaha organisasi tp kok bgtu pelayanannya. Satu lagi saat AC tidak berfungsi di kamar vvip yg sy tempati saya komplain untuk perbaikan tp hasilnya nihil sampai keluar dr RS (4hari). RS swasta terburuk yg pernah sy temui. Mohon maaf saya share disini krn setelah perawatan tdk dberikan blanko kritik n saran. Untuk dokter2nya bagus tp untuk teknis pelayanannya mohon maaf kurang dr standar.
+				      		</li>
+				      		<li>
+				      			'(Diterjemahkan oleh Google) Rumah sakit terburuk yang pernah saya kenal(Asli)The worst hospital i ever know
+				      		</li>
+				      	</td>
+				    </tr>
+				  	</tbody>
+				</table> 
+
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+	</div>
+</body>
+
+<script>
+	$(document).ready(function () {
+		$('#example').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	$(document).ready(function () {
+		$('#example1').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	$(document).ready(function () {
+		$('#example2').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	$(document).ready(function () {
+		$('#example3').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	var ctx = document.getElementById("sent").getContext('2d');
+	var myChart = new Chart(ctx, {
+
+	  	type: 'pie',
+	 	data: {
+	    labels: ["Positif","Negatif","Netral"],
+	    datasets: [{
+	      backgroundColor: [
+            '#3366cc',
+            '#ff5050',
+            '#ffff00'
+	      ],
+	      data: [2585, 1405, 1279]
+	    }]
+	  }
+	});
+
+</script>
+
+<script>
+var ctx = document.getElementById('pnm').getContext('2d');
+var pnm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [ 
+             'pelayan ramah', 
+             'petugas ramah', 
+             'fasilitas lengkap', 
+             'tempat bersih'
+              
+],
+        datasets: [{
+            label: 'Positif Non Medis',
+            data: [1,1,1,2
+				],
+            backgroundColor: [
+                'rgba(100, 150, 232, 1)','rgba(100, 159, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 159, 232, 1)'
+            ],
+            
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx = document.getElementById('pm').getContext('2d');
+var pm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [ 
+          'dokter cekatan', 
+          'dokter baik', 
+          'perawat ramah', 
+          'dokter ramah', 
+ 
+				],
+        datasets: [{
+            label: 'Positif Medis',
+            data: [1,1,2,2],
+            backgroundColor: [
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)'],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+	var ctx = document.getElementById('nnm');
+    var nnm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [ 
+             'tempat susah',  
+             'pendaftaran lama',
+             'pelayanan buruk', 
+             'pelayanan lama' 
+],
+        datasets: [{
+            label: 'Negatif Non Medis',
+            data: [1,1,1,1],
+            backgroundColor: [
+                'rgba(255, 102, 0, 1)','rgba(255, 102, 0, 1)',
+                'rgba(255, 102, 0, 1)','rgba(255, 102, 0, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx = document.getElementById('nm');
+var nm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [ 
+          'rumah sakit ribet', 
+          'rumah sakit terburuk' 
+
+],
+        datasets: [{
+            label: 'Negatif Medis',
+            data: [1,2
+],
+            backgroundColor: [
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        events: ['click']
+    }
+});
+</script>
+</html>

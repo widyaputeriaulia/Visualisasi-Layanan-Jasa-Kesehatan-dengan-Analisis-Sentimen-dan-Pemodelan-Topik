@@ -1,0 +1,466 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<style>
+ 
+  </style>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50" style="background-image: url('/static/img/bg4.png'); background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: cover;">
+	<div class="container">
+
+		<div class="row">
+			<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">  
+			   <ul class="navbar-nav">
+			  		<li class="nav-item dropdown">
+			      		<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+			        	Home
+			      		</a>
+			      		<div class="dropdown-menu">
+			      			<a class="dropdown-item" href="/">Home</a>
+					        <a class="dropdown-item" href="/bethesda">RS Bethesda</a>
+					        <a class="dropdown-item" href="/sleman">RSUD Sleman</a>
+					        <a class="dropdown-item" href="/wates">RSUD Wates</a>
+					        <a class="dropdown-item" href="/jih">RS JIH</a>
+					        <a class="dropdown-item" href="/panti_rapih">RS Panti Rapih</a>
+					        <a class="dropdown-item" href="/pku_muhammadiyah">RS PKU Muhammadiyah</a>
+					        <a class="dropdown-item" href="/panembahan">RSUD Panembahan Senopati</a>
+					        <a class="dropdown-item" href="/pau_hardjolukito">RS PAU Dr. S. Hardjolukito</a>
+					        <a class="dropdown-item" href="/ugm">RS UGM</a>
+					        <a class="dropdown-item" href="/kota">RSUD Kota Yogyakarta</a>
+					        <a class="dropdown-item" href="/sardjito">RS dr. Sardjito</a>
+				      	</div>
+			    	</li>
+				    <li class="nav-item">
+				       
+				    </li>
+				    <li class="nav-item">
+				       <a class="nav-link" href="#section2">Positif Non Medis</a>
+				    </li>
+				    <li class="nav-item">
+				       <a class="nav-link" href="#section3">Positif Medis</a>
+				    </li>
+				    
+				</ul>
+			</nav>
+		</div>
+
+		<div class="row title">
+	        <div class="col-md-12" id="site-title">
+	        	<p> 
+	        		<h1 class="title-site", style="padding-top:50px">Visualisasi Pelayanan Jasa Kesehatan</h1>
+	        		<p class="desc">Dengan Analisis Sentimen dan Klasifikasi</p>
+	        		
+	        	</p>
+	        </div>
+    	</div>
+
+    	<div id="section1">
+	    	<div class="row" style="padding-top: 5px">
+	    		<hr size="10px" width="100%" color="#0066cc">
+	    		
+	    	</div>
+	    	<div class="row my-2">
+	    		
+	    	</div>
+    	</div>
+
+    	<div id="section2">
+	  		<div class = 'row'>
+	  			<h2>Grafik Frekuensi Frasa Positif non-medis RSUD Sleman</h2>
+				<canvas id="pnm" width="10px" height="4px"></canvas>		
+			</div>
+
+			<div class="row">
+				<h2>Tabel Review Positif non-medis RSUD Sleman</h2>
+			<!-- <canvas id="pm" width="10px" height="8px"></canvas> -->
+				<table class="table table-striped table-bordered" id="example" style="width:100%">
+				  	<thead>
+				    <tr>
+				      <th scope="col",class="col-lg-1" >No.</th>
+				      <th scope="col",class="col-lg-2" >Frasa</th>
+				      <th scope="col", class="col-lg-3" >Review</th>
+				    </tr>
+				  	</thead>
+				  	<tbody>
+				  		<tr>
+					      	<th scope="row">1</th>
+					      	<td>petugas baik</td>
+					     	<td>
+					      		Pelayanannya baguss, sesuai standar Runah Sakit yang berlakuu, petugasnya juga ramah ramah dan baik
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">2</th>
+					      	<td>tempat luas</td>
+					     	<td>
+					      		 Tempat luas, nyaman, bersih. Bagian pendaftaran, perawat maupun dokter semuanya ramah-ramah. Bagi pasien BPJS yang sudah mempunyai rekam medis di RS dapat mendaftar melalui WA untuk menghindari antrian panjang.Tingkat keamananya cukup bagus, kalau belum waktunya jam kunjung tidak boleh masuk membesuk.
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">3</th>
+					      	<td>tempat bagus</td>
+					     	<td>
+					      		Gedungnya besar , luas , waktu itu paman saya menginap seminggu disini untuk kelas 3 saya tempatnya lumayan bagus , perawatnya ramah , dokternya baik , dan fasilitas rumah sakit seperti kamar mandi sangat bersih juga tersedia lift , ke depan lebih baik lagi RSUD sleman
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">4</th>
+					      	<td>fasilitas bagus</td>
+					     	<td>
+					      		Fasilitas bagus tp orang tua saya mengeluh soal keramahan petugasnya.Semoga bisa diperbaiki
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">5</th>
+					      	<td>petugas ramah</td>
+					     	<td>
+					      		Pelayanannya baguss, sesuai standar Runah Sakit yang berlakuu, petugasnya juga ramah ramah dan baik
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">6</th>
+					      	<td>tempat bersih</td>
+					     	<td>
+					      		<li>
+					      			Pelayanan bagus ramah tempat bersihðŸ‘ðŸ‘ðŸ‘
+					      		</li>
+					      		<li>
+					      			RSUD MURANGAN PELAYANANYA BAGUS.tempat bersih. Suster dan dokter ramah.
+					      		</li>
+					      		<li>
+					      			pelayanan d rsud sleman ini bagus. jika ada pasian datang langsung di tangani.  gedungnya sekarang juga sudah bagus.  tempatnya bersih.  semua perawat nya juga ramah ramah.  bagian administrasi juga ramah dan baik.  mengupayakan yang terbaik untuk pasiennya. pengalaman saya d rawat d rsud ini awal masuk pake umum.  tpi setelah masuk k ruangan d tanya apakah punya  jaminan.  dan sama bagian administrasi malah di suruh pakai jaminannya saja.  karena pelayanannya akan sama saja
+					      		</li>
+					      		<li>
+					      			Terletak di jalan Magelang, sangat strategis. Dapat ditempuh dengan kendaraan pribadi ataupun kendaraan umum. Tempat luas, nyaman, bersih. Bagian pendaftaran, perawat maupun dokter semuanya ramah-ramah. Bagi pasien BPJS yang sudah mempunyai rekam medis di RS dapat mendaftar melalui WA untuk menghindari antrian panjang.Tingkat keamananya cukup bagus, kalau belum waktunya jam kunjung tidak boleh masuk membesuk.
+					      		</li>
+					      		<li>
+					      			RSUD Murangan upgrade, pelayanan bagus, tempat bersih, parkir memadahiðŸ˜Š
+					      		</li>
+					      	</td>
+				      	</tr>
+				  	</tbody>
+				</table>
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+
+		<div id="section3">
+			<div class="row">
+				<h2>Grafik Frekuensi Frasa Positif Medis RSUD Sleman</h2>
+				<canvas id="pm" width="10px" height="4px"></canvas>
+			</div>
+
+			<div class="row">
+				<h2>Tabel Review Positif Medis RSUD Sleman</h2>
+				<table class="table table-striped table-bordered" id="example1" style="width:100%">
+				  	<thead>
+				    <tr>
+				      <th scope="col",class="col-lg-1" >No.</th>
+				      <th scope="col",class="col-lg-2" >Frasa</th>
+				      <th scope="col", class="col-lg-3" >Review</th>
+				    </tr>
+				  	</thead>
+				  	<tbody>
+				  		<tr>
+					      	<th scope="row">1</th>
+					      	<td>ruang bersih</td>
+					     	<td>
+					      		Gedung baru untuk IGD dan poliklinik, untuk rawat inap masih di bangunan lama, ruang tunggu luas, kamar mandi luas dan bersih. Ditingkatkan lagi keramahan dan pelayanan terhadap pasien dan keluarga pasien 
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">2</th>
+					      	<td>dokter baik</td>
+					     	<td>
+					      		<li>
+					      			ManTul, Mantap Betul.. Semua bagian terkoordinasi dengan baik, informasi, perawat, poli bahkan samapi bangsal luar biasa mantap. Pengalaman 3 hari operasi 4 gigi di sini sangat nyaman. Kelas sesuai BPJS, dokter yang baik, perawat yg ramah. 
+					      		</li>
+					      		<li>
+					      			Gedungnya besar, luas, waktu itu paman saya menginap seminggu disini untuk kelas 3 saya tempatnya lumayan bagus, perawatnya ramah, dokternya baik, dan fasilitas rumah sakit seperti kamar mandi sangat bersih juga tersedia lift, ke depan lebih baik lagi RSUD sleman
+					      		</li>
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">3</th>
+					      	<td>perawat ramah</td>
+					     	<td>
+					      		<li>
+					      			ManTul, Mantap Betul.. Semua bagian terkoordinasi dengan baik, informasi, perawat, poli bahkan samapi bangsal luar biasa mantap. Pengalaman 3 hari operasi 4 gigi di sini sangat nyaman. Kelas sesuai BPJS, dokter yang baik, perawat yg ramah. 
+					      		</li>
+					      		<li>
+					      			Gedungnya besar, luas, waktu itu paman saya menginap seminggu disini untuk kelas 3 saya tempatnya lumayan bagus, perawatnya ramah, dokternya baik, dan fasilitas rumah sakit seperti kamar mandi sangat bersih juga tersedia lift, ke depan lebih baik lagi RSUD sleman
+					      		</li>
+					      		<li>
+					      			pelayanan d rsud sleman ini bagus. jika ada pasian datang langsung di tangani.  gedungnya sekarang juga sudah bagus.  tempatnya bersih.  semua perawat nya juga ramah ramah.  bagian administrasi juga ramah dan baik.  mengupayakan yang terbaik untuk pasiennya. pengalaman saya d rawat d rsud ini awal masuk pake umum.  tpi setelah masuk k ruangan d tanya apakah punya  jaminan.  dan sama bagian administrasi malah di suruh pakai jaminannya saja.  karena pelayanannya akan sama saja
+					      		</li>
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">4</th>
+					      	<td>dokter ramah</td>
+					     	<td>
+					      		<li>
+					      			Terletak di jalan Magelang, sangat strategis. Dapat ditempuh dengan kendaraan pribadi ataupun kendaraan umum. Tempat luas, nyaman, bersih. Bagian pendaftaran, perawat maupun dokter semuanya ramah-ramah. Bagi pasien BPJS yang sudah mempunyai rekam medis di RS dapat mendaftar melalui WA untuk menghindari antrian panjang.Tingkat keamananya cukup bagus, kalau belum waktunya jam kunjung tidak boleh masuk membesuk.
+					      		</li>
+					      		<li>
+					      			Pelayanan  di rsud sleman menurut q cukup memuas kan..perawat dan dokter smua ramah pada pasien .
+					      		</li>
+					      	</td>
+				      	</tr>
+				  	</tbody>
+				</table> 
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+
+		
+
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+	</div>
+</body>
+
+<script>
+	$(document).ready(function () {
+		$('#example').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	$(document).ready(function () {
+		$('#example1').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	$(document).ready(function () {
+		$('#example2').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	$(document).ready(function () {
+		$('#example3').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	var ctx = document.getElementById("sent").getContext('2d');
+	var myChart = new Chart(ctx, {
+
+	  	type: 'pie',
+	 	data: {
+	    labels: ["Positif","Negatif","Netral"],
+	    datasets: [{
+	      backgroundColor: [
+            '#3366cc',
+            '#ff5050',
+            '#ffff00'
+	      ],
+	      data: [2585, 1405, 1279]
+	    }]
+	  }
+	});
+
+</script>
+
+<script>
+var ctx = document.getElementById('pnm').getContext('2d');
+var pnm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [
+             'petugas baik', 
+             'tempat luas', 
+             'tempat bagus', 
+             'fasilitas bagus', 
+             'petugas ramah', 
+             'tempat bersih'
+              
+],
+        datasets: [{
+            label: 'Positif Non Medis',
+            data: [1,1,1,1,1,5
+				],
+            backgroundColor: [
+                'rgba(100, 150, 232, 1)','rgba(100, 159, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 159, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)'
+            ],
+            
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx = document.getElementById('pm').getContext('2d');
+var pm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [  
+          'ruang bersih',
+          'dokter baik', 
+          'perawat ramah', 
+          'dokter ramah', 
+ 
+				],
+        datasets: [{
+            label: 'Positif Medis',
+            data: [1,2,3,2],
+            backgroundColor: [
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+	var ctx = document.getElementById('nnm');
+    var nnm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['waktu banyak', 
+             'administrasi buruk', 
+             'pelayanan kecewa', 
+             'nomor sedikit', 
+             'waktu susah', 
+             'waktu tidak_rekomendasi', 
+             'ruang mahal',
+             'pelayanan sedikit', 
+             'tempat sedikit', 
+             'tempat susah', 
+             'pelayanan mahal', 
+             'pendaftaran lama', 
+             'waktu lama', 
+             'pelayanan buruk', 
+             'pelayanan lama' 
+],
+        datasets: [{
+            label: 'Negatif Non Medis',
+            data: [1,1,1,1,1,1,2,3,3,3,
+                   5,6,7,8,15],
+            backgroundColor: [
+                'rgba(255, 102, 0, 1)','rgba(255, 102, 0, 1)',
+                'rgba(255, 102, 0, 1)','rgba(255, 102, 0, 1)',
+                'rgba(255, 102, 0, 1)','rgba(255, 102, 0, 1)',
+                'rgba(255, 102, 0, 1)','rgba(255, 102, 0, 1)',
+                'rgba(255, 102, 0, 1)','rgba(255, 102, 0, 1)',
+                'rgba(255, 102, 0, 1)','rgba(255, 102, 0, 1)',
+                'rgba(255, 102, 0, 1)','rgba(255, 102, 0, 1)',
+                'rgba(255, 102, 0, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx = document.getElementById('nm');
+var nm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['obat banyak', 
+          'dokter sedikit', 
+          'dokter mahal', 
+          'dokter benar', 
+          'dokter banyak', 
+          'dokter tidak_rekomendasi', 
+          'pasien sedikit', 
+          'pasien susah', 
+          'rumah_sakit ribet', 
+          'rumah_sakit sakit', 
+          'ruang mahal',
+          'rumah_sakit buruk', 
+          'perawat banyak', 
+          'pasien penting', 
+          'rumah_sakit mahal', 
+          'rumah_sakit lama', 
+          'rumah_sakit sedikit', 
+ 		  'pasien lama', 
+          'dokter lama', 
+          'pasien lama', 
+          'rumah_sakit terburuk', 
+          'pasien sedikit', 
+          'obat lama', 
+          'rumah_sakit banyak', 
+          'pasien banyak', 
+
+],
+        datasets: [{
+            label: 'Negatif Medis',
+            data: [1,1,1,1,1,1,1,1,1,1,2,2,2,3,3,3,3,3,3,4,5,4,5,5,6
+],
+            backgroundColor: [
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        events: ['click']
+    }
+});
+</script>
+</html>

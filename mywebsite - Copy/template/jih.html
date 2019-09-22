@@ -1,0 +1,986 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<style>
+ 
+  </style>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50" style="background-image: url('/static/img/bg4.png'); background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: cover;">
+	<div class="container">
+
+		<div class="row">
+			<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">  
+			   <ul class="navbar-nav">
+			  		<li class="nav-item dropdown">
+			      		<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+			        	Home
+			      		</a>
+			      		<div class="dropdown-menu">
+			      			<a class="dropdown-item" href="/">Home</a>
+					        <a class="dropdown-item" href="/bethesda">RS Bethesda</a>
+					        <a class="dropdown-item" href="/sleman">RSUD Sleman</a>
+					        <a class="dropdown-item" href="/wates">RSUD Wates</a>
+					        <a class="dropdown-item" href="/jih">RS JIH</a>
+					        <a class="dropdown-item" href="/panti_rapih">RS Panti Rapih</a>
+					        <a class="dropdown-item" href="/pku_muhammadiyah">RS PKU Muhammadiyah</a>
+					        <a class="dropdown-item" href="/panembahan">RSUD Panembahan Senopati</a>
+					        <a class="dropdown-item" href="/pau_hardjolukito">RS PAU Dr. S. Hardjolukito</a>
+					        <a class="dropdown-item" href="/ugm">RS UGM</a>
+					        <a class="dropdown-item" href="/kota">RSUD Kota Yogyakarta</a>
+					        <a class="dropdown-item" href="/sardjito">RS dr. Sardjito</a>
+				      	</div>
+			    	</li>
+				    <li class="nav-item">
+				       
+				    </li>
+				    <li class="nav-item">
+				       <a class="nav-link" href="#section2">Positif Non Medis</a>
+				    </li>
+				    <li class="nav-item">
+				       <a class="nav-link" href="#section3">Positif Medis</a>
+				    </li>
+				    <li class="nav-item">
+				       <a class="nav-link" href="#section4">Negatif Non Medis</a>
+				    </li>
+				    <li class="nav-item">
+				       <a class="nav-link" href="#section5">Negatif Medis</a>
+				    </li>
+				</ul>
+			</nav>
+		</div>
+
+		<div class="row title">
+	        <div class="col-md-12" id="site-title">
+	        	<p> 
+	        		<h1 class="title-site", style="padding-top:50px">Visualisasi Pelayanan Jasa Kesehatan</h1>
+	        		<p class="desc">Dengan Analisis Sentimen dan Klasifikasi</p>
+	        		
+	        	</p>
+	        </div>
+    	</div>
+
+    	<div id="section1">
+	    	<div class="row" style="padding-top: 5px">
+	    		<hr size="10px" width="100%" color="#0066cc">
+	    		
+	    	</div>
+	    	
+    	</div>
+
+    	<div id="section2">
+	  		<div class = 'row'>
+	  			<h2>Grafik Frekuensi Frasa Positif non-medis RS JIH</h2>
+				<canvas id="pnm" width="10px" height="4px"></canvas>		
+			</div>
+
+			<div class="row">
+				<h2>Tabel Review Positif non-medis RS JIH</h2>
+			<!-- <canvas id="pm" width="10px" height="8px"></canvas> -->
+				<table class="table table-striped table-bordered" id="example" style="width:100%">
+				  	<thead>
+				    <tr>
+				      <th scope="col",class="col-lg-1" >No.</th>
+				      <th scope="col",class="col-lg-2" >Frasa</th>
+				      <th scope="col", class="col-lg-3" >Review</th>
+				    </tr>
+				  	</thead>
+				  	<tbody>
+				      	<tr>
+					      	<th scope="row">1</th>
+					      	<td>fasilitas modern</td>
+					     	<td>
+					      		(Diterjemahkan oleh Google) layanan bagus, fasilitas modern(Asli)good services, modern facilities
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">2</th>
+					      	<td>fasilitas indah</td>
+					     	<td>
+					      		rumah sakitnya besar, fasilitas indah bagus dan baik
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">3</th>
+					      	<td>petugas nyaman</td>
+					     	<td>
+					      		Petugasnya ramah dan ngajakin ngobrol saat injection , jadi nyaman .
+					      	</td>
+				      	</tr>
+					      	<th scope="row">4</th>
+					      	<td>interior nyaman</td>
+					     	<td>
+					      		Setiap daftar dapat tawaran minuman pilih air mineral/jus , pelayanan ramah , interior bagus dan nyaman
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">5</th>
+					      	<td>interior bersih</td>
+					     	<td>
+					      		rumah sakitnya bagus gedung dan interior bersih pelayanan bagus ramah
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">6</th>
+					      	<td>tempat besar</td>
+					     	<td>
+					      		Rumah sakit kelas atas di Jogja nih , tempatnya besar dan sangat luas , parkiran motor dan mobilnya juga tersedia , tempatny bersih , bebas asap rokok dan seluruh stafnya hingga sampai satpam juga petugas parkirnya ramah .
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">8</th>
+					      	<td>fasilitas besar</td>
+					     	<td>
+					      		Barukali pertama saya ke Rs ini tampak depan bangunan seperti hotel bila masuk,gamau kalah dengan hotel bintang pelayan ramah.
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">9</th>
+					      	<td>pelayan ramah</td>
+					     	<td>
+					      		Lbh mirip hotel, bkn rmh sakit. Klo dibilang rumah sakit, rmh sakit lokal tapi level internasional. Semua serba bersih, tertata rapi. Pelayannya ramah. Sgt recommended ðŸ‘
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">10</th>
+					      	<td>interior bagus</td>
+					     	<td>
+					      		setiap daftar dapat tawaran minuman pilih air mineral jus pelayanan ramah interior bagus nyaman
+					      	</td>
+				      	</tr>
+					  	<tr>
+					      	<th scope="row">11</th>
+					      	<td>fasilitas nyaman</td>
+					     	<td>
+					      		Fasilitas yang membuat nyaman pengunjung dan pasien 
+					      	</td>
+					      </tr>
+					  	<tr>
+					      	<th scope="row">12</th>
+					      	<td>ruang nyaman</td>
+					     	<td>
+					      		<li>
+					      			free wifi, menyediakan makan utk penunggu pasien, ruang tunggu and lobby yang nyaman, administrasi Dan pengurusan keuangan yg transparan. Best hospital in town!
+					      		</li>
+					      		<li>
+					      			ruang tunggu yang nyaman. Bagus masjid ... Mencintai tempat ini.
+					      		</li>
+					      		<li>
+					      			staf yang ramah, bahkan staf keamanan sangat ramah, udara segar dan lingkungan yang baik, ruang tunggu yang modern dan nyaman.
+					      		</li>
+					      		<li>
+					      			Counter admisi yang ramah dan cekatan, pilihan dokter banyak, ada ugd khusus anak, ruang tunggu nyaman, perawat ramah.
+					      		</li>
+					      		<li>
+					      			Beberapa kali saya mengantar keponakan yang masih anak-anak untuk berobat di sini , ruang tunggunya nyaman , lengkap dengan wahana bermain yang menyenangkan , recomended hospital . 
+					      		</li>
+					      	</td>
+					    </tr>
+					  	<tr>
+					      	<th scope="row">13</th>
+					      	<td>tempat bagus</td>
+					     	<td>
+					      		<li>
+					      			Tempatnya bagus, 
+					      		</li>
+					      		<li>
+					      			Tempatnya bagus, lebih mirip hotel bintang lima daripada RS.
+					      		</li>
+					      		<li>
+					      			Tempat nya aja bagus nyaman
+					      		</li>
+					      	</td>
+					    </tr>
+					  	<tr>
+					      	<th scope="row">14</th>
+					      	<td>fasilitas baik</td>
+					     	<td>
+					      		rumah sakit yang besar, fasilitas indah bagus baik fasilitas
+					      	</td>
+
+					    </tr>
+					  	<tr>
+					      	<th scope="row">15</th>
+					      	<td>fasilitas bagus</td>
+					     	<td>
+					      		<li>
+					      			Pelayanannya sagat bagus, semua tenaga medisnya ramah, utk fasilitas juga bagus. Disediakan buku utk dzikir dan doa agar disembuhkan penyakit, saya rasa itu salah satu metode pendampingan rohani yg bagus utk pasien ðŸ‘Œ
+					      		</li>
+					      		<li>
+					      			rumah sakit nuansa hotel, sangat nyaman. dan fasilitasnya bener bener bagus.perawatnya semuanya ramah, tiap mau pergantian shift selalu memperkenalkan dg perawat yg dishift selanjutnya.
+					      		</li>
+					      		<li>
+					      			Rumah sakit dg interior bagus.pelayanan bagus.parkir luas banget.fasilitas bagus
+					      		</li>
+					      		<li>
+					      			Fasilitas nya bagus banget, Rumah sakit nya terawat dan nuansa hotel deh, jadi bikin pasien betah nyaman, pelayanannya juga fast respon banget. Suster dan Dokternya kerja nya oke banget, cekatan, tanggep sama pasien. Pokoknya oke banget kalo di sebut internasional. 
+					      		</li>
+					      		<li>
+					      			Fasilitas nya bagus
+					      		</li>
+					      		<li>
+					      			fasilitas bagus, area RS besar, tempatnya bersih dan nyaman.
+					      		</li>
+					      		<li>
+					      			(Diterjemahkan oleh Google) Salah satu rumah sakit besar di kota dengan fasilitas yang indah dan bagus(Asli)One of the big hospital in town with beautiful and good facilities
+					      		</li> 
+					      	</td>
+					    </tr>
+					  	<tr>
+					      	<th scope="row">16</th>
+					      	<td>petugas ramah</td>
+					     	<td>
+					      		<li>
+					      			Rumah sakit dengan pelayanan yang menyenangkan. Petugas ramah, dokter yang menangani dengan baik dan telaten menjelaskan (kalau beruntung), dan bisa daftar online dengan gampang. Selain itu tersedia koneksi wifi gratis sepanjang hari. Tidak terlalu cepat tapi cukup baik. Mungkin service charge agak mahal tapi saya puas.
+					      		</li>
+					      		<li>
+					      			Desain rumah sakitnya bagus, petugas medisnya ramah. Ke UGD karena passed out, akhirnya disuntik 3 injection dengan infus. Petugasnya ramah dan ngajakin ngobrol saat injection, jadi nyaman. 
+					      		</li>
+					      	</td>
+					    </tr>
+
+					    <tr>
+					      	<th scope="row">17</th>
+					      	<td>tempat nyaman</td>
+					     	<td>
+					      		<li>
+					      			Rumah sakit dengan pelayanan memuaskan. Setiap kontrol kandungan selalu ditawari minum air mineral/jus. Semua staf ramah dan baik. Dokternya juga bagus. Tempatnya nyaman. Kalau siang ada live gamelan yg bikin suasana tambah tenang
+					      		</li> 
+					      		<li>
+					      			tempat rapi bersih nyaman
+					      		</li>
+					      		<li>
+					      			Kalau pakai uang pribadi lumayan mahal, tapi tempatnya nyaman dan bagus, tidak bau obat. Pelayanannya juga bagus
+					      		</li> 
+					      		<li>
+					      			Informasi lengkap, tempat bersih dan nyaman. Konsultasi sama dr. Enny Setyowaty Pamuji, Sp. OG. Antrinya panjang, nyampe sana jam 7, dipanggilnya setengah 6 sore ðŸ˜…. Tapi mending daripada di kliniknya, harus daftar 2 minggu sebelumnya.
+					      		</li>
+					      		<li>
+					      			Sistem pendaftaran yang mudah melalui WAKemudian antrian obat dan pembayaran juga sudah ad sistem yang runutTempat bersih dan nyamanUntuk poli anak ada tempat bermain anak..ruang menyusui serta ruang ganti popok yang terpisah sehingga higienisStandar pasien safety jg terlaksana
+					      		</li>
+					      		<li>
+					      			fasilitas oke, area RS besar, tempatnya bersih dan nyaman.
+					      		</li>
+					      		<li>
+					      			Tempat nyaman, Pelayanan Baik, Dokter2 terbaik. Parkir Luas
+					      		</li>
+					      	</td>
+					    </tr>
+					    <tr>
+					      	<th scope="row">18</th>
+					      	<td>fasilitas lengkap</td>
+					     	<td>
+					      		<li>
+					      			Rumah sakit yang sengaja didesain untuk merasa nyaman dan semangat untuk kembali sehat. Wangi khas rumah sakit sangat jarang terasa di sini, seperti di rumah sendiri. Orientasi dan visinya jauh ke depan melangkah ke arah internasional, sesuai namanya. Fasilitas lengkap, bagus semua. Recommended buat yang mampu membayar.
+					      		</li>
+					      		<li>
+					      			Periksa disini bisa booking jauh2 hari, lalu antrian tetap sesuai dengan kedatangan. Enaknya disini antrian bisa dipantau via online. Jadi kalau kita dapat antrian lama dan pengen pergi dulu, ga masalah karna bisa dipantau via HP aja sudah sampai mana antriannya. Fasilitas lengkap. RS ga terlaku ramai, jadi nyaman untuk nunggu. Bersiih. Dan yang penting bebas asap rokok.
+					      		</li> 
+					      		<li>
+					      			Bagus sekali pelayanannya, fasilitas lengkap, para dokter muda dan ramah. Super nyaman^^
+					      		</li>
+					      		<li>
+					      			RS JIH Kelebihannya : + fasilitas lengkap+ kebersihan juga terjamin Kekurangannya :- pelayanan perawatnya kurang bagus dan oke
+					      		</li>
+					      		<li>
+					      			Pelayanan ramah dan cepat,, tempat parkir tergolong sudah memadahi, suasana dan lingkungan sekitar RS juga nyaman karena masih banyak pepohonan di RS ini.. Fasilitas lab juga lengkap.. untuk hari tertentu ada iringan gamelan di bagian tempat pendaftaran RS. Ada atm center juga.
+					      		</li>
+					      		<li>
+					      			Rumah Sakit yg nyaman, tenang & sejuk. Punya fasilitas yg lengkap, termasuk jga Masjid. Pelayanan yg baik & ramah. Tempat parkir yg luas. Dokter2 yg profesional... Siippp...
+					      		</li>
+					      		<li>
+					      			Rumah sakit yang megah dan fasilitas lengkap pelayanan yg baik
+					      		</li> 
+					      		<li>
+					      			sudah berkali kali saya dan keluarga ke rumah sakit ini terhitung dr 2008 hingga sekarang.....smp dah hapal seluk beluk rumah sakit ini .nyaman banget.. berasa kayak di mall atau hotel berbintang....fasilitas lengkap juga nyaman banget.....sesuai sama harganya.. sukses jih...
+					      		</li>
+					      		<li>
+					      			Fasilitas lngkap, perawat ramh, serasa di hotel....
+					      		</li>
+					      		<li>
+					      			RS yang memberikan pelayanan prima. Kamar dan lingkungannya dirancang seperti layaknya hotel. Nyaman, mewah, fasilitas lengkap serta bersuasana tidak seperti RS.
+					      		</li>
+					      		<li>
+					      			Kalo ini memang udah kelas internasional. Pelayanan bagus dan fasilitas lengkap. Susternya juga ramah dan cantik. :)
+					      		</li>
+					      		<li>
+					      			Rumah sakitnya bersih, nyaman, parkiran luas. Fasilitas nya juga lengkap.
+					      		</li>
+					      		<li>
+					      			pelayanan bagus, fasilitasnya juga lengkap
+					      		</li>
+					      		<li>
+					      			Rumah Sakit yg nyaman, tenang & sejuk. Punya fasilitas yg lengkap, termasuk jga Masjid. Pelayanan yg baik & ramah. Tempat parkir yg luas. Dokter2 yg profesional... Siippp...
+					      		</li>
+					      		<li>
+					      			sudah berkali kali saya dan keluarga ke rumah sakit ini terhitung dr 2008 hingga sekarang.....smp dah hapal seluk beluk rumah sakit ini .nyaman banget.. berasa kayak di mall atau hotel berbintang....fasilitas lengkap juga nyaman banget.....sesuai sama harganya.. sukses jih...
+					      		</li>
+					      		<li>
+					      			fasilitas pasien sakit jantung tergolong lengkap penanganannya cepat walaupun menggunakan kartu bpjs
+					      		</li>
+					      	</td>
+					    </tr>
+					    <tr>
+					      	<th scope="row">19</th>
+					      	<td>tempat bersih</td>
+					     	<td>
+					     		<li>
+					     			Lokasi strategis. Tempatnya bersih. Ada security yang membantu keluar masuk. Pelayanan baik. Sesuai harga yang tergolong waw.
+					     		</li>
+					     		<li>
+					     			Pelayanannya bagus, perawatnya ramah2, tempatnya bersih....
+					     		</li>
+					     		<li>
+					     			tempat rapi bersih nyaman
+					     		</li>
+					     		<li>
+					     			Rumah sakit terbaik yang pernah saya kunjungiRasanya gak seperti di rumah sakitPelayanannya top bangetDokternya lengkapPerawatnya baik-baikTempatnya bersih dan nyamanAda parsley nya juga di dalamSistem nya juga sudah sangat bagusRumah sakit yang sangat recommended di Jogja
+					     		</li>
+					     		<li>
+					     			fasilitas oke, area RS besar, tempatnya bersih dan nyaman.
+					     		</li>
+					     		<li>
+					     			Rumah sakit ini seperti hotel.  Masuk kesini seperti bukan di rumah sakit. Tempatnya bersih dan rapi. Tidak bau obat. Karyawan dan dokternya ramah. Pelayanan ke pasien bagus. Parkiran cukup luas.
+					     		</li>
+					     		<li>
+					     			Pelayanan yg ramah, cepat. Tempatnya bersih dan rapi. Tersedia kantin, masjid, ruang tunggu, serta welcome drink. Seluruh rumah sakit menggunakan AC sehingga sejuk. Layanan medis serta tenaga medis yg menangani pasien juga sanhay bagus.
+					     		</li>
+					     		<li>
+					     			Rumah sakit kelas atas di Jogja nih, tempatnya besar dan sangat luas, parkiran motor dan mobilnya juga tersedia, tempatny bersih, bebas asap rokok dan seluruh stafnya hingga sampai satpam juga petugas parkirnya ramah. Pokoknya mantap deh, jauh dari kesan horor juga ko...hehehe
+					     		</li>
+					     		<li>
+					     			Informasi lengkap, tempat bersih dan nyaman. Konsultasi sama dr. Enny Setyowaty Pamuji, Sp. OG. Antrinya panjang, nyampe sana jam 7, dipanggilnya setengah 6 sore ðŸ˜…. Tapi mending daripada di kliniknya, harus daftar 2 minggu sebelumnya.
+					     		</li>
+					     		<li>
+					     			Sistem pendaftaran yang mudah melalui WAKemudian antrian obat dan pembayaran juga sudah ad sistem yang runutTempat bersih dan nyamanUntuk poli anak ada tempat bermain anak..ruang menyusui serta ruang ganti popok yang terpisah sehingga higienisStandar pasien safety jg terlaksana
+					     		</li>
+					     		<li>
+					     			Pelayanan di sini bagus bgt..memuaskan..dokter perawat ramah smua..kemarin lahiran disni puas bgt..santai tp cekatan..feels like home not hospital..tempatnya bersih ada playground buat anak anak jg
+					     		</li>
+					     		<li>
+					     			Pelayanan ramah, tempat bersih dan nyaman
+					     		</li>
+					     		<li>
+					     			fasilitas oke, area RS besar, tempatnya bersih dan nyaman.
+					     		</li>
+					     		<li>
+					     			Tempat yang nyaman, bersih, pelayanan terbaik
+					     		</li>
+					     		<li>
+					     		Pelayanannya bagus, tempatnya bersih.
+					     		</li>
+					      	</td>
+					    </tr>
+
+				  	</tbody>
+				</table>
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+
+		<div id="section3">
+			<div class="row">
+				<h2>Grafik Frekuensi Frasa Positif Medis RS JIH</h2>
+				<canvas id="pm" width="10px" height="4px"></canvas>
+			</div>
+
+			<div class="row">
+				<h2>Tabel Review Positif Medis RS JIH</h2>
+				<table class="table table-striped table-bordered" id="example1" style="width:100%">
+				  	<thead>
+				    <tr>
+				      <th scope="col",class="col-lg-1" >No.</th>
+				      <th scope="col",class="col-lg-2" >Frasa</th>
+				      <th scope="col", class="col-lg-3" >Review</th>
+				    </tr>
+				  	</thead>
+				  	<tbody>
+				  		<tr>
+					      	<th scope="row">1</th>
+					      	<td>perawat cekatan</td>
+					     	<td>
+					      		Pelayanan di sini bagus bgt..memuaskan..dokter perawat ramah smua..kemarin lahiran disni puas bgt..santai tp cekatan..feels like home not hospital..tempatnya bersih ada playground buat anak anak jg 
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">2</th>
+					      	<td>ruang bersih</td>
+					     	<td>
+					      		Seperti bukan rumahsakit, ruang-ruangannya bersih sekali, toiletnya nyaman dan banyak jumlahnya. Rambu-rambu petunjuk dan rambu-rambu arah jika ada situasi emergency sangat jelas. Tempat duduk untuk menunggu di beberapa ruangan dibuat berbeda-beda sehingga membuat nyaman penggunanya. Layar televisi banyak dan gambarnya jernih. Banyak terdapat tempat-tempat menjual makanan sehingga tidak perlu repot bawa makanan dari luar karena di dalam banyak, dan juga beraneka ragam jenis makanan yang dijual. Dan yang terpenting pelayanannya memuaskan.. terimakasih RS-JIH
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">3</th>
+					      	<td>dokter sangat baik</td>
+					     	<td>
+					      		(Diterjemahkan oleh Google) parkir sangat luas baik untuk motor dan mobil. Ada begitu banyak kebun berputar-putar rumah sakit, memberikan pengunjung sebuah awal baru bahkan sebelum masuk rumah sakit. Semua staf, perawat, dan bahkan dokter yang sangat baik dan ramah. Begitu banyak peralatan medis dan spesialis di rumah sakit ini. Semua kamar memiliki AC. Jika Anda benar-benar memiliki masalah medis, datang ke sini. Ini akan mengambil sebagian dari uang Anda, tetapi nilainya dengan layanan(Asli)Very spacious parking lot both for motor and car. There are so many gardens circling the hospital, giving the visitor a fresh start even before entering the hospital. All the staff, nurse, and even doctor are very nice and friendly. So much medical equipment and specialist in this hospital. All rooms have air conditioner. If you really have any medical problems, come here. It will take up some of your money but its worth with the service
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">4</th>
+					      	<td>pasien nyaman</td>
+					     	<td>
+					     		<li>
+					     			Rumah sakit yg sangat bagus, nyaman dan bnar2 rasanya bukan di rs tetapi di hotel. Pelayanannya sangat cepat apalagi tempatnya sangat luas. pasien yg di rawat akan nyaman dan betah dsni.
+					     		</li>
+					      		<li>
+					      			Rumah sakit yang membuat pasiennya nyaman serasa kayak di hotel, fasilitas kamarnya pun serasa kayak di hotel. Mulai dari kamar, perlengkapan kamar, dan pelayanan petugasnya  ðŸ‘ (waktu itu anak sy menginap di VIP A jd kurang tau untuk kamar yang lain pakah sama), anak sy sampai g mau pulang ðŸ˜†Namun untuk minusnya, pelayanan UGD sangat lama, proses masuk UGD sampe masuk kamar butuh 3 jam lebih.Ketika malam seperti ada yg intip2 di pintu (mungkin petugas mengecek tamu yg ada di kamar, namun buat saya pribadi itu sangat tidak nyaman).Beberapa dokter penjelasannya kurang spesifik atas apa yg dikeluhkan, jd harus trial 'n error sampai menemukan dokter yg cocok.
+					      		</li>
+					      		<li>
+					      			Great Hospital. Fast response, pelayanan yang ramah dan membuat pasien nyaman, penanganan cepat, teknologi canggih, dokter lebih ahli, kamar kamar yang sangat nyaman seperti di hotel, menyediakan berbagai program kesehatan dan berbagai jenis kamar. free wifi, menyediakan makan utk penunggu pasien, ruang tunggu and lobby yang nyaman, administrasi Dan pengurusan keuangan yg transparan. Best hospital in town!
+					      		</li>
+					      		<li>
+					      			Fasilitas nya oke banget, Rumah sakit nya terawat dan nuansa hotel deh, jadi bikin pasien betah nyaman, pelayanannya juga fast respon banget. Suster dan Dokternya kerja nya oke banget, cekatan, tanggep sama pasien. Pokoknya oke banget kalo di sebut internasional.
+					      		</li>
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">5</th>
+					      	<td>ruangan nyaman</td>
+					     	<td>
+					     		<li>
+					     			Pelayanan ramah dan cepat. Bersih dan ruangan nyaman. Namun kurang runag parkir. Akses masuk harus dari arah barat
+					     		</li>
+					     		<li>
+					     			Dari segi ruangan over all nyaman , bersih , dan yang menarik ada live sinden jawa disini yang menyanyikan tembang atau lagam jawa , jadi suansana jadi klasik , ini mungkin karena alunan gamelan dan nyanyian jawa memiliki daya khusus untuk penyejuk jadi disini diadakan .
+					     		</li>
+					     		<li>
+					     			Tenaga administrasi sedikit. Perawat kurang banyak sehingga pelayanan lambat dokternya kurang profesional. Yang paling senang petugas cleaning servis bener bener bekerja dari hati membuat ruangan bersih dan harum dan nyaman. Serta parkir yang murah.
+					     		</li>
+					     		<li>
+					     			RS bertaraf internasional dan Islami di Yogyakarta . Pelayanan memuaskan, ruangan dan suasananya bersih dan nyaman. Pernah mengantarkan orang tua berobat kesini. Recomended...
+					     		</li>
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">6</th>
+					      	<td>perawat baik</td>
+					     	<td>
+					      		Rumah sakit terbaik yang pernah saya kunjungiRasanya gak seperti di rumah sakitPelayanannya top bangetDokternya lengkapPerawatnya baik-baikTempatnya bersih dan nyamanAda parsley nya juga di dalamSistem nya juga sudah sangat bagusRumah sakit yang sangat recommended di Jogja
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">7</th>
+					      	<td>ruang nyaman</td>
+					     	<td>
+					      		<li>
+					      			Counter admisi yang ramah dan cekatan, pilihan dokter banyak, ada ugd khusus anak, ruang tunggu nyaman, perawat ramah.
+					      		</li>
+					      		<li>
+					      			Rumah sakit elit di Jogja dengan keseluruhan pelayanan yang memuaskan dan terbaik. Beberapa kali saya mengantar keponakan yang masih anak-anak untuk berobat di sini, ruang tunggunya nyaman, lengkap dengan wahana bermain yang menyenangkan, recomended hospital.
+					      		</li> 
+					      		<li>
+					      			Great Hospital. Fast response, pelayanan yang ramah dan membuat pasien nyaman, penanganan cepat, teknologi canggih, dokter lebih ahli, kamar kamar yang sangat nyaman seperti di hotel, menyediakan berbagai program kesehatan dan berbagai jenis kamar. free wifi, menyediakan makan utk penunggu pasien, ruang tunggu and lobby yang nyaman, administrasi Dan pengurusan keuangan yg transparan. Best hospital in town!
+					      		</li>
+					      		<li>
+					      			(Diterjemahkan oleh Google) staf yang ramah, bahkan staf keamanan sangat ramah, udara segar dan lingkungan yang baik, ruang tunggu yang modern dan nyaman.(Asli)Friendly staffs, even the security staffs are very friendly, fresh air and good environment, modern and comfortable waiting room. 
+					      		</li>
+					      		<li>
+					      			Rumah sakit elit di Jogja dengan keseluruhan pelayanan yang memuaskan dan terbaik. Beberapa kali saya mengantar keponakan yang masih anak-anak untuk berobat di sini, ruang tunggunya nyaman, lengkap dengan wahana bermain yang menyenangkan, recomended hospital.
+					      		</li>
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">8</th>
+					      	<td>dokter bagus</td>
+					     	<td>
+					      		<li>
+					      			Dokternya bagus,  pelayanan sangat ramah,  pokoknya nyaman sekali...
+					      		</li>
+					      		<li>
+					      			Fasilitas nya oke banget, Rumah sakit nya terawat dan nuansa hotel deh, jadi bikin pasien betah nyaman, pelayanannya juga fast respon banget. Suster dan Dokternya kerja nya bagus banget, cekatan, tanggep sama pasien. Pokoknya oke banget kalo di sebut internasional.
+					      		</li>
+					      		<li>
+					      			rumah sakit bersih sekali tidak bau nyaman dokter bagus
+					      		</li>
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">9</th>
+					      	<td>dokter baik</td>
+					     	<td>
+					      		<li>
+					      			Selalu suka dan puas dengan pelayanan di RS JIH. Yang bikin unik ada dentuman alunan musik gamelan Jawa yang membuat suasana menjadi adem dan nyaman. Pelayanan administrasi juga oke, suster dan dokter yang bertugas juga baik, ramaha, kebersihan oke banget, mungkin biaya juga cukup menguras kantong. Tapi overall good
+					      		</li>
+					      		<li>
+					      			Selalu suka dan puas dengan pelayanan di RS JIH. Yang bikin unik ada dentuman alunan musik gamelan Jawa yang membuat suasana menjadi adem dan nyaman. Pelayanan administrasi juga oke, suster dan dokter yang bertugas juga baik, ramaha, kebersihan oke banget, mungkin biaya juga cukup menguras kantong. Tapi overall good
+					      		</li>
+					      		<li>
+					      			(Diterjemahkan oleh Google) Profit oriented, dan dokter tidak memperlakukan saya dengan baik. Tidak merekomendasikan!(Asli)Profit oriented, and the doctor did not treat me well. Not recommend! 
+					      		</li>
+					      		<li>
+					      			(Diterjemahkan oleh Google) Sangat dianjurkan! Staf dan dokter berbicara bahasa Inggris dengan baik. Rumit dan kompeten bantuan. Baik kopi ðŸ˜‰(Asli)Highly recommended! Staff and doctors spoke English very well. Uncomplicated and competent help. Good coffee ðŸ˜‰
+					      		</li>
+					      		<li>
+					      			Rumah sakit dengan pelayanan yang menyenangkan. Petugas ramah, dokter yang menangani dengan baik dan telaten menjelaskan (kalau beruntung), dan bisa daftar online dengan gampang. Selain itu tersedia koneksi wifi gratis sepanjang hari. Tidak terlalu cepat tapi cukup baik. Mungkin service charge agak mahal tapi saya puas.
+					      		</li>
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">10</th>
+					      	<td>ruangan bersih</td>
+					     	<td>
+					      		<li>
+					      			Rumah sakit besar,  dengan lingkungan tertata rapi.  Nyaman bagi pengunjung,  parkir luas. Ruangan bersih,  pelayanan standar.
+					      		</li>
+					      		<li>
+					      			Tenaga administrasi sedikit. Perawat kurang banyak sehingga pelayanan lambat dokternya kurang profesional. Yang paling senang petugas cleaning servis bener bener bekerja dari hati membuat ruangan bersih dan harum dan nyaman. Serta parkir yang murah.
+					      		</li>
+					      		<li>
+					      			RS bertaraf internasional dan Islami di Yogyakarta . Pelayanan memuaskan, ruangan dan suasananya bersih dan nyaman. Pernah mengantarkan orang tua berobat kesini. Recomended...
+					      		</li>
+					      		<li>
+					      			Pelayanan baik, ruangan bersih tidak bau obat
+					      		</li>
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">11</th>
+					      	<td>perawat ramah</td>
+					     	<td>
+					      		<li>
+					      			Pelayanan di sini bagus bgt..memuaskan..dokter perawat ramah smua..kemarin lahiran disni puas bgt..santai tp cekatan..feels like home not hospital..tempatnya bersih ada playground buat anak anak jg
+					      		</li>
+					      		<li>
+					      			Rumah Sakit yg paling nyaman menurut saya,  Dokter & perawat yg ramah jg sabar ,  mereka faham bila sang pasien tidak ingin bersentuhan dengan lawan jenis karena untuk menjaga mahrom nya, pelayanan yg memuaskan, penanganan nya cepat tanggap, menjaga kenyamanan pasien, fasilitas RS yg serba lengkap, harga mahal memang tp sesuai dgn apa yg di dapat,  & saya alhamdulillah selalu puas..  semoga lebih baik dan sukses.. Aamiin 
+					      		</li>
+					      		<li>
+					      			Aku sangat puas dengan perawatan cucuku di poli timur, dokter dan perawatnya sangat ramah dan deket dengan anak2, shg cucuku ga takut diperiksa. Cucuku umur 2 th, ditanyai dokter brani jwb sendiri. Malah stlah slsai diperiksa ga mau diajak pulang, maunya msh ngobrol. Jost tenan. Jagalah kepuasan pelanggan. Tq.
+					      		</li>
+					      		<li>
+					      			Penangananya cepat. Dokter,perawat hingga obnya ramah-ramah. Dan rumah sakit ini seperti hotel bintang 5 daah :).. Thanks JIH
+					      		</li>
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">12</th>
+					      	<td>dokter ramah</td>
+					     	<td>
+					      		<li>
+					      			Ke dokter umum karena flu, pelayanan cepat staff tanggap rumah sakit bersihh bagus, ada parsley jadi bisa makan roti sambil nunggu, dokter ramah, toilet bersih, pelayanan asuransi admedika juga cepet lebih cepet dari RS sebelah, rekomended
+					      		</li>
+					      		<li>
+					      			Rumah sakit ini seperti hotel.  Masuk kesini seperti bukan di rumah sakit. Tempatnya bersih dan rapi. Tidak bau obat. Karyawan dan dokternya ramah. Pelayanan ke pasien bagus. Parkiran cukup luas.
+					      		</li>
+					      		<li>
+					      			Bagus sekali pelayanannya, fasilitas lengkap, para dokter muda dan ramah. Super nyaman^^
+					      		</li>
+					      		<li>
+					      			Rumah sakitnya bersih. Pegawai dan dokternya juga ramah.
+					      		</li>
+					      		<li>
+					      			fasilitas dan pelayanan bagus, dokter giginya ramah sekali. namun terlalu ramai dan hiruk pikuk
+					      		</li>
+					      		<li>
+					      			(Diterjemahkan oleh Google) Staf penerimaan, perawat, dan dokter sangat membantu dan ramah. Saya pergi ke sana untuk memeriksa kehamilan saya kepada Dokter Enny, dan dia sangat memperhatikan setiap detail dalam memberikan dos dan donts untuk wanita hamil, dia menjelaskan hasil usg dengan jelas. Lingkungan rumah sakit itu sendiri tidak begitu ramai dan ada banyak sofa dan bangku bagi kami untuk menunggu dokter. Sekitar jam 11 pagi ada pertunjukan piano di lobi B. Sangat santai. Merasa kurang seperti di rumah sakit.(Asli)The admission staff, nurse, and doctor were really helpful and friendly. I went there to check my pregnancy to Doctor Enny, and she paid so much attention to every detail in giving dos and donts for pregnant woman, she explained the usg result clearly. The hospital environment itself was not so crowded and it had a lot of sofas  and benches for us to wait for the doctor. Around 11 am there was a piano performance in B lobby. So relaxing. Feel less like in a hospital.
+					      		</li>
+					      		<li>
+					      			(Diterjemahkan oleh Google) parkir sangat luas baik untuk motor dan mobil. Ada begitu banyak kebun berputar-putar rumah sakit, memberikan pengunjung sebuah awal baru bahkan sebelum masuk rumah sakit. Semua staf, perawat, dan bahkan dokter yang sangat baik dan ramah. Begitu banyak peralatan medis dan spesialis di rumah sakit ini. Semua kamar memiliki AC. Jika Anda benar-benar memiliki masalah medis, datang ke sini. Ini akan mengambil sebagian dari uang Anda, tetapi nilainya dengan layanan(Asli)Very spacious parking lot both for motor and car. There are so many gardens circling the hospital, giving the visitor a fresh start even before entering the hospital. All the staff, nurse, and even doctor are very nice and friendly. So much medical equipment and specialist in this hospital. All rooms have air conditioner. If you really have any medical problems, come here. It will take up some of your money but its worth with the service
+					      		</li>
+					      		<li>
+					      			(Diterjemahkan oleh Google) Putri saya lahir di sini. Terima dr.Mitta SpOG. Anda adalah Dokter yang ramah.(Asli)My daughter was born here. Thank dr.Mitta Spog . You are a friendly Doctor. 
+					      		</li>
+					      		
+					      	</td>
+				      	</tr>
+				  	</tbody>
+				</table> 
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+
+		<div id="section4">
+			<div class="row">
+				<h2>Grafik Frekuensi Frasa Negatif Non-medis RS JIH</h2>
+				<canvas id="nnm" width="10px" height="4px"></canvas>
+			</div>
+			<div>
+				<h2>Tabel Review Negatif non-medis JIH</h2>
+			<!-- <canvas id="pm" width="10px" height="8px"></canvas> -->
+				<table class="table table-striped table-bordered" id="example2" style="width:100%">
+				  	<thead>
+				    <tr>
+				      	<th scope="col",class="col-lg-1" >No.</th>
+				      	<th scope="col",class="col-lg-2" >Frasa</th>
+				      	<th scope="col", class="col-lg-3" >Review</th>
+				    </tr>
+				  	</thead>
+				  	<tbody>
+				    <tr>
+				      	<th scope="row">1</th>
+				      	<td>waktu banyak</td>
+				     	<td>
+				      		Waktu giliran saya yg banyak nanya , susternya udh bingung liatin jam mulu , mukanya udh bete gt.. dokternya juga kyk buru2 dan ga jelasin penyebab ini itu knp secara jelas .
+				      	</td>
+				    </tr>
+				    <tr>
+				      	<th scope="row">2</th>
+				      	<td>waktu tidak rekomendasi</td>
+				      	<td>
+				      		'(Diterjemahkan oleh Google) 75 menit saya menghabiskan waktu saya untuk menunggu obat dengan 5 orang di telepon .. Fantastis, tidak dianjurkan sama sekali! Pertama datang dan akan menjadi yang terakhir!(Asli)75 minute I spent my time for waiting the medicine with a 5 person on the line.. Fantastic, not recommended at all! First coming and will be the last!
+				      		
+				      	</td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">3</th>
+				    	<td>pelayanan sedikit</td>
+				    	<td>
+				    		'Rumah sakit dengan pelayanan yang menyenangkan. Petugas ramah, dokter yang menangani dengan baik dan telaten menjelaskan (kalau beruntung), dan bisa daftar online dengan gampang. Selain itu tersedia koneksi wifi gratis sepanjang hari. Tidak terlalu cepat tapi cukup baik. Mungkin service charge sedikit mahal tapi saya puas.
+				    	</td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">4</th>
+				    	<td>pelayanan mahal</td>
+				    	<td>
+				    		<li>
+				    			Mungkin pelayanan charge sedikit mahal tapi saya puas.
+				    		</li>
+				    		<li>
+				    			Pelayanan lama, mahal buang2 waktu sama duit doang. Labelnya doang internasional, pelayanannya gak profesional. CT scan doang aja bisa2nya salah petugasnya. Hadeeh -_-
+				    		</li>
+				    	</td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">5</th>
+				    	<td>waktu lama</td>
+				    	<td>
+				    		Antrian poliklinik JIH tidak baik karena merugikan bagi orang orang yang on time dan sudah menunggu lama
+				    	</td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">6</th>
+				    	<td>pelayanan lama</td>
+				    	<td>Pelayanan lama, mahal buang2 waktu sama duit doang. Labelnya doang internasional, pelayanannya gak profesional. CT scan doang aja bisa2nya salah petugasnya. Hadeeh -_-</td>
+				    </tr>
+				  	</tbody>
+				</table> 
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+
+		<div id="section5">	
+			<div>
+				<h2>Grafik Frekuensi Frasa Negatif Medis RS JIH</h2>
+				<canvas id="nm" width="10px" height="4px"></canvas>
+			</div>
+			<div>
+			<h2>Tabel Review Negatif Medis RS JIH</h2>
+			<!-- <canvas id="pm" width="10px" height="8px"></canvas> -->
+				<table class="table table-striped table-bordered" id="example3" style="width:100%">
+				  	<thead>
+				    <tr>
+				      <th scope="col",class="col-lg-1" >No.</th>
+				      <th scope="col",class="col-lg-2" >Frasa</th>
+				      <th scope="col", class="col-lg-3" >Review</th>
+				    </tr>
+				  	</thead>
+				  	<tbody>
+				    <tr>
+				      	<th scope="row">1</th>
+				      	<td>obat banyak</td>
+				     	<td>
+				      		Yg mehong obatnya ... Terutama jika di resepkan penguat kandungan agak banyak 28 biji gitu ... ðŸ˜‚ siap2 budget sedikitnya 1jt
+				      	</td>
+
+				    </tr>
+				    <tr>
+				      	<th scope="row">2</th>
+				      	<td>dokter sedikit</td>
+				      	<td>
+				      		Beberapa dokter dapat menjadi cerdik sedikit ( seperti beberapa review ) .
+				      	</td>
+				    </tr>
+				    <tr>
+					    <th scope="row">3</th>
+					    <td>rumah sakit sakit</td>
+					    <td>
+				      		Rumah sakit ternyaman.. malah seneng kalo berkunjung kesini jd gak berasa sakit. Ada harga ada rupa
+				        </td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">4</th>
+				    	<td>rumah sakit buruk</td>
+				    	<td>
+				    		<li>
+				    			(Diterjemahkan oleh Google) Rumah sakit baik-baik saja dan saya belum ada di sana karena sakit. Saya memberikan rumah sakit ini tanda buruk karena petugas parkir sepeda motor mereka yang sangat lamban dan tidak memberikan perubahan apapun sementara orang di belakang saya masih menunggu dan bahkan membunyikan klakson(Asli)The hospital is okay and I haven't been there because of sickness. I give this hospital a bad mark due to their motorcycle parking lot officer who is so slow and didn't provide any changes while the person behind me were still waiting and even ringing the klaxon',
+				    		</li>
+				    		<li>
+				    			bagi pihak management semoga menjadi masukan lagi agar hal hal seperti ini tidak menjadikan rs "JIH" napak semakin buruk pelayanannya, awalnya hanya mendengar keluh an rekan dan teman kalau pelayanan rs "JIH " kurang memuaskan,  ternyata pada kenyataannya benar. hal ini akan sangat berpengaruh pada kepercayaan pasien untuk rawat inap di rs "JIH"..
+				    		</li>
+				    	</td>			    	
+				    </tr>
+				    <tr>
+				    	<th scope="row">5</th>
+				    	<td>pasien penting</td>
+				    	<td>
+				    		'Keliatan dari luarnya aja bagus, tapi pelayanan ga memuaskan, terutama kalo ngantri di dokter SpOG. Masa tiap pasien masuk, ga sampe 5 menit udah keluar. Kesannya ga care sama pasien, yg penting nguber waktu antrian byk. Wtf. Waktu giliran saya yg banyak nanya, susternya udh bingung liatin jam mulu, mukanya udh bete gt.. dokternya juga kyk buru2 dan ga jelasin penyebab ini itu knp secara jelas. Kalo pun ditanya jawab sekedarnya, mukanya udh cape bgt ni dokter, kyk udh ga mau banyak mikir kalo pasien byk keluhan dan nanya2. Kasur buat USG nya pun bukan kasur bagus yg empuk. Ga rekomen deh kalo periksa disini dgn dokter yg antrinya lebih dari 10! Mereka ngejar waktu jd ga fokus sm pasien. Kyk per pasien cuma dijatah 5 menit doanggg. Disini semua SpOG antriannya puluhan. Udh gitu ambil obatnya sejam antrinya. Heran knp org mau periksa hamil disini. Byk dokter dan RS lain yg lebih care!!
+				    	</td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">6</th>
+				    	<td>rumah sakit lama</td>
+				    	<td>
+				    		'tenaga tim ugd mungkin belum_sesigap rumah_sakit sudah lama'
+				    	</td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">7</th>
+				    	<td>rumah sakit banyak</td>
+				    	<td><li>
+				    		'(Diterjemahkan oleh Google) Pengalaman terburuk di rumah sakit. Setelah menunggu 2,5 jam, meninggalkan untuk 10 menit untuk makanan ringan, saya diminta untuk menunggu 8 janji lainnya pada hari itu setelah melewatkan giliran saya. FYI, saya pergi selama 10 menit ketika ada 4 hingga 5 janji lagi sebelum giliran saya. Sementara rumah sakit lain (lokal) menyediakan layanan kesehatan sebaik rumah sakit ini, mengapa Anda harus menghabiskan terlalu banyak waktu di rumah sakit ini?(Asli)The worst experience in hospital. After waiting for 2.5 hours, leaving for 10 minutes for snacks, I was asked to wait for other 8 appointments in that day after skipping my turn. FYI, I left for 10 minutes when there were 4 to 5 more appointments before my turn. While other hospitals (local) provide health service as good as this hospital, why do you have to spend too much time in this hospital?
+				    	</li>
+				    	<li>
+				    		'(Diterjemahkan oleh Google) Staf penerimaan, perawat, dan dokter sangat membantu dan ramah. Saya pergi ke sana untuk memeriksa kehamilan saya kepada Dokter Enny, dan dia sangat memperhatikan setiap detail dalam memberikan dos dan donts untuk wanita hamil, dia menjelaskan hasil usg dengan jelas. Lingkungan rumah sakit itu sendiri tidak begitu ramai dan ada banyak sofa dan bangku bagi kami untuk menunggu dokter. Sekitar jam 11 pagi ada pertunjukan piano di lobi B. Sangat santai. Merasa kurang seperti di rumah sakit.(Asli)The admission staff, nurse, and doctor were really helpful and friendly. I went there to check my pregnancy to Doctor Enny, and she paid so much attention to every detail in giving dos and donts for pregnant woman, she explained the usg result clearly. The hospital environment itself was not so crowded and it had a lot of sofas  and benches for us to wait for the doctor. Around 11 am there was a piano performance in B lobby. So relaxing. Feel less like in a hospital.
+				    	</li>
+				    </td>
+				    </tr>
+				  	</tbody>
+				</table> 
+
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+	</div>
+</body>
+
+<script>
+	$(document).ready(function () {
+		$('#example').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	$(document).ready(function () {
+		$('#example1').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	$(document).ready(function () {
+		$('#example2').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	$(document).ready(function () {
+		$('#example3').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	var ctx = document.getElementById("sent").getContext('2d');
+	var myChart = new Chart(ctx, {
+
+	  	type: 'pie',
+	 	data: {
+	    labels: ["Positif","Negatif","Netral"],
+	    datasets: [{
+	      backgroundColor: [
+            '#3366cc',
+            '#ff5050',
+            '#ffff00'
+	      ],
+	      data: [2585, 1405, 1279]
+	    }]
+	  }
+	});
+
+</script>
+
+<script>
+var ctx = document.getElementById('pnm').getContext('2d');
+var pnm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [ 
+             'fasilitas modern', 
+             'fasilitas indah', 
+             'petugas nyaman', 
+             'interior nyaman', 
+             'interior bersih', 
+             'tempat besar',
+             'fasilitas besar', 
+             'pelayan ramah', 
+              'interior bagus', 
+             'fasilitas nyaman', 
+             'ruang nyaman', 
+             'tempat bagus', 
+             'fasilitas baik', 
+             'fasilitas bagus', 
+             'petugas ramah', 
+             'tempat nyaman', 
+             'fasilitas lengkap', 
+             'tempat bersih'
+              
+],
+        datasets: [{
+            label: 'Positif Non Medis',
+            data: [1,1,1,1,1,1,1,1,1,
+            	   1,5,3,1,7,2,7,16,15
+				],
+            backgroundColor: [
+                'rgba(100, 150, 232, 1)','rgba(100, 159, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 159, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)'
+            ],
+            
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx = document.getElementById('pm').getContext('2d');
+var pm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [ 
+          'perawat cekatan',  
+          'ruang bersih', 
+          'dokter sangat_baik', 
+          'pasien nyaman', 
+          'ruangan nyaman', 
+          'perawat baik', 
+          'ruang nyaman', 
+          'dokter bagus', 
+          'dokter baik', 
+          'ruangan bersih', 
+          'perawat ramah', 
+          'dokter ramah', 
+ 
+				],
+        datasets: [{
+            label: 'Positif Medis',
+            data: [1,1,1,4,4,1,
+            	   5,3,5,4,4,8],
+            backgroundColor: [
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)'],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+	var ctx = document.getElementById('nnm');
+    var nnm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['waktu banyak', 
+             'waktu tidak rekomendasi', 
+             'pelayanan sedikit', 
+             'pelayanan mahal', 
+             'waktu lama', 
+             'pelayanan lama' 
+],
+        datasets: [{
+            label: 'Negatif Non Medis',
+            data: [1,1,1,2,1,1],
+            backgroundColor: [
+                'rgba(255, 102, 0, 1)','rgba(255, 102, 0, 1)',
+                'rgba(255, 102, 0, 1)','rgba(255, 102, 0, 1)',
+                'rgba(255, 102, 0, 1)','rgba(255, 102, 0, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx = document.getElementById('nm');
+var nm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['obat banyak', 
+          'dokter sedikit', 
+          'rumah sakit sakit',
+          'rumah sakit buruk', 
+          'pasien penting', 
+          'rumah sakit lama', 
+          'rumah sakit banyak' 
+
+],
+        datasets: [{
+            label: 'Negatif Medis',
+            data: [1,1,1,2,1,1,2
+],
+            backgroundColor: [
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        events: ['click']
+    }
+});
+</script>
+</html>

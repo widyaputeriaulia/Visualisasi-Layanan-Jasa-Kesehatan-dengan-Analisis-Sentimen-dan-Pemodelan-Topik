@@ -1,0 +1,702 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<style>
+ 
+  </style>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50" style="background-image: url('/static/img/bg4.png'); background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: cover;">>
+	<div class="container">
+
+		<div class="row">
+			<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">  
+			   <ul class="navbar-nav">
+			  		<li class="nav-item dropdown">
+			      		<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+			        	Home
+			      		</a>
+			      		<div class="dropdown-menu">
+			      			<a class="dropdown-item" href="/">Home</a>
+					        <a class="dropdown-item" href="/bethesda">RS Bethesda</a>
+					        <a class="dropdown-item" href="/sleman">RSUD Sleman</a>
+					        <a class="dropdown-item" href="/wates">RSUD Wates</a>
+					        <a class="dropdown-item" href="/jih">RS JIH</a>
+					        <a class="dropdown-item" href="/panti_rapih">RS Panti Rapih</a>
+					        <a class="dropdown-item" href="/pku_muhammadiyah">RS PKU Muhammadiyah</a>
+					        <a class="dropdown-item" href="/panembahan">RSUD Panembahan Senopati</a>
+					        <a class="dropdown-item" href="/pau_hardjolukito">RS PAU Dr. S. Hardjolukito</a>
+					        <a class="dropdown-item" href="/ugm">RS UGM</a>
+					        <a class="dropdown-item" href="/kota">RSUD Kota Yogyakarta</a>
+					        <a class="dropdown-item" href="/sardjito">RS dr. Sardjito</a>
+				      	</div>
+			    	</li>
+				    <li class="nav-item">
+				       
+				    </li>
+				    <li class="nav-item">
+				       <a class="nav-link" href="#section2">Positif Non Medis</a>
+				    </li>
+				    <li class="nav-item">
+				       <a class="nav-link" href="#section3">Positif Medis</a>
+				    </li>
+				    <li class="nav-item">
+				       <a class="nav-link" href="#section4">Negatif Non Medis</a>
+				    </li>
+				    <li class="nav-item">
+				       <a class="nav-link" href="#section5">Negatif Medis</a>
+				    </li>
+				</ul>
+			</nav>
+		</div>
+
+		<div class="row title">
+	        <div class="col-md-12" id="site-title">
+	        	<p> 
+	        		<h1 class="title-site", style="padding-top:50px">Visualisasi Jasa Kesehatan</h1>
+	        		<p class="desc">Dengan Analisis Sentimen dan Klasifikasi</p>
+	        		
+	        	</p>
+	        </div>
+    	</div>
+
+    	<div id="section1">
+	    	<div class="row" style="padding-top: 5px">
+	    		<hr size="10px" width="100%" color="#0066cc">
+	    	</div>
+	    	<div class="row my-2">
+	    		<div class="col-md-4">
+	    		</div>
+	    	</div>
+    	</div>
+
+    	<div id="section2">
+	  		<div class = 'row'>
+	  			<h2>Grafik Frekuensi Frasa Positif non-medis RS Sardjito</h2>
+				<canvas id="pnm" width="10px" height="4px"></canvas>		
+			</div>
+
+			<div class="row">
+				<h2>Tabel Review Positif non-medis RS Sardjito</h2>
+			<!-- <canvas id="pm" width="10px" height="8px"></canvas> -->
+				<table class="table table-striped table-bordered" id="example" style="width:100%">
+				  	<thead>
+				    <tr>
+				      <th scope="col",class="col-lg-1" >No.</th>
+				      <th scope="col",class="col-lg-2" >Frasa</th>
+				      <th scope="col", class="col-lg-3" >Review</th>
+				    </tr>
+				  	</thead>
+				  	<tbody>
+				  		<tr>
+					      	<th scope="row">1</th>
+					      	<td>tempat lengkap</td>
+					     	<td>
+					      		Pengalaman ketika ada saudara/keluarga yang opname di RS ini ... Tempatnya bersih dan nyaman juga lengkap .
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">2</th>
+					      	<td>pegawai murah</td>
+					     	<td>
+					      		para pgwai d Rsup dr sardjto sangat ramah dan murah senyum , , sungguh memuaskan pelayanan ny
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">3</th>
+					      	<td>fasilitas cepat</td>
+					      	<td>Fasilitas bagus dan cepat pelayanannya</td>
+				      	</tr>
+					  	<tr>
+					      	<th scope="row">4</th>
+					      	<td>fasilitas nyaman</td>
+					     	<td>
+					      		fasilitas yg cukup memadai buat kdepanya semoga lebih nyaman 
+					      	</td>
+					    </tr>
+					  	<tr>
+					      	<th scope="row">5</th>
+					      	<td>ruang nyaman</td>
+					     	<td>
+					      		waktu donor darah di sini pelayanan nya memuaskan, ruang tunggunya nyaman dan dingin ðŸ‘ 
+					      	</td>
+
+					    </tr>
+					  	<tr>
+					      	<th scope="row">6</th>
+					      	<td>tempat bagus</td>
+					     	<td>
+					      		<li>
+					      			(Diterjemahkan oleh Google) Ini tempat yang bagus untuk perawatan medis. Dokternya bagus. Para perawat itu baik dan seterusnya.(Asli)Its a good place for medical treatment. The doctor's good. The nurses was nice and so on.
+					      		</li>
+					      		<li>
+					      			Tempat nya bagus, tp parkiran untuk mobil kurang besar
+					      		</li>
+					    </tr>
+					  	<tr>
+					      	<th scope="row">7</th>
+					      	<td>fasilitas baik</td>
+					     	<td>
+					      		<li>
+					      			(Diterjemahkan oleh Google) Sebagai Rumah Sakit Umum, RSUP Sardjito adalah salah satu rumah sakit terbaik di Indonesia. Ini memiliki fasilitas yang baik dan sistem medis yang baik. Kami dapat mendaftar untuk check-up di klinik secara online dan tidak perlu menunggu antrean panjang. Para perawat ramah dan peduli kepada setiap pasien.(Asli)As the Public Hospital, RSUP Sardjito is one of the best hospitals in Indonesia. It has good facilities and good medical system. We can do register for checking-up at clinics by online and it doesn't need to wait for long queue. The nurses are friendly and caring to each patient.
+					      		</li>
+					      		<li>
+					      			Salah saru rumah sakit swasta di jogja , letaknya di tengah kota jogja di depan kampus ugm.Kalo orang jogja nyebutnya di bunderan ugm , rumah sakit yg memiliki fasilitas yg baik di jogja ini lengkap dengan berbagai spesialis dan perlengkapan medis.Untuk kamar banyak pilihan , untuk rawat jalan bisa juga melalui telepon untuk reservasi .
+					      		</li>
+					      		<li>
+					      			Fasilitas dan tenaga medis sangat cukup dan lengkap baik secara kwantitas maupun kwalitas. Alhamdulillah wa syukurillah.
+					      		</li>
+					      	</td>
+
+					    </tr>
+					  	<tr>
+					      	<th scope="row">8</th>
+					      	<td>fasilitas bagus</td>
+					     	<td>
+					      		(Diterjemahkan oleh Google) fasilitas bagus tapi layanannya harus ditingkatkan(Asli)good facilities but the service should be improved
+					      	</td>
+
+					    </tr>
+					  	<tr>
+					      	<th scope="row">9</th>
+					      	<td>petugas ramah</td>
+					     	<td>
+					      		<li>
+					      			pelayanan cepat dengan petugas ramah dan informatif
+					      		</li>
+					      		<li>
+					      			pelayanan cepat dengan petugas ramah dan informatif
+					      		</li>
+					      		<li>
+					      			Pelayanan baik. Petugas ada yang ramah dan ada yang cuek. Parkiran terkadang susah dapat yang dekat. Kalau parkir sudah ada tempatnya lebih baik jadi satu dan diberi drop zone. Penunjuk tempat dari parkiran untuk menuju ruangan tertentu belum ada jadi terkadang membingungkan kalau jarang kesini. Petugas parkir juga kurang sigap saat parkiran penuh. Jadi saat sudah masuk harus puter berbelit-belit.Untuk hal kebersihannya sudah sangat bagus disini. Masjidnya juga disediakan dan besar.
+					      		</li>
+					      		<li>
+					      			Pelayanannya sangan baik, fasilitas kesehatan lengkap dan petugasnya ramah ramah
+					      		</li>
+					      		<li>
+					      			Cukup bersih. .nyaman,petugasnya ramah
+					      		</li>
+					      	</td>
+					    </tr>
+					  	<tr>
+					      	<th scope="row">10</th>
+					      	<td>tempat nyaman</td>
+					     	<td>
+					      		<li>
+					      			Sardjito tempatnya nyaman
+					      		</li>
+					      		<li>
+					      			Aq kasi bintang 4 sebenernya semuanya udah baik seperti tempatnya yg nyaman apalagi kan pasti antri tp gak kerasa karena gedung yg bagus dan ada eskalator.. Tp mngkin di poliklinik bedah yg bagian administrasinya itu ada satu pegawai ibu2 yg kalau ditanya pasien jawabnya galak bgt.. Ngomongnya keras dan sedikit mbentak gitu.. Kan wajar pasien tanya karena tdk tau harusnya dikasih tau baik2 pasti ngerti.. Ini sya sudah sering sekali lihat karena kebetulan anak sya kontrol dsini..
+					      		</li>
+					      		<li>
+					      			Tempat nyaman
+					      		</li>
+					      		<li>
+					      			Klinik cempaka mulya untuk VIP anak sangat oke. Karena klinik perjanjian, tidak perlu antri lama. Tempat bersih dan nyaman.
+					      		</li>
+					      	</td>
+					      </tr>
+					      <th scope="row">11</th>
+					      	<td>fasilitas lengkap</td>
+					     	<td>
+					      		
+					      			Salah satu Rumah Sakit di Daerah Istimewa Yogyakarta yang berfasilitas lengkap dan pelayanan baik di DIY. Dengan cara yang syariah. Pelayanan baik dan ramah. Lokasi berada di Kota JOGJA tepat di pusat kota. Mudah dijangkau dan mudah mencaronya. Berada di jalan KH Ahmad Dahlan utara jalan sebelah barat titik 0km. Jalannya 2 arah jadi mudah untuk ke lokasi. Dan Rumah Sakit ini support GRAB juga.
+					      	</td>
+					      </tr>
+
+					      <th scope="row">12</th>
+					      	<td>tempat bersih</td>
+					     	<td>
+					     		<li>
+					     			Pelayanan sekarang lumayan bagus dan tempatnya lumayan bersih...cuma tempat parkir mobil yg kurang memadai karena sering penuh
+					     		</li>
+					      		<li>
+					      			Klinik cempaka mulya untuk VIP anak sangat oke. Karena klinik perjanjian, tidak perlu antri lama. Tempat bersih dan nyaman.
+					      		</li>
+					      	</td>
+					      </tr>
+					      		
+
+				  	</tbody>
+				</table>
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+
+		<div id="section3">
+			<div class="row">
+				<h2>Grafik Frekuensi Frasa Positif Medis RS Sardjito</h2>
+				<canvas id="pm" width="10px" height="4px"></canvas>
+			</div>
+
+			<div class="row">
+				<h2>Tabel Review Positif Medis RS Sardjito</h2>
+				<table class="table table-striped table-bordered" id="example1" style="width:100%">
+				  	<thead>
+				    <tr>
+				      <th scope="col",class="col-lg-1" >No.</th>
+				      <th scope="col",class="col-lg-2" >Frasa</th>
+				      <th scope="col", class="col-lg-3" >Review</th>
+				    </tr>
+				  	</thead>
+				  	<tbody>
+				  		<tr>
+					      	<th scope="row">1</th>
+					      	<td>dokter mumpuni</td>
+					     	<td>
+					      		<li>
+					      			Rumah Sakit Dr Sarjito Yogyakarta. Tempat Rujukan terakhir untuk perawatan kesehatan dari BPJS. Karena sudah berstandar Internasional, Alat2 yang lengkap, Dokter yang mumpuni dan berpengalaman. Gedungnya bersih, luas , hanya tempat parkir mobil kurang.Ada kakak dan adikku mengabdikan diri bekerja di Rumah sakit itu, ibu dan bapakku, kakak pernah dirawat disini. Terima kasih pelayanan nya bagus. Tempat pendaftaran nya juga lumayan cepat, tidak seperti dulu lagi. Semoga memberkahi masyarakat yang membutuhkan perawatan.
+					      		</li> 
+					      		<li>
+					      			Rumah Sakit dengan alat medis terlengkap di diy jateng. Dokternya bagus -bagus dan mumpuni di bidangnya. Namun sayang, susternya suadis2. Sy perhatikan banyak pasien /kel pasien yang baru pertama berkunjung ke Sardjito dan kebingungan karena prosedur pendaftaran yang memang riweuh kena omel suster. Ditanya baik -baik judes pol jawabnya. Kasian lihatnya. Beda dengan security, petugas cleaning service yg malah ramah2.Beda sama suater rs swasta yang ramah dan menentramkan hati pasien. Perlu ditraining lg nih ...sayang kan..kualitas dokter , alat dan pendukung lain sdh bagus padahal.
+					      		</li>
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">2</th>
+					      	<td>dokter lengkap</td>
+					     	<td>
+					      		<li>
+					      			Dokternya lengkap... semakin ditingkatkan ðŸ‘ðŸ‘ðŸ‘
+					      		</li>
+					      		<li>
+					      			Rumah sakit umum terbesar di jogjakrta.dokternya lengkap.dekat UGM.UGD 24 jam.ada opotik 24 jam.ada Atm bank mandiri kalau gak salah
+					      		</li>
+					      		<li>
+					      			Pelayanannya fast repon, dokternya lengkap , kamarnya juga bagus
+					      		</li>
+					      		<li>
+					      			RS rujukan di jogja & jateng. Dokter spesialisnya lengkap. But too crowded.
+					      		</li>
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">3</th>
+					      	<td>perawat baik</td>
+					     	<td>
+					      		(Diterjemahkan oleh Google) Salah satu rumah sakit umum yang baik di Yogyakarta. Anda tidak boleh pergi ke sini, itu berarti Anda sehat. Tetapi jika Anda harus, jangan ragu. Ia memiliki banyak dokter dan perawat yang baik. Dan juga mendukung BPJS dan asuransi kesehatan lainnya. Mereka akan membantu Anda menyembuhkan masalah Anda.Bersabar saja, jika Anda seorang pasien.(Asli)One of good general hospital in Yogyakarta. You shouldn't go here, it means you are healthy. But if you must, don't hesitate. It has a lot of good doctors and nurses. And also it support BPJS and any other health insurances. They will help you cure your problem.Just be patient, if you're a patient.
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">4</th>
+					      	<td>ruang nyaman</td>
+					     	<td>
+					      		waktu donor darah di sini pelayanan nya memuaskan, ruang tunggunya nyaman dan dingin ðŸ‘
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">5</th>
+					      	<td>dokter bagus</td>
+					     	<td>
+					      		<li>
+					      			 Untungnya dokternya bagus.
+					      		</li>
+					      		<li>
+					      			Rumah sakit terbesar di Yogyakarta milik pemerintah. Instalasi lengkap dengan dokter yg bagus2. Sayangnya ramai banget, jadi kalo periksa kebanyakan hatus antri lama. Nov 2017.
+					      		</li>
+					      		<li>
+					      			Banyak dokter praktek ketika rawat inap, antri di poli jantung bisa seharian. Dokter spesialis nya bagus.
+					      		</li>
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">6</th>
+					      	<td>dokter baik</td>
+					     	<td>
+					      		<li>(Diterjemahkan oleh Google) Banyak dokter yang baik tapi sayangnya alat / instrumen yang mereka gunakan sudah ketinggalan jaman dan tidak akurat. Mungkin rumah sakit terbaik di Jogja.(Asli)Lots of good doctors but sadly the tools/instruments they use are outdated and inaccurate. Probably the best hospital in Jogja.</li>
+					      		<li>
+					      			(Diterjemahkan oleh Google) Dokter yang baik(Asli)Good doctor
+					      		</li>
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">7</th>
+					      	<td>perawat ramah</td>
+					     	<td>
+					      		<li>
+					      			Hari ini berkesempatan menjenguk saudara yang sedang sakit. Sempat kebingungan karena saking luasnya area rumah sakit. Kebetulan saudara dirawat di unit stroke. Satpam jaganya ramah, perawat yang jaga juga ramah. Kondisi ruangan bangsal bersih.Peralatan penunjang di RS Sardjito termasuk cukup lengkap dan tergolong modern. Fasilitas yang disediakan, tempat parkir yang cukup luas, kantin, mushola, toilet, atm, juga ads rusng tunggu untuk keluarga pasien.
+					      		</li>
+					      		<li>
+					      			(Diterjemahkan oleh Google) Sebagai Rumah Sakit Umum, RSUP Sardjito adalah salah satu rumah sakit terbaik di Indonesia. Ini memiliki fasilitas yang baik dan sistem medis yang baik. Kami dapat mendaftar untuk check-up di klinik secara online dan tidak perlu menunggu antrean panjang. Para perawat ramah dan peduli kepada setiap pasien.(Asli)As the Public Hospital, RSUP Sardjito is one of the best hospitals in Indonesia. It has good facilities and good medical system. We can do register for checking-up at clinics by online and it doesn't need to wait for long queue. The nurses are friendly and caring to each patient.
+					      		</li> 
+					      		<li>
+					      			lumayan lah fasilitas lumayan perawat lumayan ramah cuma proses agak lama padahal kondisi sepi
+					      		</li>
+					      	
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">8</th>
+					      	<td>dokter ramah</td>
+					     	<td>
+					      		<li>
+					      			Dokternya ramah  pelayananya bagus dan nyamam tapi datangnya harus awal kalo mau dapat antrian yang lebih awal atau yang lebih rendah dari 20 dan Terima kasih Sardjito
+					      		</li>
+					      		<li>
+					      			Sejauh ini pelayanan memuaskan.. perawat, dokternya ramah-ramah ðŸ‘Œ
+					      		</li>
+					      		<li>
+					      			1 bulan lebih disini karna karna nunggu anak di nicu, pelayanannya oke, dokternya baik2 dan ramah.
+					      		</li>
+					      		<li>
+					      			Rumah sakit rujukan di Jateng dan DIY. Mantab dokternya ramah ramah
+					      		</li>
+					      	</td>
+				      	</tr>
+				  	</tbody>
+				</table> 
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+
+		<div id="section4">
+			<div class="row">
+				<h2>Grafik Frekuensi Frasa Negatif Non-medis RSUD Sardjito</h2>
+				<canvas id="nnm" width="10px" height="4px"></canvas>
+			</div>
+			<div>
+				<h2>Tabel Review Negatif non-medis RSUD Sardjito</h2>
+			<!-- <canvas id="pm" width="10px" height="8px"></canvas> -->
+				<table class="table table-striped table-bordered" id="example2" style="width:100%">
+				  	<thead>
+				    <tr>
+				      	<th scope="col",class="col-lg-1" >No.</th>
+				      	<th scope="col",class="col-lg-2" >Frasa</th>
+				      	<th scope="col", class="col-lg-3" >Review</th>
+				    </tr>
+				  	</thead>
+				  	<tbody>
+				    <tr>
+				      	<th scope="row">1</th>
+				      	<td>pelayanan sedikit</td>
+				     	<td>
+				      		'Pelayanan sedikit lambat
+				      	</td>
+				    </tr>
+				    <tr>
+				      	<th scope="row">2</th>
+				      	<td>pendaftaran lama</td>
+				      	<td>
+				      		'Atau minimal, ketika pendaftaran kenapa tidak diinformasikan bahwa mungkin saja menunggu lama karena dokter (perempuan) akan melakukan operasi dan rapat?Please value your customers' time!
+				      		
+				      	</td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">3</th>
+				    	<td>pelayanan buruk</td>
+				    	<td>
+				    		<li>
+				    			pelayanan buruk
+				    		</li>
+				    		<li>
+				    			Pelayanannya laaamaaaa... Visit dokter juga ga jelas, tanya ke perawat ga ngerti jadwalnya. Resiko di RS Negri dengan pegawai yg tidak ada pemecatan karena pelayanan buruk, semua santai...
+				    		</li>
+				    		<li>
+				    			Gue kecewa Ama pelayanan yang buruk ini
+				    		</li>
+				    	</td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">4</th>
+				    	<td>pelayanan lama</td>
+				    	<td>
+				    		<li>
+				    			Pelayanan lama!bangsal tidak memenuhi syarat!apakah wajar bangsal hanya 2.5 x 1.5 meter?sirkulasi udara juga kurang!untuk orang sehat saja tidak layak apa lagi untuk orang sakit!tidak percaya?coba cek bangsal cendana 3 kamar nomer 9
+				    		</li>
+				    		<li>
+				    			Pelayanannya laaamaaaa... Visit dokter juga ga jelas, tanya ke perawat ga ngerti jadwalnya. Resiko di RS Negri dengan pegawai yg tidak ada pemecatan karena pelayanan buruk, semua santai...
+				    		</li>
+				    		<li>
+				    			pelayananya lama, birokrasi ribet, penataan kawasan yg amburadul dan kurang terncana, menyebabkan banyak parkir liar
+				    		</li>
+				    		<li>
+				    			Cek kesehatannya mahal, lbh bagus di surabaya. Pelayanan lamaaaaaaaaaaaaaaa
+				    		</li>
+				    		<li>
+				    			Tempat luas, parkiran banyak, pelayanan lama, semoga bisa diperbaiki
+				    		</li>
+				    	</td>
+				    </tr>
+				  	</tbody>
+				</table> 
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+
+		<div id="section5">	
+			<div>
+				<h2>Grafik Frekuensi Frasa Negatif Medis RSUD Sardjito</h2>
+				<canvas id="nm" width="10px" height="4px"></canvas>
+			</div>
+			<div>
+			<h2>Tabel Review Negatif Medis RSUD Sardjito</h2>
+			<!-- <canvas id="pm" width="10px" height="8px"></canvas> -->
+				<table class="table table-striped table-bordered" id="example3" style="width:100%">
+				  	<thead>
+				    <tr>
+				      <th scope="col",class="col-lg-1" >No.</th>
+				      <th scope="col",class="col-lg-2" >Frasa</th>
+				      <th scope="col", class="col-lg-3" >Review</th>
+				    </tr>
+				  	</thead>
+				  	<tbody>
+				    <tr>
+				      	<th scope="row">1</th>
+				      	<td>perawat banyak</td>
+				     	<td>
+				      		pelayananya memuaskan,dokter" perawat bidan dan petugas medis lainnya smua ramah,informatif dan komunikatif,jdi pasien sardjito harus sabar nunggu..dari  awal pendaftaran sampe pengambilan resep smuanya antri..mau pake orang dalem sekalipun tetep ada aja ngantrinya..he..oia satu lagi jangan lupa klo mau ke rs ini mending gasik sblm jam 7 soalnya parkiran untuk kendaraan roda 2 cukup sulitt..
+				      	</td>
+
+				    </tr>
+				    <tr>
+				      	<th scope="row">2</th>
+				      	<td>dokter lama</td>
+				      	<td>
+				      		<li>
+				      			'Parkir ribet..penuh trus...dari parkiran ke poli dan lainnya jauh...ditanganin sama resident dulu..bukan sama dktr spesialisnya langsung jadinya pemeriksaan lamaaaa...dijadiin media belajar buat calon dr. Spesialis 
+				      		</li>
+				      		<li>
+				      			'pasien merangsek ke meja berjubelan di meja sambil terus berteriak..sungguh semrawut sekaliMohon pihak Sardjito untuk membenahi kekacauan ini ..tirulah manajemen RS .Margono misalnya..manajemen sangat rapi ..obat ambil satu satu .cek tensi sebelum  bertemu dokter hanya selang beberapa menit setelah daftar walaupun antri dokter lama tpi sangat bisa dimaklumi karena pasien banyak hampir 40 orang dipoli jantung Margono..kasihan pasien luar kota bisa pulang larutJangan cuma gedung dan fasilitas bagus tapi manajemen kaya di pasar... keduanya harus dibenahi..
+				      		</li>
+				      	</td>
+				    </tr>
+				    
+				    <tr>
+				    	<th scope="row">3</th>
+				    	<td>rumah sakit terburuk</td>
+				    	<td>
+				    		'(Diterjemahkan oleh Google) Rumah sakit terburuk di Yogyakarta pasti, tidak dianjurkan. Para dokter seperti anak-anak kecil, jika Anda mengajukan pertanyaan simle. Mengerikan, benar-benar mengerikan(Asli)The worst hospital in Yogyakarta for sure, not recommended. The doctors are like little kids, if you ask simle questions. Terrible, really terrible
+				    	</td>			    	
+				    </tr>
+				    <tr>
+				    	<th scope="row">4</th>
+				    	<td>pasien sedikit</td>
+				    	<td>
+				    		'''good service tp utk poli kulitnya lamaa, yg praktek dokter muda hrs bolak balik, fota foto, record, bru konsultasi sm dokter senior, masa iya antrean pasien sedikit nunggu dokternya manggil lamaaa alesan lg ada operasi, kan nggk smua dokter ikut operasi jga, ksian pasien yg lain, saran aja silahkan daftar online dulu dripada nunggunya tmbah lamaa
+				    	</td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">5</th>
+				    	<td>obat lama</td>
+				    	<td>
+				    		Bagian penebusan obat kadang menunggu lama.
+				    	</td>
+				    </tr>
+				  	</tbody>
+				</table> 
+
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+	</div>
+</body>
+
+<script>
+	$(document).ready(function () {
+		$('#example').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	$(document).ready(function () {
+		$('#example1').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	$(document).ready(function () {
+		$('#example2').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	$(document).ready(function () {
+		$('#example3').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	var ctx = document.getElementById("sent").getContext('2d');
+	var myChart = new Chart(ctx, {
+
+	  	type: 'pie',
+	 	data: {
+	    labels: ["Positif","Negatif","Netral"],
+	    datasets: [{
+	      backgroundColor: [
+            '#3366cc',
+            '#ff5050',
+            '#ffff00'
+	      ],
+	      data: [2585, 1405, 1279]
+	    }]
+	  }
+	});
+
+</script>
+
+<script>
+var ctx = document.getElementById('pnm').getContext('2d');
+var pnm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['tempat lengkap', 
+             'pegawai murah', 
+             'fasilitas cepat', 
+             'fasilitas nyaman',
+             'ruang nyaman', 
+             'tempat bagus', 
+             'fasilitas baik', 
+             'fasilitas bagus', 
+             'petugas ramah', 
+             'tempat nyaman', 
+             'fasilitas lengkap', 
+             'tempat bersih'
+              
+],
+        datasets: [{
+            label: 'Positif Non Medis',
+            data: [1,1,1,1,1,2,3,1,5,
+            	   4,1,2
+				],
+            backgroundColor: [
+                'rgba(100, 150, 232, 1)','rgba(100, 159, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 159, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)'
+            ],
+            
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx = document.getElementById('pm').getContext('2d');
+var pm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [
+          'dokter mumpuni',
+          'dokter lengkap',
+          'perawat baik', 
+          'ruang nyaman', 
+          'dokter bagus', 
+          'dokter baik', 
+          'perawat ramah', 
+          'dokter ramah', 
+ 
+				],
+        datasets: [{
+            label: 'Positif Medis',
+            data: [2,4,1,1,3,2,3,4],
+            backgroundColor: [
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)'],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+	var ctx = document.getElementById('nnm');
+    var nnm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [
+             'pelayanan sedikit',  
+             'pendaftaran lama',  
+             'pelayanan buruk', 
+             'pelayanan lama' 
+],
+        datasets: [{
+            label: 'Negatif Non Medis',
+            data: [1,1,3,5],
+            backgroundColor: [
+                'rgba(255, 102, 0, 1)','rgba(255, 102, 0, 1)',
+                'rgba(255, 102, 0, 1)','rgba(255, 102, 0, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx = document.getElementById('nm');
+var nm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [ 
+          'perawat banyak', 
+          'dokter lama', 
+          'rumah sakit terburuk', 
+          'pasien sedikit', 
+          'obat lama' 
+
+],
+        datasets: [{
+            label: 'Negatif Medis',
+            data: [1,2,1,1,1
+],
+            backgroundColor: [
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        events: ['click']
+    }
+});
+</script>
+</html>

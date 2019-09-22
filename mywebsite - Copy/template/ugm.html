@@ -1,0 +1,644 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<style>
+ 
+  </style>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50" style="background-image: url('/static/img/bg4.png'); background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: cover;">
+	<div class="container">
+
+		<div class="row">
+			<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">  
+			   <ul class="navbar-nav">
+			  		<li class="nav-item dropdown">
+			      		<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+			        	Home
+			      		</a>
+			      		<div class="dropdown-menu">
+					        <a class="dropdown-item" href="/">Home</a>
+					        <a class="dropdown-item" href="/bethesda">RS Bethesda</a>
+					        <a class="dropdown-item" href="/sleman">RSUD Sleman</a>
+					        <a class="dropdown-item" href="/wates">RSUD Wates</a>
+					        <a class="dropdown-item" href="/jih">RS JIH</a>
+					        <a class="dropdown-item" href="/panti_rapih">RS Panti Rapih</a>
+					        <a class="dropdown-item" href="/pku_muhammadiyah">RS PKU Muhammadiyah</a>
+					        <a class="dropdown-item" href="/panembahan">RSUD Panembahan Senopati</a>
+					        <a class="dropdown-item" href="/pau_hardjolukito">RS PAU Dr. S. Hardjolukito</a>
+					        <a class="dropdown-item" href="/ugm">RS UGM</a>
+					        <a class="dropdown-item" href="/kota">RSUD Kota Yogyakarta</a>
+					        <a class="dropdown-item" href="/sardjito">RS dr. Sardjito</a>
+				      	</div>
+			    	</li>
+				    <li class="nav-item">
+				       
+				    </li>
+				    <li class="nav-item">
+				       <a class="nav-link" href="#section2">Positif Non Medis</a>
+				    </li>
+				    <li class="nav-item">
+				       <a class="nav-link" href="#section3">Positif Medis</a>
+				    </li>
+				    <li class="nav-item">
+				       <a class="nav-link" href="#section4">Negatif Non Medis</a>
+				    </li>
+				    <li class="nav-item">
+				       <a class="nav-link" href="#section5">Negatif Medis</a>
+				    </li>
+				</ul>
+			</nav>
+		</div>
+
+		<div class="row title">
+	        <div class="col-md-12" id="site-title">
+	        	<p> 
+	        		<h1 class="title-site", style="padding-top:50px">Visualisasi Pelayanan Jasa Kesehatan</h1>
+	        		<p class="desc">Dengan Analisis Sentimen dan Klasifikasi</p>
+	        		
+	        	</p>
+	        </div>
+    	</div>
+
+    	<div id="section1">
+	    	<div class="row" style="padding-top: 5px">
+	    		<hr size="10px" width="100%" color="#0066cc">
+	    	</div>
+	    	<div class="row my-2">
+	    		
+	    	</div>
+    	</div>
+
+    	<div id="section2">
+	  		<div class = 'row'>
+	  			<h2>Grafik Frekuensi Frasa Positif non-medis RS UGM</h2>
+				<canvas id="pnm" width="10px" height="4px"></canvas>		
+			</div>
+
+			<div class="row">
+				<h2>Tabel Review Positif non-medis RS UGM</h2>
+			<!-- <canvas id="pm" width="10px" height="8px"></canvas> -->
+				<table class="table table-striped table-bordered" id="example" style="width:100%">
+				  	<thead>
+				    <tr>
+				      <th scope="col",class="col-lg-1" >No.</th>
+				      <th scope="col",class="col-lg-2" >Frasa</th>
+				      <th scope="col", class="col-lg-3" >Review</th>
+				    </tr>
+				  	</thead>
+				  	<tbody>
+				  		<tr>
+					      	<th scope="row">1</th>
+					      	<td>petugas cepat</td>
+					     	<td>
+					      		Untuk pasien bpjs pelayanan memuaskan. Ini untuk yang ke sekian kali ibu di rawat di sini. Petugas cepat tanggap dan melakukan observasi serta tindakan ketika pasien datang ke igd. Petugas sangat membantu dan ramah terhadap pasien dan keluarga.Terima kasih RS UGM semoga ke depan nya pelayanan kepada masyarakat lebih baik lagi.ðŸ‘#rsaugm #bpjs
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">2</th>
+					      	<td>tempat banyak</td>
+					     	<td>
+					      		Rsa ugmTempat sangat bersihParkir luasFasilitas kesehatan sangat lengkapMenerima hampir semua layanan kesehatanPelayanan ramah dan careDokter2 sigap dan fast responMakasih rsa ugm
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">3</th>
+					      	<td>tempat ramai</td>
+					     	<td>
+					      		(Diterjemahkan oleh Google) Rumah sakit ini menawarkan harga yang wajar untuk layanan lab yang layak. Tempat yang nyaman: tidak terlalu ramai dan bersih.(Asli)This hospital offers reasonable price for decent lab services. Comfortable place: not too crowded and clean.
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">4</th>
+					      	<td>fasilitas nyaman</td>
+					     	<td>
+					      		Pelayan bagus. Dokter dan Perawatan melayani dengan sepenuh hati
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">5</th>
+					      	<td>fasilitas sangat baik</td>
+					     	<td>
+					      		Seminggu nginep disini karna nunggu ibu saya opname, dan Alhamdulillah tidak ada kesan buruk di RS ini. Pelayanan dan fasilitas sangat baik. Terimakasih banyak RSA UGMðŸ‘ðŸ‘
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">6</th>
+					      	<td>tempat luas</td>
+					     	<td>
+					     		<li>
+					     			RSA UGM ... .tempat nya bersihhhhh , Luas ... .Pelayanan nya cepat , ramah , blh guna kartu jamkesmas ... .TerBaikkkkkk RSA UGM ðŸ ‘ ðŸ ‘ ðŸ ‘ Ÿ˜‡ðŸ˜‡ðŸ˜‡
+					     		</li>
+					     		<li>
+					     			Tempatnya bersih,luas dan nggak pake ngantri lama.
+					     		</li>
+					     		<li>
+					     			Rumah sakit umum universitas gadjah mada. Sebagai rumah sakit pendidikan bagi mahasiswa kedokteran UGM. Tempatnya luas sekali, pelayanan ramah, baik, tapi fasilitas yang ditawarkan masih belum lengkap ðŸ‘
+					     		</li>
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">7</th>
+					      	<td>fasilitas baik</td>
+					     	<td>
+					     		<li>
+					     			(Diterjemahkan oleh Google) fasilitas yang baik(Asli)Good facility
+					     		</li>
+					     		<li>
+					     			Alternatif RS besar selain RS Sardjito milik UGM. Ini RS Akademik, maksudnya dipakai utk pendidikan. Pelayanan semakin baik, menerima BPJS secara penuh, dan tidak seramai RS besar lain. Fasilitas juga makin baik. Kelemahannya di antrian apotik/farmasi yang panjang. Jika tidak bisa menunggu bisa diambil malam di apotik UGD.
+					     		</li>
+					      		
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">8</th>
+					      	<td>petugas ramah</td>
+					     	<td>
+					     		<li>
+					     			Rumah Sakit Akademik Milik UGM  yg juga melayani bpjs. Gedungnya besar, bersih dan luas. Pelayanannya cepat dan petugasnya ramah. Fasilitasnya lengkap.
+					     		</li>
+					      		<li>
+					      			Petugasnya ramah
+					      		</li>
+					      		<li>
+					      			Untuk pasien bpjs pelayanan memuaskan. Ini untuk yang ke sekian kali ibu di rawat di sini. Petugas cepat tanggap dan melakukan observasi serta tindakan ketika pasien datang ke igd. Petugas sangat membantu dan ramah terhadap pasien dan keluarga.Terima kasih RS UGM semoga ke depan nya pelayanan kepada masyarakat lebih baik lagi.ðŸ‘#rsaugm #bpjs
+					      		</li>
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">9</th>
+					      	<td>tempat nyaman</td>
+					     	<td>
+					     		<li>
+					     			Salah satu Rumah Sakit yg memiliki kapasitas yg baik, jadwal setiap hari, tempat yg nyaman.
+					     		</li>
+					      		<li>
+					      			Halaman parkir luas. Tempatnya nyaman buat orang sakit. Yaaa iyalah namanya juga rumah sakit :pBtw, Layanan disini cukup ramah
+					      		</li>
+					      		<li>
+					      			(Diterjemahkan oleh Google) Rumah sakit ini menawarkan harga yang wajar untuk layanan lab yang layak. Tempat yang nyaman: tidak terlalu ramai dan bersih.(Asli)This hospital offers reasonable price for decent lab services. Comfortable place: not too crowded and clean.
+					      		</li>
+					      		<li>
+					      			Tempatnya bersih dan nyaman sekali...pelayanan pun ramah ketika mengantarkan pasien utk di rujuk disini...dan penanganannya cepat..
+					      		</li>
+					      	</td>
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">10</th>
+					      	<td>fasilitas lengkap</td>
+					     	<td>
+					      		<li>
+					      			pelayanannya baik, tempat bersih... fasilitas lengkap, murah juga..sayangnya tempat parkir motor jauh dan tidak terhubung dg gedung sehingga kalau mau jalan dari tempat parkir ke gedung rs nya waktu hujan bisa kehujanan..
+					      		</li>
+					      		<li>
+					      			Rumah Sakit Akademik Milik UGM  yg juga melayani bpjs. Gedungnya besar, bersih dan luas. Pelayanannya cepat dan petugasnya ramah. Fasilitasnya lengkap.
+					      		</li>
+					      		<li>
+					      			Fasilitas lengkap
+					      		</li>
+					      		<li>
+					      			Fasilitas lengkap, parkiran luas
+					      		</li>
+					      	</td>
+
+				      	</tr>
+				      	<tr>
+					      	<th scope="row">11</th>
+					      	<td>tempat bersih</td>
+					     	<td>
+					     		<li>
+					     			Tempatnya bersih,luas dan nggak pake ngantri lama. Apalagi kemarin konsultasi plus ngambil hasil tes IQ & periksa kesehatan bayarnya murah banget.apalagi ada pelayanan online yg lebih memudahkan bagi pasien yg jauh.
+					     		</li>
+					      		<li>
+					      			Tempatnya bersih, rapih dan semua fasilitas kesehatan ada
+					      		</li>
+					      		<li>
+					      			RSA UGM....tempat nya bersihhhhh,Luas....Pelayanan nya cepat,ramah,blh guna kartu jamkesmas....TerBaikkkkkk RSA UGM ðŸ‘ðŸ‘ðŸ‘ðŸ˜‡ðŸ˜‡ðŸ˜‡
+					      		</li>
+					      		<li>
+					      			RS milik UGM ini tergolong baru, jadi masih ada beberapa bagian yang belum selesai dibangun. Tempatnya lumayan bersih, sesuai standar rumah sakit. Yang asyik, rumah sakit ini tidak seramai rumah sakit lain yang ada di jogja pada umumnya. Jadi enak, tenang dan peraturannya ketat. Jam besuk diterapkan dengan baik. Oke
+					      		</li>
+					      		<li>
+					      			(Diterjemahkan oleh Google) Rumah sakit ini menawarkan harga yang wajar untuk layanan lab yang layak. Tempat yang nyaman: tidak terlalu ramai dan bersih.(Asli)This hospital offers reasonable price for decent lab services. Comfortable place: not too crowded and clean.
+					      		</li>
+					      		<li>
+					      			Awalnya ragu karena RS ini milik kampus, ternyata staff-nya profesional dan tempatnya sangat bersih.
+					      		</li>
+					      		<li>
+					      			Tempatnya bersih,luas dan nggak pake ngantri lama. Apalagi kemarin konsultasi plus ngambil hasil tes IQ & periksa kesehatan bayarnya murah banget.apalagi ada pelayanan online yg lebih memudahkan bagi pasien yg jauh.
+					      		</li>
+					      		<li>
+					      			pelayanannya baik, tempat bersih... fasilitas lengkap, murah juga..sayangnya tempat parkir motor jauh dan tidak terhubung dg gedung sehingga kalau mau jalan dari tempat parkir ke gedung rs nya waktu hujan bisa kehujanan..
+					      		</li>
+					      		<li>
+					      			Tempatnya bersih dan nyaman sekali...pelayanan pun ramah ketika mengantarkan pasien utk di rujuk disini...dan penanganannya cepat..
+					      		</li>
+					      		<li>
+					      			Pelayanan cepat.Tempatnya selalu bersih.Cleaning servisnya ok ðŸ‘Œ 
+					      		</li>
+					      	</td>
+				      	</tr>
+				      </tbody>
+				</table>
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+
+		<div id="section3">
+			<div class="row">
+				<h2>Grafik Frekuensi Frasa Positif Medis RS UGM</h2>
+				<canvas id="pm" width="10px" height="4px"></canvas>
+			</div>
+
+			<div class="row">
+				<h2>Tabel Review Positif Medis RS UGM</h2>
+				<table class="table table-striped table-bordered" id="example1" style="width:100%">
+				  	<thead>
+				    <tr>
+				      <th scope="col",class="col-lg-1" >No.</th>
+				      <th scope="col",class="col-lg-2" >Frasa</th>
+				      <th scope="col", class="col-lg-3" >Review</th>
+				    </tr>
+				  	</thead>
+				  	<tbody>
+				  		<tr>
+					      	<th scope="row">1</th>
+					      	<td>kelas baik</td>
+					     	<td>
+					      		Ruangan bersih, luas, fasiltas ok, pelayanan memuaskan, yang paling penting bisa pakai asurasi bpjs atau jamkesda.. Ruangan kelas 3 disini jauh lebih baik dari pada ruangan kelas 1 di RS pemerintah.....mantapss sukses selalu buat RSA UGM 
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">2</th>
+					      	<td>pasien cepat</td>
+					     	<td>
+					      		Rumah Sakit yg ramah dan para perawatnya muda2 semua sehingga membuat pasien dalam segi pemandandangan jadi cepat sembuh hehehehe
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">3</th>
+					      	<td>dokter baik</td>
+					     	<td>
+					      		Pelayanan Sangat Baik walaupun BPJS pernah istri Operasi Usus Buntu BPJS sangat baik, kebersohan bagus, makanan baik, perawat dan dokternya baik. Untuk menghindari antrian bisa daftar lewat aplikasi online RSA UGM..
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">4</th>
+					      	<td>ruangan bersih</td>
+					     	<td>
+					      		<li>
+					      			Ruangan bersih, luas, fasiltas ok, pelayanan memuaskan, yang paling penting bisa pakai asurasi bpjs atau jamkesda.. Ruangan kelas 3 disini jauh lebih baik dari pada ruangan kelas 1 di RS pemerintah.....mantapss sukses selalu buat RSA UGM
+					      		</li>
+					      		<li>
+					      			Bangunan berstandart medis. dokter lengkap, ruangan bersih, tidak terlalu ramai dan pusat rujukan mhsw UGM yg ingin berobat
+					      		</li>
+					      		<li>
+					      			Ruangan nya bersih, dokternya banyak, antri lama buat pemegang kartu BPJS, kantinnya bersih
+					      		</li>
+					      		<li>
+					      			Ruangan bersih, luas, fasiltas ok, pelayanan memuaskan, yang paling penting bisa pakai asurasi bpjs atau jamkesda.. Ruangan kelas 3 disini jauh lebih baik dari pada ruangan kelas 1 di RS pemerintah.....mantapss sukses selalu buat RSA UGM
+					      		</li>
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">5</th>
+					      	<td>perawat ramah</td>
+					     	<td>
+					      		Dokter dan perawatnya ramah-ramah
+					      	</td>
+				      	</tr>
+				  		<tr>
+					      	<th scope="row">6</th>
+					      	<td>dokter ramah</td>
+					     	<td>
+					      		<li>
+					      			Hari ini ke dokter 2x yg pertama sm sekali gak ngefek...sore nya lgs ke sini,,asam lambung ku gak ada /jam langsung sembuh.... Perawat sm dokternya pun ramah2... Dan harga nya bnr2 bersahabat banget dengan smua fasilitas yg ada...muraah
+					      		</li>
+					      		<li>
+					      			Pelayanannya bagus, semoga semakin baik kualitasnya. Free Wifi nya lumayan kenceng. Kantin bersih. Dokternya jg ramah
+					      		</li>
+					      		<li>
+					      			Keren, dokternya ramah
+					      		</li>
+					      	</td>
+				      	</tr>
+				  	</tbody>
+				</table> 
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+
+		<div id="section4">
+			<div class="row">
+				<h2>Grafik Frekuensi Frasa Negatif Non-medis RS UGM</h2>
+				<canvas id="nnm" width="10px" height="4px"></canvas>
+			</div>
+			<div>
+				<h2>Tabel Review Negatif non-medis RS UGM</h2>
+			<!-- <canvas id="pm" width="10px" height="8px"></canvas> -->
+				<table class="table table-striped table-bordered" id="example2" style="width:100%">
+				  	<thead>
+				    <tr>
+				      	<th scope="col",class="col-lg-1" >No.</th>
+				      	<th scope="col",class="col-lg-2" >Frasa</th>
+				      	<th scope="col", class="col-lg-3" >Review</th>
+				    </tr>
+				  	</thead>
+				  	<tbody>
+				    <tr>
+				      	<th scope="row">1</th>
+				      	<td>administrasi buruk</td>
+				     	<td>
+				      		(Diterjemahkan oleh Google) administrasi yang buruk(Asli)bad administration
+				      	</td>
+				    </tr>
+				    <tr>
+				      	<th scope="row">2</th>
+				      	<td>waktu lama</td>
+				      	<td>
+				      		<li>''Ke rumah sakit ini mesti nyediain waktu extra & super sabar...karena hampir setiap layanan mesti nunggu dlm waktu yg lama, unit radiologi 1 dg kondisi antrian ga sampe 5 orang mesti nunggu sampe 1 jam lebih. Belum di kliniknya...udah datang jam 8 pagi, dokternya baru datang 1,5 jam kemudian, baru dilayani jam 10.30...</li>
+				      		<li>
+				      			''(Diterjemahkan oleh Google) Berada di sini tiga kali dan tidak pernah mendapat dissapointed jauh. Harga jauh sangat murah (ps. Saya tidak menggunakan subsidi BPJS atau sebagainya). Para dokter dan staf sangat bagus. Doesnt antrian membawa Anda waktu yang lama dan rumah sakit tidak terlalu ramai.Menganggapnya sebagai pilihan pertama saya pelayanan medis di Yogyakarta.(Asli)Been here three times and never got dissapointed by far. The prices are considerably very cheap (ps. I don't use any BPJS subsidy or so forth). The doctors and staffs are very nice. The queue doesnt take you a long time and the hospital is not too crowded.Consider it as my first choice of medical services in Yogyakarta.
+				      		</li>
+				      		
+				      	</td>
+				    </tr>
+				  	</tbody>
+				</table> 
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+
+		<div id="section5">	
+			<div>
+				<h2>Grafik Frekuensi Frasa Negatif Medis RS UGM</h2>
+				<canvas id="nm" width="10px" height="4px"></canvas>
+			</div>
+			<div>
+			<h2>Tabel Review Negatif Medis RS UGM</h2>
+			<!-- <canvas id="pm" width="10px" height="8px"></canvas> -->
+				<table class="table table-striped table-bordered" id="example3" style="width:100%">
+				  	<thead>
+				    <tr>
+				      <th scope="col",class="col-lg-1" >No.</th>
+				      <th scope="col",class="col-lg-2" >Frasa</th>
+				      <th scope="col", class="col-lg-3" >Review</th>
+				    </tr>
+				  	</thead>
+				  	<tbody>
+				    <tr>
+				      	<th scope="row">1</th>
+				      	<td>pasien sedikit</td>
+				     	<td>
+				      		Barusan dari IGD, pelayanan dokter, tenaga medis dan tenaga administrasi ramah, cepat dan profesional. Pemberian informasi juga sangat jelas dari seluruh staf RS. Mungkin faktor hari libur dan pasien sedikit jadi lebih prima melayani pasien yang datang 
+				      	</td>
+				    </tr>
+				    <tr>
+				      	<th scope="row">2</th>
+				      	<td>pasien lama</td>
+				      	<td>
+				      		'Untuk pasien baru rawat jalan silahkan datang pertama terlebih dahulu, dikarenakan pasti akan rame setiap jam kerja. Daftarlah sebelum jam 12 siang. Untuk pasien lama silahkan booking via phone untuk ambil nomor antrian.Unuk antrian Kode "A" = untuk BPJS, "B"=untuk umum, "C" =untuk fast track.Datang jam 10 pagi. Sudah antri 20 orang. Harap bersabar.Untuk harga pelayanan masih terjangkau kantong untuk keluarga baru. Kebersihan dan keramahan masih terjamin disini. Apabila tida mengerti silahkan tanya petugas, petugas akan memberikan informasi yang jelas
+				      	</td>
+				    </tr>
+				    <tr>
+					    <th scope="row">3</th>
+					    <td>pasien sedikit</td>
+					    <td>
+				      		'''Barusan dari IGD, pelayanan dokter, tenaga medis dan tenaga administrasi ramah, cepat dan profesional. Pemberian informasi juga sangat jelas dari seluruh staf RS. Mungkin faktor hari libur dan pasien sedikit jadi lebih prima melayani pasien yang datang 
+				        </td>
+				    </tr>
+				    <tr>
+				    	<th scope="row">4</th>
+				    	<td>obat lama</td>
+				    	<td>
+				    		rumah sakit dengan pelayanan paling ramah, perawate bening bening haha, cuman pas antrian panggil obat yang bikin lama karena dijelasin dulu,
+				    	</td>			    	
+				    </tr>
+				    <tr>
+				    	<th scope="row">5</th>
+				    	<td>pasien banyak</td>
+				    	<td>
+				    		Pernah melakukan perawatan rhinitis alergi dan menjalankan opname untuk operasi appendectomy. Pelayanan semua sangat baik, hasil USG sangat cepat keluar, operasi berjalan lancar dan cepat, makanan cukup enak, bangsal kelas II sangat nyaman. Hanya saja pasien banyak ditangani perawat magang dan beberapa kurang profesional (darah muncrat saat memasang dan melepas infus)
+				    	</td>
+				    </tr>
+				  	</tbody>
+				</table> 
+
+				<hr size="10px" width="100%" align="left" color="#0066cc">
+			</div>
+		</div>
+	</div>
+</body>
+
+<script>
+	$(document).ready(function () {
+		$('#example').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	$(document).ready(function () {
+		$('#example1').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	$(document).ready(function () {
+		$('#example2').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	$(document).ready(function () {
+		$('#example3').DataTable({
+			"lengthMenu": [[3, 5, 20, -1], [3, 5, 20, "All"]]
+		});
+	} );
+
+	var ctx = document.getElementById("sent").getContext('2d');
+	var myChart = new Chart(ctx, {
+
+	  	type: 'pie',
+	 	data: {
+	    labels: ["Positif","Negatif","Netral"],
+	    datasets: [{
+	      backgroundColor: [
+            '#3366cc',
+            '#ff5050',
+            '#ffff00'
+	      ],
+	      data: [2585, 1405, 1279]
+	    }]
+	  }
+	});
+
+</script>
+
+<script>
+var ctx = document.getElementById('pnm').getContext('2d');
+var pnm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [ 
+             'petugas cepat',
+             'tempat banyak', 
+             'tempat ramai',
+             'fasilitas nyaman', 
+             'fasilitas sangat_baik', 
+             'tempat luas',
+             'fasilitas baik', 
+             'petugas ramah', 
+             'tempat nyaman', 
+             'fasilitas lengkap', 
+             'tempat bersih'
+              
+],
+        datasets: [{
+            label: 'Positif Non Medis',
+            data: [1,1,1,1,1,2,
+            	   2,3,4,4,10
+				],
+            backgroundColor: [
+                'rgba(100, 150, 232, 1)','rgba(100, 159, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 159, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)','rgba(100, 150, 232, 1)',
+                'rgba(100, 150, 232, 1)'
+            ],
+            
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx = document.getElementById('pm').getContext('2d');
+var pm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [
+          'kelas baik', 
+          'pasien cepat', 
+          'dokter baik', 
+          'ruangan bersih', 
+          'perawat ramah', 
+          'dokter ramah', 
+ 
+				],
+        datasets: [{
+            label: 'Positif Medis',
+            data: [1,1,1,4,1,3],
+            backgroundColor: [
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)','rgba(0, 153, 51,1)',
+                'rgba(0, 153, 51,1)'],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+	var ctx = document.getElementById('nnm');
+    var nnm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['administrasi buruk',  
+             'waktu lama' 
+],
+        datasets: [{
+            label: 'Negatif Non Medis',
+            data: [1,2],
+            backgroundColor: [
+                'rgba(255, 102, 0, 1)','rgba(255, 102, 0, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx = document.getElementById('nm');
+var nm = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [ 
+          'pasien sedikit',
+ 		  'pasien lama',
+          'pasien sedikit', 
+          'obat lama',  
+          'pasien banyak', 
+
+],
+        datasets: [{
+            label: 'Negatif Medis',
+            data: [1,1,1,1,1
+],
+            backgroundColor: [
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)','rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        events: ['click']
+    }
+});
+</script>
+</html>
